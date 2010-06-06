@@ -6,14 +6,14 @@ How to build:
 * get latest libx264, tag rev.number, create symlink
   $ cd repository-base-folder                      ### x264Encoder local repository
   $ mv x264 x264.org                               ### original x264 is symlink
-  $ git-clone git://git.videolan.org/x264.git x264
+  $ git clone git://git.videolan.org/x264.git x264
   $ cd x264
   $ NEWNAME="x264`git rev-list HEAD | sort | wc -l | awk '{ print $1; }'`"
   $ cd ..
   $ mv x264 ${NEWNAME}                             ### name would be x2641629 or so
   $ ln -s ${NEWNAME} x264                          ### recreate symlink
   $ cd x264                                        ### follow symlink
-  $ cat ../x264.diff | patch -p1 -d.               ### apply patches
+  $ cat ../x264.*.diff | patch -p1 -d.             ### apply patches
   $ cp -pr ../x264.org/x264.xcodeproj .            ### copy project file
 
 * Get latest ffmpeg, tag rev.number, create symlink.
