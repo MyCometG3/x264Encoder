@@ -26,7 +26,7 @@ How to build:
   $ mv trunk ${NEWNAME}                            ### name would be libav23501 or so
   $ ln -s ${NEWNAME} libav                         ### recreate symlink
   $ cd libav                                       ### follow symlink
-  $ cat ../libav.*.diff | patch -p1 -d.            ### apply patches
+  $ cat ../ffmpeg.*.diff | patch -p1 -d.           ### apply patches
   $ cp -pr ../libav.org/libav.xcodeproj .          ### copy project file
 
 * build libx264.a using Xcode
