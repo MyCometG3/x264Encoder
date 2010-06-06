@@ -1,0 +1,66 @@
+How to build:
+* Setup git and yasm 1.x.x environment. The macports is easy solution.
+* NOTICE: This build requires Leopard+Xcode 3.1, or SnowLeopard+Xcode 3.2.
+* clone git repository first
+
+* get latest libx264, tag rev.number, create symlink
+  $ cd repository-base-folder                      ### x264Encoder local repository
+  $ mv x264 x264.org                               ### original x264 is symlink
+  $ git-clone git://git.videolan.org/x264.git x264
+  $ cd x264
+  $ NEWNAME="x264`git rev-list HEAD | sort | wc -l | awk '{ print $1; }'`"
+  $ cd ..
+  $ mv x264 ${NEWNAME}                             ### name would be x2641629 or so
+  $ ln -s ${NEWNAME} x264                          ### recreate symlink
+  $ cd x264                                        ### follow symlink
+  $ cat ../x264.diff | patch -p1 -d.               ### apply patches
+  $ cp -pr ../x264.org/x264.xcodeproj .            ### copy project file
+
+* Get latest ffmpeg, tag rev.number, create symlink.
+  $ cd repository-base-folder                      ### x264Encoder local repository
+  $ mv libav libav.org                             ### original libav is symlink
+  $ svn checkout svn://svn.mplayerhq.hu/ffmpeg/trunk
+  $ cd trunk
+  $ NEWNAME="libav`svn info | awk '/Revision:/ {print $2;}'`"
+  $ cd ..
+  $ mv trunk ${NEWNAME}                            ### name would be libav23501 or so
+  $ ln -s ${NEWNAME} libav                         ### recreate symlink
+  $ cd libav                                       ### follow symlink
+  $ cat ../libav.*.diff | patch -p1 -d.            ### apply patches
+  $ cp -pr ../libav.org/libav.xcodeproj .          ### copy project file
+
+* build libx264.a using Xcode
+  $ cd repository-base-folder                      ### x264Encoder local repository
+  $ cd x264                                        ### follow symlink
+  $ open x264.xcodeproj
+  # build target : "Build Universal"
+  :
+  $ ls -l *.a
+  -rw-r--r--   1 takashi  admin  1773608  6  4 10:45 libx264.a
+
+* build libavcodec.a and others using Xcode
+  $ cd repository-base-folder                      ### x264Encoder local repository
+  $ cd libav                                       ### follow symlink
+  $ open libav.xcodeproj
+  # build target : "Build Universal"
+  :
+  $ ls -l *.a
+  -rw-r--r--  1 takashi  admin  3608504  6  4 10:47 libavcodec.a
+  -rw-r--r--  1 takashi  admin    66576  6  4 10:47 libavdevice.a
+  -rw-r--r--  1 takashi  admin   835088  6  4 10:47 libavformat.a
+  -rw-r--r--  1 takashi  admin   356432  6  4 10:47 libavutil.a
+  -rw-r--r--  1 takashi  admin   946176  6  4 10:47 libswscale.a
+
+* build UIbundle.bundle using Xcode.
+  $ cd repository-base-folder                      ### x264Encoder local repository
+  $ cd UIbundle
+  $ open UIbundle.xcodeproj
+  # build target : "UIbundle"
+
+* build x264Encoder.component using Xcode.
+  $ cd repository-base-folder                      ### x264Encoder local repository
+  $ cd source
+  $ open x264Encoder.xcodeproj
+  # build target : "Build and Copy"
+
+NOTE: This build target will copy x264Encoder.component into /Library/QuickTime/. Not /Users/XXX/Library/QuickTime/.
