@@ -1,0 +1,243 @@
+--- libav23430.org/libavcodec/libx264.c	2010-06-03 05:38:28.000000000 +0900
++++ libav23430/libavcodec/libx264.c	2010-06-03 05:40:33.000000000 +0900
+@@ -26,6 +26,46 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
++#define	X264PROFILE_UNDEF	0
++#define	X264PROFILE_BASE	1
++#define	X264PROFILE_MAIN	2
++#define	X264PROFILE_HIGH	3
++
++#define	X264PRESET_ULTRAFAST	-3
++#define	X264PRESET_SUPERFAST	-5
++#define	X264PRESET_VERYFAST	-2
++#define	X264PRESET_FASTER	-4
++#define	X264PRESET_FAST		-1
++#define	X264PRESET_MEDIUM	0
++#define	X264PRESET_SLOW		1
++#define	X264PRESET_SLOWER	2
++#define	X264PRESET_VERYSLOW	4
++#define	X264PRESET_PLACEBO	3
++
++#define	X264TUNE_UNDEF	0
++#define	X264TUNE_FILM	1
++#define	X264TUNE_ANIMATION	2
++#define	X264TUNE_GRAIN	3
++#define	X264TUNE_STILLIMAGE	9
++#define	X264TUNE_PSNR	4
++#define	X264TUNE_SSIM	5
++#define	X264TUNE_TOUHOU	6
++#define	X264TUNE_FASTDECODE 7
++#define	X264TUNE_ZEROLATENCY 8
++
++// Additional parameters which are not supported in AVCodecContext struct
++typedef struct {
++    char* log_file_path;
++    char CQM_PRESET;
++    char NO_DCT_DECIMATE;
++    char X264PRESET;
++    char X264TUNE;
++    char TOPFIELDFIRST;
++    char BD_TUNE;
++    int TIMESCALE;
++    char FAKEINTERLACED;
++} params_opaque;
++
+ typedef struct X264Context {
+     x264_param_t    params;
+     x264_t         *enc;
+@@ -155,14 +195,45 @@
+     x4->sei_size = 0;
+     x264_param_default(&x4->params);
+ 
++    int SPECIFYINTER = 1;
++    params_opaque* p = (params_opaque*)avctx->opaque;
++    if(p) {
++        switch(p->X264PRESET) {
++        case X264PRESET_ULTRAFAST:
++            x4->params.analyse.intra = 0;
++            x4->params.analyse.inter = 0;
++            SPECIFYINTER = 0;
++            break;
++        case X264PRESET_SUPERFAST:
++            x4->params.analyse.inter = X264_ANALYSE_I8x8|X264_ANALYSE_I4x4;
++            SPECIFYINTER = 0;
++            break;
++        }
++        switch(p->X264TUNE) {
++        case X264TUNE_GRAIN:
++            x4->params.analyse.i_luma_deadzone[0] = 6;
++            x4->params.analyse.i_luma_deadzone[1] = 6;
++            break;
++        case X264TUNE_ZEROLATENCY:
++            x4->params.i_sync_lookahead = 0;
++            x4->params.b_sliced_threads = 1;
++            x4->params.b_vfr_input = 0;
++            break;
++        case X264TUNE_TOUHOU:
++            if( x4->params.analyse.inter & X264_ANALYSE_PSUB16x16 )
++                x4->params.analyse.inter |= X264_ANALYSE_PSUB8x8;
++            break;
++        }
++    }
++
+     x4->params.pf_log               = X264_log;
+     x4->params.p_log_private        = avctx;
+ 
+     x4->params.i_keyint_max         = avctx->gop_size;
+     x4->params.b_intra_refresh      = avctx->flags2 & CODEC_FLAG2_INTRA_REFRESH;
+-    x4->params.rc.i_bitrate         = avctx->bit_rate       / 1000;
+-    x4->params.rc.i_vbv_buffer_size = avctx->rc_buffer_size / 1000;
+-    x4->params.rc.i_vbv_max_bitrate = avctx->rc_max_rate    / 1000;
++    x4->params.rc.i_bitrate         = avctx->bit_rate       / 1024;
++    x4->params.rc.i_vbv_buffer_size = avctx->rc_buffer_size / 1024;
++    x4->params.rc.i_vbv_max_bitrate = avctx->rc_max_rate    / 1024;
+     x4->params.rc.b_stat_write      = avctx->flags & CODEC_FLAG_PASS1;
+     if (avctx->flags & CODEC_FLAG_PASS2) {
+         x4->params.rc.b_stat_read = 1;
+@@ -176,6 +247,17 @@
+             x4->params.rc.i_qp_constant = avctx->cqp;
+         }
+     }
++    if(p) {
++        if(x4->params.rc.b_stat_read)
++           x4->params.rc.psz_stat_in = strdup(p->log_file_path);
++        if(x4->params.rc.b_stat_write)
++            x4->params.rc.psz_stat_out = strdup(p->log_file_path);
++        x4->params.i_cqm_preset = p->CQM_PRESET;
++        x4->params.analyse.b_dct_decimate = !(p->NO_DCT_DECIMATE);
++        if (avctx->flags & CODEC_FLAG_INTERLACED_DCT) 
++            x4->params.b_tff = p->TOPFIELDFIRST;
++        x4->params.b_fake_interlaced = p->FAKEINTERLACED;
++    }
+ 
+     // if neither crf nor cqp modes are selected we have to enable the RC
+     // we do it this way because we cannot check if the bitrate has been set
+@@ -213,26 +295,33 @@
+     x4->params.i_height             = avctx->height;
+     x4->params.vui.i_sar_width      = avctx->sample_aspect_ratio.num;
+     x4->params.vui.i_sar_height     = avctx->sample_aspect_ratio.den;
++#if 0
+     x4->params.i_fps_num = x4->params.i_timebase_den = avctx->time_base.den;
+     x4->params.i_fps_den = x4->params.i_timebase_num = avctx->time_base.num;
+-
+-    x4->params.analyse.inter    = 0;
+-    if (avctx->partitions) {
+-        if (avctx->partitions & X264_PART_I4X4)
+-            x4->params.analyse.inter |= X264_ANALYSE_I4x4;
+-        if (avctx->partitions & X264_PART_I8X8)
+-            x4->params.analyse.inter |= X264_ANALYSE_I8x8;
+-        if (avctx->partitions & X264_PART_P8X8)
+-            x4->params.analyse.inter |= X264_ANALYSE_PSUB16x16;
++#else
++    x4->params.i_fps_num = avctx->time_base.den;
++    x4->params.i_fps_den = avctx->time_base.num;
++    x4->params.i_timebase_den = p->TIMESCALE;
++    x4->params.i_timebase_num = 1;
++#endif
++
++//  x4->params.analyse.inter    = 0;
++    if (SPECIFYINTER && avctx->partitions) {
++//      if (avctx->partitions & X264_PART_I4X4)
++//          x4->params.analyse.inter |= X264_ANALYSE_I4x4;
++//      if (avctx->partitions & X264_PART_I8X8)
++//          x4->params.analyse.inter |= X264_ANALYSE_I8x8;
++//      if (avctx->partitions & X264_PART_P8X8)
++//          x4->params.analyse.inter |= X264_ANALYSE_PSUB16x16;
+         if (avctx->partitions & X264_PART_P4X4)
+             x4->params.analyse.inter |= X264_ANALYSE_PSUB8x8;
+-        if (avctx->partitions & X264_PART_B8X8)
+-            x4->params.analyse.inter |= X264_ANALYSE_BSUB16x16;
++//      if (avctx->partitions & X264_PART_B8X8)
++//          x4->params.analyse.inter |= X264_ANALYSE_BSUB16x16;
+     }
+ 
+     x4->params.analyse.i_direct_mv_pred  = avctx->directpred;
+ 
+-    x4->params.analyse.b_weighted_bipred = avctx->flags2 & CODEC_FLAG2_WPRED;
++    x4->params.analyse.b_weighted_bipred = !!(avctx->flags2 & CODEC_FLAG2_WPRED);
+     x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
+ 
+     if (avctx->me_method == ME_EPZS)
+@@ -297,6 +386,67 @@
+     if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER)
+         x4->params.b_repeat_headers = 0;
+ 
++    /* Apply colorspace parameters */
++    if(avctx->color_primaries != 2 || avctx->color_trc != 2 || avctx->colorspace != 2) {
++        //av_log(avctx, AV_LOG_QUIET, "avctx=%d,%d,%d\n", avctx->color_primaries, avctx->color_trc, avctx->colorspace);
++        //av_log(avctx, AV_LOG_QUIET, "param=%d,%d,%d\n", x4->params.vui.i_colorprim, x4->params.vui.i_transfer, x4->params.vui.i_colmatrix);
++        x4->params.vui.i_colorprim = avctx->color_primaries;
++        x4->params.vui.i_transfer = avctx->color_trc;
++        x4->params.vui.i_colmatrix = avctx->colorspace;
++    }
++
++    /* Modify non-gui-supported parameters */
++    if (x4->params.rc.i_vbv_buffer_size && x4->params.rc.i_vbv_max_bitrate) {
++        x4->params.i_nal_hrd = X264_NAL_HRD_VBR;
++    }
++    if (x4->params.b_interlaced) {
++        x4->params.b_pic_struct = 1;
++    }
++    if (p && p->BD_TUNE) {
++        x4->params.i_nal_hrd = X264_NAL_HRD_VBR;
++        x4->params.b_pic_struct = 1;
++        x4->params.i_bframe_pyramid  = X264_B_PYRAMID_STRICT;
++        x4->params.i_slice_count = 4;
++    }
++
++    /* Modify profile restricted parameters */
++    switch (avctx->profile) {
++        case X264PROFILE_BASE:
++            x4->params.analyse.b_transform_8x8 = 0;
++            x4->params.b_cabac = 0;
++            x4->params.i_cqm_preset = X264_CQM_FLAT;
++            x4->params.i_bframe = 0;
++            x4->params.analyse.i_weighted_pred = X264_WEIGHTP_NONE;
++            if( x4->params.b_interlaced ) {
++                av_log(avctx, AV_LOG_QUIET, "x264 [error]: baseline profile doesn't support interlacing\n" );
++                return -100;
++            }
++            break;
++        case X264PROFILE_MAIN:
++            x4->params.analyse.b_transform_8x8 = 0;
++            x4->params.i_cqm_preset = X264_CQM_FLAT;
++            break;
++        case X264PROFILE_HIGH:
++        default:
++            /* Default */
++            break;
++    }
++
++    {    /* Different from original x264.c, this clipping is always applied */
++        int mbs = (((x4->params.i_width)+15)>>4) * (((x4->params.i_height)+15)>>4);
++        int i;
++        for( i = 0; x264_levels[i].level_idc != 0; i++ )
++            if( x4->params.i_level_idc == x264_levels[i].level_idc )
++            {
++                while( mbs * 384 * x4->params.i_frame_reference > x264_levels[i].dpb
++                       && x4->params.i_frame_reference > 1 )
++                {
++                    x4->params.i_frame_reference--;
++                }
++                break;
++            }
++    }
++
+     x4->enc = x264_encoder_open(&x4->params);
+     if (!x4->enc)
+         return -1;
+@@ -311,10 +461,10 @@
+ 
+         for (i = 0; i < nnal; i++)
+             if (nal[i].i_type == NAL_SEI)
+-                av_log(avctx, AV_LOG_INFO, "%s\n", nal[i].p_payload+25);
++                av_log(avctx, AV_LOG_INFO, "%s\n", nal[i].p_payload+24);
+ 
+         avctx->extradata      = av_malloc(s);
+-        avctx->extradata_size = encode_nals(avctx, avctx->extradata, s, nal, nnal, 1);
++        avctx->extradata_size = encode_nals(avctx, avctx->extradata, s, nal, nnal, 0);
+     }
+ 
+     return 0;

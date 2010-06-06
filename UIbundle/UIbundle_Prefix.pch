@@ -1,0 +1,14 @@
+//
+// Prefix header for all source files of the 'UIbundle' target in the 'UIbundle' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+	#import <Carbon/Carbon.h>
+	#import <CoreVF/CoreVF.h>
+#endif
+
+#define kUIbundleNAME @"UIbundleavc1"
+#define kUIControllerNAME UIControlleravc1
+#define kUIModelNAME UIModelavc1
+

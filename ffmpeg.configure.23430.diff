@@ -1,0 +1,13 @@
+--- libav23430.org/configure	2010-06-03 05:38:36.000000000 +0900
++++ libav23430/configure	2010-06-03 05:40:33.000000000 +0900
+@@ -2432,8 +2432,8 @@
+ 
+     # AltiVec flags: The FSF version of GCC differs from the Apple version
+     if enabled altivec; then
+-        check_cflags -maltivec -mabi=altivec &&
+-        { check_header altivec.h && inc_altivec_h="#include <altivec.h>" ; } ||
++#        check_cflags -maltivec -mabi=altivec &&
++#        { check_header altivec.h && inc_altivec_h="#include <altivec.h>" ; } ||
+         check_cflags -faltivec
+ 
+         # check if our compiler supports Motorola AltiVec C API

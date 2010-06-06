@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		16A7474A0B8852860011BCB2 /* Build and Copy */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 16A747550B8852D30011BCB2 /* Build configuration list for PBXAggregateTarget "Build and Copy" */;
+			buildPhases = (
+				16A747500B8852940011BCB2 /* CopyFiles */,
+			);
+			dependencies = (
+				16A7474E0B8852910011BCB2 /* PBXTargetDependency */,
+			);
+			name = "Build and Copy";
+			productName = "Build and Overrite";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		1607754B0F6A77F800C0F35A /* libx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745DA0B8844E70011BCB2 /* libx264.a */; };
+		1607759D0F6B34E200C0F35A /* CoreVF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1607759C0F6B34E200C0F35A /* CoreVF.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		169D2E400D041EAB00E4DE1D /* UIbundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 169D2E320D041EA500E4DE1D /* UIbundle.bundle */; };
+		16A745D30B8844800011BCB2 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745D00B8844800011BCB2 /* libavcodec.a */; };
+		16A745D40B8844800011BCB2 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745D10B8844800011BCB2 /* libavformat.a */; };
+		16A745D50B8844800011BCB2 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745D20B8844800011BCB2 /* libavutil.a */; };
+		16A745E50B88458F0011BCB2 /* x264EncoderUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 16A745DE0B88458F0011BCB2 /* x264EncoderUtil.c */; };
+		16A745E60B88458F0011BCB2 /* x264Encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 16A745DF0B88458F0011BCB2 /* x264Encoder.c */; };
+		16A746080B8846CC0011BCB2 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A746070B8846CC0011BCB2 /* Carbon.framework */; };
+		16A746110B8846E80011BCB2 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A746100B8846E80011BCB2 /* QuickTime.framework */; };
+		16A746150B8846F10011BCB2 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A746140B8846F10011BCB2 /* vecLib.framework */; };
+		16A7466C0B88488E0011BCB2 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16A7466B0B88488E0011BCB2 /* COPYING.txt */; };
+		16A746990B884AFE0011BCB2 /* x264Encoder.r in Rez */ = {isa = PBXBuildFile; fileRef = 16A745E10B88458F0011BCB2 /* x264Encoder.r */; };
+		16A747540B8852B50011BCB2 /* x264Encoder.component in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D576316048677EA00EA77CD /* x264Encoder.component */; };
+		16CF93E70D051136002C1382 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CF93D50D0510D4002C1382 /* main.m */; };
+		16CF93F10D051162002C1382 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CF93F00D051162002C1382 /* QTKit.framework */; };
+		16CF93F60D05116E002C1382 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169D2D830D04129B00E4DE1D /* Cocoa.framework */; };
+		16DF18DF0D0516FF00C66519 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A746100B8846E80011BCB2 /* QuickTime.framework */; };
+		16F492BA0D05777700A5EDB7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A7460C0B8846D80011BCB2 /* QuartzCore.framework */; };
+		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		16A7474D0B8852910011BCB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
+			remoteInfo = x264Encoder;
+		};
+		16DF19650D052A7000C66519 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16A7474A0B8852860011BCB2;
+			remoteInfo = "Build and Overrite";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		169D2DE60D041DA300E4DE1D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				169D2E400D041EAB00E4DE1D /* UIbundle.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16A747500B8852940011BCB2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Library/QuickTime/;
+			dstSubfolderSpec = 0;
+			files = (
+				16A747540B8852B50011BCB2 /* x264Encoder.component in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1607759C0F6B34E200C0F35A /* CoreVF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVF.framework; path = /Users/takashi/Library/Frameworks/CoreVF.framework; sourceTree = "<absolute>"; };
+		169D2D830D04129B00E4DE1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		169D2E320D041EA500E4DE1D /* UIbundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = UIbundle.bundle; path = ../UIbundle/UIbundle.bundle; sourceTree = SOURCE_ROOT; };
+		16A745D00B8844800011BCB2 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../libav/libavcodec.a; sourceTree = SOURCE_ROOT; };
+		16A745D10B8844800011BCB2 /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavformat.a; path = ../libav/libavformat.a; sourceTree = SOURCE_ROOT; };
+		16A745D20B8844800011BCB2 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../libav/libavutil.a; sourceTree = SOURCE_ROOT; };
+		16A745D60B8844A10011BCB2 /* avcodec.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; name = avcodec.h; path = ../libav/libavcodec/avcodec.h; sourceTree = SOURCE_ROOT; };
+		16A745D80B8844C40011BCB2 /* avutil.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; name = avutil.h; path = ../libav/libavutil/avutil.h; sourceTree = SOURCE_ROOT; };
+		16A745D90B8844D10011BCB2 /* avformat.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; name = avformat.h; path = ../libav/libavformat/avformat.h; sourceTree = SOURCE_ROOT; };
+		16A745DA0B8844E70011BCB2 /* libx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libx264.a; path = ../x264/libx264.a; sourceTree = SOURCE_ROOT; };
+		16A745DC0B8844F10011BCB2 /* x264.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; name = x264.h; path = ../x264/x264.h; sourceTree = SOURCE_ROOT; };
+		16A745DD0B88458F0011BCB2 /* x264EncoderVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264EncoderVersion.h; sourceTree = "<group>"; };
+		16A745DE0B88458F0011BCB2 /* x264EncoderUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x264EncoderUtil.c; sourceTree = "<group>"; };
+		16A745DF0B88458F0011BCB2 /* x264Encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x264Encoder.c; sourceTree = "<group>"; };
+		16A745E00B88458F0011BCB2 /* x264EncoderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264EncoderUtil.h; sourceTree = "<group>"; };
+		16A745E10B88458F0011BCB2 /* x264Encoder.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = x264Encoder.r; sourceTree = "<group>"; };
+		16A745E20B88458F0011BCB2 /* x264Encoder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264Encoder_Prefix.pch; sourceTree = "<group>"; };
+		16A745E30B88458F0011BCB2 /* x264EncoderDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264EncoderDispatch.h; sourceTree = "<group>"; };
+		16A746070B8846CC0011BCB2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		16A7460C0B8846D80011BCB2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		16A746100B8846E80011BCB2 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
+		16A746140B8846F10011BCB2 /* vecLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vecLib.framework; path = /System/Library/Frameworks/vecLib.framework; sourceTree = "<absolute>"; };
+		16A7466B0B88488E0011BCB2 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		16CF93D50D0510D4002C1382 /* main.m */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "test-cocoa/main.m"; sourceTree = "<group>"; };
+		16CF93DF0D051128002C1382 /* testCocoa */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testCocoa; sourceTree = BUILT_PRODUCTS_DIR; };
+		16CF93F00D051162002C1382 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		8D576316048677EA00EA77CD /* x264Encoder.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = x264Encoder.component; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D576317048677EA00EA77CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		16CF93DD0D051128002C1382 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16CF93F10D051162002C1382 /* QTKit.framework in Frameworks */,
+				16CF93F60D05116E002C1382 /* Cocoa.framework in Frameworks */,
+				16DF18DF0D0516FF00C66519 /* QuickTime.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D576313048677EA00EA77CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16A745D30B8844800011BCB2 /* libavcodec.a in Frameworks */,
+				16A745D40B8844800011BCB2 /* libavformat.a in Frameworks */,
+				16A745D50B8844800011BCB2 /* libavutil.a in Frameworks */,
+				16A746080B8846CC0011BCB2 /* Carbon.framework in Frameworks */,
+				16A746110B8846E80011BCB2 /* QuickTime.framework in Frameworks */,
+				16A746150B8846F10011BCB2 /* vecLib.framework in Frameworks */,
+				16F492BA0D05777700A5EDB7 /* QuartzCore.framework in Frameworks */,
+				1607754B0F6A77F800C0F35A /* libx264.a in Frameworks */,
+				1607759D0F6B34E200C0F35A /* CoreVF.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* x264Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				169D2D710D0410BC00E4DE1D /* UIbundle */,
+				16A745CB0B88442B0011BCB2 /* x264 */,
+				16A745CA0B8844110011BCB2 /* ffmpeg */,
+				08FB77AFFE84173DC02AAC07 /* Source */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
+				19C28FB6FE9D52B211CA2CBB /* Products */,
+				16CF93C40D0510B5002C1382 /* testCocoa */,
+			);
+			comments = "    x264Encoder is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    x264Encoder is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with x264Encoder; if not, write to the Free Software\n    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n";
+			name = x264Encoder;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1607759C0F6B34E200C0F35A /* CoreVF.framework */,
+				16A746070B8846CC0011BCB2 /* Carbon.framework */,
+				16A746100B8846E80011BCB2 /* QuickTime.framework */,
+				16A746140B8846F10011BCB2 /* vecLib.framework */,
+				16A7460C0B8846D80011BCB2 /* QuartzCore.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				16A7466B0B88488E0011BCB2 /* COPYING.txt */,
+				8D576317048677EA00EA77CD /* Info.plist */,
+				8D5B49A704867FD3000E48DA /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				16A745DF0B88458F0011BCB2 /* x264Encoder.c */,
+				16A745E00B88458F0011BCB2 /* x264EncoderUtil.h */,
+				16A745DE0B88458F0011BCB2 /* x264EncoderUtil.c */,
+				16A745DD0B88458F0011BCB2 /* x264EncoderVersion.h */,
+				16A745E10B88458F0011BCB2 /* x264Encoder.r */,
+				16A745E20B88458F0011BCB2 /* x264Encoder_Prefix.pch */,
+				16A745E30B88458F0011BCB2 /* x264EncoderDispatch.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		169D2D710D0410BC00E4DE1D /* UIbundle */ = {
+			isa = PBXGroup;
+			children = (
+				169D2E320D041EA500E4DE1D /* UIbundle.bundle */,
+			);
+			name = UIbundle;
+			sourceTree = "<group>";
+		};
+		16A745CA0B8844110011BCB2 /* ffmpeg */ = {
+			isa = PBXGroup;
+			children = (
+				16A745D60B8844A10011BCB2 /* avcodec.h */,
+				16A745D90B8844D10011BCB2 /* avformat.h */,
+				16A745D80B8844C40011BCB2 /* avutil.h */,
+				16A745D00B8844800011BCB2 /* libavcodec.a */,
+				16A745D10B8844800011BCB2 /* libavformat.a */,
+				16A745D20B8844800011BCB2 /* libavutil.a */,
+			);
+			name = ffmpeg;
+			sourceTree = "<group>";
+		};
+		16A745CB0B88442B0011BCB2 /* x264 */ = {
+			isa = PBXGroup;
+			children = (
+				16A745DC0B8844F10011BCB2 /* x264.h */,
+				16A745DA0B8844E70011BCB2 /* libx264.a */,
+			);
+			name = x264;
+			sourceTree = "<group>";
+		};
+		16CF93C40D0510B5002C1382 /* testCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				16CF93D50D0510D4002C1382 /* main.m */,
+				169D2D830D04129B00E4DE1D /* Cocoa.framework */,
+				16CF93F00D051162002C1382 /* QTKit.framework */,
+			);
+			name = testCocoa;
+			sourceTree = "<group>";
+		};
+		19C28FB6FE9D52B211CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D576316048677EA00EA77CD /* x264Encoder.component */,
+				16CF93DF0D051128002C1382 /* testCocoa */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		16CF93DE0D051128002C1382 /* testCocoa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16CF93ED0D05115B002C1382 /* Build configuration list for PBXNativeTarget "testCocoa" */;
+			buildPhases = (
+				16CF93DC0D051128002C1382 /* Sources */,
+				16CF93DD0D051128002C1382 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16DF19660D052A7000C66519 /* PBXTargetDependency */,
+			);
+			name = testCocoa;
+			productName = testCocoa;
+			productReference = 16CF93DF0D051128002C1382 /* testCocoa */;
+			productType = "com.apple.product-type.tool";
+		};
+		8D57630D048677EA00EA77CD /* x264Encoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB911A08733D790010E9CD /* Build configuration list for PBXNativeTarget "x264Encoder" */;
+			buildPhases = (
+				8D57630F048677EA00EA77CD /* Resources */,
+				8D576311048677EA00EA77CD /* Sources */,
+				8D576313048677EA00EA77CD /* Frameworks */,
+				16A746950B884AF60011BCB2 /* Rez */,
+				169D2DE60D041DA300E4DE1D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			comments = "    x264Encoder is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    x264Encoder is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with x264Encoder; if not, write to the Free Software\n    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n";
+			dependencies = (
+			);
+			name = x264Encoder;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = x264Encoder;
+			productReference = 8D576316048677EA00EA77CD /* x264Encoder.component */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB911E08733D790010E9CD /* Build configuration list for PBXProject "x264Encoder" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* x264Encoder */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D57630D048677EA00EA77CD /* x264Encoder */,
+				16A7474A0B8852860011BCB2 /* Build and Copy */,
+				16CF93DE0D051128002C1382 /* testCocoa */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D57630F048677EA00EA77CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */,
+				16A7466C0B88488E0011BCB2 /* COPYING.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		16A746950B884AF60011BCB2 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16A746990B884AFE0011BCB2 /* x264Encoder.r in Rez */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		16CF93DC0D051128002C1382 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16CF93E70D051136002C1382 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D576311048677EA00EA77CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16A745E50B88458F0011BCB2 /* x264EncoderUtil.c in Sources */,
+				16A745E60B88458F0011BCB2 /* x264Encoder.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		16A7474E0B8852910011BCB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D57630D048677EA00EA77CD /* x264Encoder */;
+			targetProxy = 16A7474D0B8852910011BCB2 /* PBXContainerItemProxy */;
+		};
+		16DF19660D052A7000C66519 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16A7474A0B8852860011BCB2 /* Build and Copy */;
+			targetProxy = 16DF19650D052A7000C66519 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8D5B49A704867FD3000E48DA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		16A747560B8852D30011BCB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build and Overrite";
+			};
+			name = Debug;
+		};
+		16A747570B8852D30011BCB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Build and Overrite";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		16CF93EE0D05115B002C1382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "$(HOME)/bin";
+				PREBINDING = NO;
+				PRODUCT_NAME = testCocoa;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		16CF93EF0D05115B002C1382 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = "$(HOME)/bin";
+				PREBINDING = NO;
+				PRODUCT_NAME = testCocoa;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1DEB911B08733D790010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Library/Frameworks,
+					"$(HOME)/Library/Frameworks",
+				);
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = x264Encoder_Prefix.pch;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../libav\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../x264\"";
+				OTHER_LDFLAGS = (
+					"-read_only_relocs",
+					suppress,
+					"-lz",
+				);
+				OTHER_REZFLAGS = "-d ppc_$(ppc) -d i386_$(i386)";
+				PER_ARCH_CFLAGS_i386 = "-march=pentium-m";
+				PER_ARCH_CFLAGS_ppc = "-mtune=7450";
+				PRODUCT_NAME = x264Encoder;
+				REZ_RESOURCE_MAP_READ_ONLY = YES;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)/../libav\" \"$(SRCROOT)/../x264\"";
+				WRAPPER_EXTENSION = component;
+			};
+			name = Debug;
+		};
+		1DEB911C08733D790010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Library/Frameworks,
+					"$(HOME)/Library/Frameworks",
+				);
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = x264Encoder_Prefix.pch;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../libav\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../x264\"";
+				OTHER_LDFLAGS = (
+					"-read_only_relocs",
+					suppress,
+					"-lz",
+				);
+				OTHER_REZFLAGS = "-d ppc_$(ppc) -d i386_$(i386)";
+				PER_ARCH_CFLAGS_i386 = "-march=pentium-m -mtune=core2 -ffast-math -fstrict-aliasing -falign-loops=16";
+				PER_ARCH_CFLAGS_ppc = "-mcpu=7450 -mtune=7450 -ffast-math -fstrict-aliasing -falign-loops=16";
+				PRODUCT_NAME = x264Encoder;
+				REZ_RESOURCE_MAP_READ_ONLY = YES;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) \"$(SRCROOT)/../libav\" \"$(SRCROOT)/../x264\"";
+				WRAPPER_EXTENSION = component;
+			};
+			name = Release;
+		};
+		1DEB911F08733D790010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB912008733D790010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		16A747550B8852D30011BCB2 /* Build configuration list for PBXAggregateTarget "Build and Copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16A747560B8852D30011BCB2 /* Debug */,
+				16A747570B8852D30011BCB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16CF93ED0D05115B002C1382 /* Build configuration list for PBXNativeTarget "testCocoa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16CF93EE0D05115B002C1382 /* Debug */,
+				16CF93EF0D05115B002C1382 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB911A08733D790010E9CD /* Build configuration list for PBXNativeTarget "x264Encoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB911B08733D790010E9CD /* Debug */,
+				1DEB911C08733D790010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB911E08733D790010E9CD /* Build configuration list for PBXProject "x264Encoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB911F08733D790010E9CD /* Debug */,
+				1DEB912008733D790010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
