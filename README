@@ -21,7 +21,7 @@ How to build:
 
 * Get latest ffmpeg, tag rev.number, create symlink.
   $ cd repository-base-folder                      ### x264Encoder local repository
-  $ rm -rv libav.org; mv libav????? libav.org      ### rename original libav
+  $ rm -rf libav.org; mv libav????? libav.org      ### rename original libav
   $ svn checkout svn://svn.mplayerhq.hu/ffmpeg/trunk libav.new
   $ cd libav.new
   $ NEWNAME="libav`svn info | awk '/Revision:/ {print $2;}'`"
