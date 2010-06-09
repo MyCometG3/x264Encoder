@@ -29,6 +29,7 @@ This file is part of x264Encoder.
 
 #include <Carbon/Carbon.h>
 #include <QuickTime/QuickTime.h>
+#include <AudioToolbox/AudioServices.h>
 
 // Require references to libavcodec.a and libavutil.a
 #include "avcodec.h"

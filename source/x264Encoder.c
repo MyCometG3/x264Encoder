@@ -709,7 +709,7 @@ ComponentResult lavcEncoder_RequestSettings(lavcEncoderGlobalRecord *glob,
 		// Release UIBundle CFBundleRef
 		CFRelease( uiBundleRef );
 	} else {
-		AlertSoundPlay();
+		AudioServicesPlayAlertSound(kUserPreferredAlert);
 		fprintf(stderr, "ERROR: Failed to load UIbundle.");
 	}
 	
@@ -1136,12 +1136,12 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 		
 		// chroma subsampling
 		glob->subsampling = glob->params.SUBSAMPLING;
-		if(glob->subsampling < 0 && CVF_Context_Create == NULL) AlertSoundPlay(); //glob->subsampling = 0;
+		if(glob->subsampling < 0 && CVF_Context_Create == NULL) AudioServicesPlayAlertSound(kUserPreferredAlert); //glob->subsampling = 0;
 		
 #if USECoreVF
 		// CoreVF filter support
 		glob->filterPreset = glob->params.FILTERPRESET;
-		if(glob->subsampling < 0 && glob->filterPreset == 0) AlertSoundPlay(); //glob->subsampling = 0;
+		if(glob->subsampling < 0 && glob->filterPreset == 0) AudioServicesPlayAlertSound(kUserPreferredAlert); //glob->subsampling = 0;
 #endif
 		
 		/* ==================================== */
@@ -1216,30 +1216,30 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 		// Check limitation for iPod/iTunes support
 		if(glob->add_uuid && glob->params.CODER_TYPE > 1){		// CAVLC only; no CABAC
 			fprintf(stderr, "ERROR: Unable to add UUID; Incompatible CABAC detected. (CAVLC required)\n");
-			AlertSoundPlay(); glob->add_uuid = FALSE;
+			AudioServicesPlayAlertSound(kUserPreferredAlert); glob->add_uuid = FALSE;
 		}
 		if(glob->add_uuid && glob->params.LEVEL > 30) {			// iPod requires H.264/AVC Level 3.0 or below
 			fprintf(stderr, "ERROR: Unable to add UUID; Incompatible Level detected. (Level 3.0 max)\n");
-			AlertSoundPlay(); glob->add_uuid = FALSE;
+			AudioServicesPlayAlertSound(kUserPreferredAlert); glob->add_uuid = FALSE;
 		}
 		if(glob->add_uuid && glob->codecCont->rc_buffer_size > 2048*1024) {	// Kbit; iPod Video VBV buffer size is 2Mbit
 			fprintf(stderr, "ERROR: Unable to add UUID; Incompatible RC_BUFSIZE detected. (%d Kbps)\n"
 				, glob->codecCont->rc_buffer_size/1024);
-			AlertSoundPlay(); glob->add_uuid = FALSE;
+			AudioServicesPlayAlertSound(kUserPreferredAlert); glob->add_uuid = FALSE;
 		}
 		if(glob->add_uuid && glob->use_B_frame) {				// No B frame
 			fprintf(stderr, "ERROR: Unable to add UUID; Incompatible frame reordering detected. (i.e. B-frame)\n");
-			AlertSoundPlay(); glob->add_uuid = FALSE;
+			AudioServicesPlayAlertSound(kUserPreferredAlert); glob->add_uuid = FALSE;
 		}
 		if(glob->add_uuid && (glob->width + glob->height)/16 > 70) {	// Max macro block count is 70
 			fprintf(stderr, "ERROR: Unable to add UUID; Incompatible large frame detected. (%d,%d)\n"
 				, glob->width, glob->height);
-			AlertSoundPlay(); glob->add_uuid = FALSE;
+			AudioServicesPlayAlertSound(kUserPreferredAlert); glob->add_uuid = FALSE;
 		}
 		if(glob->add_uuid && glob->codecCont->bit_rate > 1536*1024) {	// Max bitrate is 1500kbps
 			fprintf(stderr, "ERROR: Unable to add UUID; Incompatible bit_rate detected. (%d Kbps)\n"
 				, glob->codecCont->bit_rate/1024);
-			AlertSoundPlay(); glob->add_uuid = FALSE;
+			AudioServicesPlayAlertSound(kUserPreferredAlert); glob->add_uuid = FALSE;
 		}
 #endif
 #if MPEG4
@@ -1268,7 +1268,7 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 	
 bail:	
 	if(err && !glob->meetsErr) {
-		AlertSoundPlay(); glob->meetsErr = TRUE;
+		AudioServicesPlayAlertSound(kUserPreferredAlert); glob->meetsErr = TRUE;
 	}
 	return err;
 } // ComponentCall (PrepareToCompressFrames)
@@ -1545,7 +1545,7 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 	
 bail:
 	if(err && !glob->meetsErr) {
-		AlertSoundPlay(); glob->meetsErr = TRUE;
+		AudioServicesPlayAlertSound(kUserPreferredAlert); glob->meetsErr = TRUE;
 	}
 	return err;
 } // ComponentCall (EncodeFrame)
@@ -1657,7 +1657,7 @@ ComponentResult lavcEncoder_CompleteFrame(lavcEncoderGlobalRecord *glob,
 	
 bail:
 	if(err && !glob->meetsErr) {
-		AlertSoundPlay(); glob->meetsErr = TRUE;
+		AudioServicesPlayAlertSound(kUserPreferredAlert); glob->meetsErr = TRUE;
 	}
 	return err;
 } // ComponentCall (CompleteFrame)
@@ -1877,7 +1877,7 @@ bail:
 				pass_mode_flags, glob->codecCont->flags);
 	
 	if(err && !glob->meetsErr) {
-		AlertSoundPlay(); glob->meetsErr = TRUE;
+		AudioServicesPlayAlertSound(kUserPreferredAlert); glob->meetsErr = TRUE;
 	}
 	return err;
 } // ComponentCall (BeginPass)
@@ -2074,7 +2074,7 @@ bail:
 	}
 	
 	if(err && !glob->meetsErr) {
-		AlertSoundPlay(); glob->meetsErr = TRUE;
+		AudioServicesPlayAlertSound(kUserPreferredAlert); glob->meetsErr = TRUE;
 	}
 	return err;
 } // ComponentCall (EndPass)
@@ -2142,7 +2142,7 @@ ComponentResult lavcEncoder_ProcessBetweenPasses(lavcEncoderGlobalRecord *glob,
 	*done = TRUE;
 	
 	if(err && !glob->meetsErr) {
-		AlertSoundPlay(); glob->meetsErr = TRUE;
+		AudioServicesPlayAlertSound(kUserPreferredAlert); glob->meetsErr = TRUE;
 	}
 	return err;
 } // ComponentCall (ProcessBetweenPasses)
@@ -3989,14 +3989,14 @@ static OSStatus prepareImageDescriptionExtensions(lavcEncoderGlobalRecord *glob)
 		||	glob->params.horizOffD == 0 || glob->params.vertOffD == 0
 		){
 			fprintf(stderr, "NOTICE: Skip to apply clean aperture. (denominator is 0)\n");
-			AlertSoundPlay();
+			AudioServicesPlayAlertSound(kUserPreferredAlert);
 			goto bail;
 		}
 		
 		// Check zero size rectangle error
 		if(	glob->params.cleanApertureWidthN == 0 || glob->params.cleanApertureHeightN == 0 ) {
 			fprintf(stderr, "NOTICE: Skip to apply clean aperture. (zero size apreture)\n");
-			AlertSoundPlay();
+			AudioServicesPlayAlertSound(kUserPreferredAlert);
 			goto bail;
 		}
 		
@@ -4008,12 +4008,12 @@ static OSStatus prepareImageDescriptionExtensions(lavcEncoderGlobalRecord *glob)
 		double vOff = (double)glob->params.vertOffN / glob->params.vertOffD;
 		if(	caW > glob->width || caH > glob->height ) {
 			fprintf(stderr, "NOTICE: Skip to apply clean aperture. (larger than raw image)\n");
-			AlertSoundPlay();
+			AudioServicesPlayAlertSound(kUserPreferredAlert);
 			goto bail;
 		} else
 		if( caW + fabs(hOff) < (double)glob->width || caH + fabs(vOff) < (double)glob->height ) {
 			fprintf(stderr, "NOTICE: Skip to apply clean aperture. (invalid offset)\n");
-			AlertSoundPlay();
+			AudioServicesPlayAlertSound(kUserPreferredAlert);
 			goto bail;
 		}
 #endif
