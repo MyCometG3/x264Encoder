@@ -23,9 +23,9 @@
 	<key>NSPrincipalClass</key>
 	<string>UIControlleravc1</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.11</string>
+	<string>1.2.13</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.2.11, Copyright MyCometG3, 2007-2010</string>
+	<string>1.2.13, Copyright MyCometG3, 2007-2010</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 </dict>

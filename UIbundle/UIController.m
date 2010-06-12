@@ -511,6 +511,10 @@ bail:
 			[objectModel setValue:[NSNumber numberWithInt:1]	forKey:@"HSPACING"];
 			[objectModel setValue:[NSNumber numberWithInt:1]	forKey:@"VSPACING"];
 			break;
+		case 34:	// 
+			[objectModel setValue:[NSNumber numberWithInt:4]	forKey:@"HSPACING"];
+			[objectModel setValue:[NSNumber numberWithInt:3]	forKey:@"VSPACING"];
+			break;
 		default:
 			// use custom setting
 			[objectModel setValue:[paspclapModel valueForKey:@"HSPACING"]	forKey:@"HSPACING"];
