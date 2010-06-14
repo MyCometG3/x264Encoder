@@ -2394,7 +2394,7 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 	else								glob->codecCont->partitions &= ~ X264_PART_P4X4;
 	
 	// -bidir_refine ; jointly optimize both MVs in B-frames
-	glob->codecCont->bidir_refine = (glob->params.BIDIR_ME ? 4 : 0);
+	glob->codecCont->bidir_refine = (glob->params.BIDIR_ME ? 4 : 1);
 	
 	// Use third pass mode
 	// no code here...
