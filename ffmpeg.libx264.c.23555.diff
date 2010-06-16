@@ -1,5 +1,5 @@
 --- libav23555.org/libavcodec/libx264.c	2010-06-11 13:47:03.000000000 +0900
-+++ libav23555/libavcodec/libx264.c	2010-06-16 17:03:43.000000000 +0900
++++ libav23555/libavcodec/libx264.c	2010-06-16 17:34:14.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -199,7 +199,7 @@
 +                av_log(avctx, AV_LOG_QUIET, "x264 [error]: baseline profile doesn't support interlacing\n" );
 +                return -100;
 +            }
-+            if( x4->param.b_fake_interlaced ) {
++            if( x4->params.b_fake_interlaced ) {
 +                av_log(avctx, AV_LOG_QUIET, "x264 [error]: baseline profile doesn't support fake interlacing\n" );
 +                return -100;
 +            }
