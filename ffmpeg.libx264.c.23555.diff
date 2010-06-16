@@ -1,5 +1,5 @@
 --- libav23555.org/libavcodec/libx264.c	2010-06-11 13:47:03.000000000 +0900
-+++ libav23555/libavcodec/libx264.c	2010-06-11 13:48:37.000000000 +0900
++++ libav23555/libavcodec/libx264.c	2010-06-16 17:03:43.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -160,7 +160,7 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -297,6 +386,67 @@
+@@ -297,6 +386,71 @@
      if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER)
          x4->params.b_repeat_headers = 0;
  
@@ -199,6 +199,10 @@
 +                av_log(avctx, AV_LOG_QUIET, "x264 [error]: baseline profile doesn't support interlacing\n" );
 +                return -100;
 +            }
++            if( x4->param.b_fake_interlaced ) {
++                av_log(avctx, AV_LOG_QUIET, "x264 [error]: baseline profile doesn't support fake interlacing\n" );
++                return -100;
++            }
 +            break;
 +        case X264PROFILE_MAIN:
 +            x4->params.analyse.b_transform_8x8 = 0;
@@ -228,7 +232,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -311,10 +461,10 @@
+@@ -311,10 +465,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
