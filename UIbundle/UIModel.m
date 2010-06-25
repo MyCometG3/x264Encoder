@@ -770,6 +770,7 @@
 			[self setValue:UIFalse		forKey:@"FLAG2_MBTREE"];	// OFF
 			[self setValue:UIOne		forKey:@"WEIGHTP"];			// 1:Disabled
 			[self setValue:UIFalse		forKey:@"FLAG2_WPRED"];		// OFF
+			[self setValue:UIZero		forKey:@"RC_LOOKAHEAD"];	// 0
 			break;
 		case X264PRESET_SUPERFAST:
 			// param->analyse.inter = X264_ANALYSE_I8x8|X264_ANALYSE_I4x4;	// patched libx264.c
@@ -781,6 +782,7 @@
 //			[self setValue:UIFalse		forKey:@"MBTREE"];			// OFF
 			[self setValue:UIFalse		forKey:@"FLAG2_MBTREE"];	// OFF
 			[self setValue:UIOne		forKey:@"WEIGHTP"];			// 1:Disabled
+			[self setValue:UIZero		forKey:@"RC_LOOKAHEAD"];	// 0
 			break;
 		case X264PRESET_VERYFAST:
 			[self setValue:UITwo		forKey:@"ME_METHOD"];		// 2:HEX
@@ -789,8 +791,9 @@
 			[self setValue:UIFalse		forKey:@"FLAG2_MIXED_REFS"];	// OFF
 			[self setValue:UIOne		forKey:@"TRELLIS"];			// 1:Disabled
 //			[self setValue:UIFalse		forKey:@"MBTREE"];			// OFF
-			[self setValue:UIFalse		forKey:@"FLAG2_MBTREE"];	// OFF
+//			[self setValue:UIFalse		forKey:@"FLAG2_MBTREE"];	// OFF
 			[self setValue:UIOne		forKey:@"WEIGHTP"];			// 1:Disabled
+			[self setValue:[UIInt:10]	forKey:@"RC_LOOKAHEAD"];	// 10
 			break;
 		case X264PRESET_FASTER:
 			[self setValue:UIFalse		forKey:@"FLAG2_MIXED_REFS"];	// OFF
@@ -909,6 +912,7 @@
 			[self setValue:UIZero			forKey:@"MAX_BFRAMES"];		// 0
 			// x4->params.b_sliced_threads = 1;							// patched libx264.c
 			// param->b_vfr_input = 0;									// patched libx264.c
+			[self setValue:UIFalse			forKey:@"FLAG2_MBTREE"];	// OFF
 		case X264TUNE_TOUHOU:
 			if([REFS charValue]>1) 
 				[self setValue:[UIChar:[REFS charValue]*2]	forKey:@"REFS"];	// Double REF value
