@@ -1,6 +1,6 @@
---- libav23555.org/configure	2010-06-11 13:47:08.000000000 +0900
-+++ libav23555/configure	2010-06-11 13:48:37.000000000 +0900
-@@ -2432,8 +2432,8 @@
+--- libav23767.org/configure	2010-06-25 18:15:25.000000000 +0900
++++ libav23767/configure	2010-06-25 18:26:39.000000000 +0900
+@@ -2395,8 +2395,8 @@
  
      # AltiVec flags: The FSF version of GCC differs from the Apple version
      if enabled altivec; then

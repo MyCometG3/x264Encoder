@@ -1,5 +1,5 @@
---- libav23555.org/libavcodec/libx264.c	2010-06-11 13:47:03.000000000 +0900
-+++ libav23555/libavcodec/libx264.c	2010-06-16 17:34:14.000000000 +0900
+--- libav23767.org/libavcodec/libx264.c	2010-06-25 18:15:19.000000000 +0900
++++ libav23767/libavcodec/libx264.c	2010-06-25 19:54:59.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -160,7 +160,12 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -297,6 +386,71 @@
+@@ -294,9 +383,77 @@
+ 
+     x4->params.b_interlaced   = avctx->flags & CODEC_FLAG_INTERLACED_DCT;
+ 
++    x4->params.i_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? X264_OPEN_GOP_NONE : X264_OPEN_GOP_DISPLAY_ORDER;
++
      if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER)
          x4->params.b_repeat_headers = 0;
  
@@ -185,6 +190,7 @@
 +        x4->params.b_pic_struct = 1;
 +        x4->params.i_bframe_pyramid  = X264_B_PYRAMID_STRICT;
 +        x4->params.i_slice_count = 4;
++        x4->params.i_open_gop = x4->params.i_open_gop ? X264_OPEN_GOP_CODED_ORDER : X264_OPEN_GOP_NONE;
 +    }
 +
 +    /* Modify profile restricted parameters */
@@ -232,7 +238,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -311,10 +465,10 @@
+@@ -311,10 +468,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
