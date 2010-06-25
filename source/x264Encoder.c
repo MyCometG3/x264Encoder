@@ -58,6 +58,7 @@ This file is part of x264Encoder.
 #define REV_LEVELFREE 12			/* params struct version; support all h.264 level value; 1.2.7 */
 #define REV_IGNOREQSLIDER 13		/* params struct version; user can ignore quality slider; 1.2.8 */
 #define REV_FAKEINTERLACED 14		/* params struct version; new --fake-interlaced support; 1.2.9 */
+#define REV_X264OPENGOP 15			/* params struct version; support open gop */
 
 #define X264PROFILE_UNDEF	0
 #define	X264PROFILE_BASE	1
@@ -733,7 +734,7 @@ ComponentResult lavcEncoder_GetSettings(lavcEncoderGlobalRecord *glob, Handle se
 	
 	// Endian handler
 	params *p = (params*)*settings;
-	p->REV_STRUCT		= REV_FAKEINTERLACED;	// 1.2.9 or later.
+	p->REV_STRUCT		= REV_X264OPENGOP;	// 1.2.13 or later.
 	
 	p->SC_THRESHOLD		= EndianS32_NtoB(p->SC_THRESHOLD);
 	p->QCOMPRESS		= EndianS32_NtoB(p->QCOMPRESS);
@@ -935,6 +936,11 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 	}
 	if(p->REV_STRUCT < REV_FAKEINTERLACED) { /* 14: 1.2.9 or later */
 		p->FAKEINTERLACED = 0;
+	}
+	if(p->REV_STRUCT < REV_X264OPENGOP) { /* 15: 1.2.13 or later*/
+#if X264
+		p->FLAG_CLOSED_GOP = TRUE;
+#endif		
 	}
 	
 	// Check for glob-struct update
@@ -4442,7 +4448,7 @@ static void initValues( lavcEncoderGlobals glob )
 	glob->params.FLAG_AC_PRED = FALSE;
 	glob->params.FLAG_CBP_RD = FALSE;
 	glob->params.FLAG_QP_RD = FALSE;
-	glob->params.FLAG_CLOSED_GOP = FALSE;
+	glob->params.FLAG_CLOSED_GOP = TRUE;
 	
 	glob->params.NATIVE_FPS = 1;		// NTSC
 	glob->params.MB_DECISION = 1;		// SIMPLE

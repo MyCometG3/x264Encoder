@@ -51,6 +51,7 @@
 	[self setValue:[UIBool:inParams->LOG_INFO]			forKey:@"LOG_INFO"];
 	[self setValue:[UIBool:inParams->LOG_DEBUG]			forKey:@"LOG_DEBUG"];
 	[self setValue:[UIBool:inParams->LOG_STATS]			forKey:@"LOG_STATS"];
+	[self setValue:[NSNumber numberWithUnsignedChar:inParams->REV_STRUCT]	forKey:@"REV_STRUCT"];
 
 	[self setValue:[UIBool:inParams->FLAG_QSCALE]		forKey:@"FLAG_QSCALE"];
 	[self setValue:[UIBool:inParams->FLAG_4MV]			forKey:@"FLAG_4MV"];
@@ -176,6 +177,7 @@
 	outParams->LOG_INFO			= [[self valueForKey:@"LOG_INFO"] boolValue];
 	outParams->LOG_DEBUG		= [[self valueForKey:@"LOG_DEBUG"] boolValue];
 	outParams->LOG_STATS		= [[self valueForKey:@"LOG_STATS"] boolValue];
+//	outParams->REV_STRUCT		= [[self valueForKey:@"REV_STRUCT"] unsignedCharValue];
 	
 	outParams->FLAG_QSCALE		= [[self valueForKey:@"FLAG_QSCALE"] boolValue];
 	outParams->FLAG_4MV			= [[self valueForKey:@"FLAG_4MV"] boolValue];
@@ -364,7 +366,7 @@
 		[self setValue:UIFalse		forKey:@"FLAG_AC_PRED"];	// OFF
 		[self setValue:UIFalse		forKey:@"FLAG_CBP_RD"];		// OFF
 		[self setValue:UIFalse		forKey:@"FLAG_QP_RD"];		// OFF
-		[self setValue:UIFalse		forKey:@"FLAG_CLOSED_GOP"];	// OFF
+		[self setValue:UITrue		forKey:@"FLAG_CLOSED_GOP"];	// ON
 		
 //		[self setValue:UIOne		forKey:@"NATIVE_FPS"];		// 1:NTSC
 		[self setValue:UIOne		forKey:@"MB_DECISION"];		// 1:SIMPLE
@@ -989,6 +991,7 @@
 	[UIEncode:LOG_INFO			forKey: @"LOG_INFO"];
 	[UIEncode:LOG_DEBUG			forKey: @"LOG_DEBUG"];
 	[UIEncode:LOG_STATS			forKey: @"LOG_STATS"];
+	[UIEncode:REV_STRUCT		forKey: @"REV_STRUCT"];
 	
 	[UIEncode:FLAG_QSCALE		forKey: @"FLAG_QSCALE"];
 	[UIEncode:FLAG_4MV			forKey: @"FLAG_4MV"];
@@ -1121,6 +1124,8 @@
 		if(val) [self setValue:val forKey: @"LOG_DEBUG"];
 		val = [UIDecodeForKey: @"LOG_STATS"];
 		if(val) [self setValue:val forKey: @"LOG_STATS"];
+		val = [UIDecodeForKey: @"REV_STRUCT"];
+		if(val) [self setValue:val forKey: @"REV_STRUCT"];
 		
 		val = [UIDecodeForKey: @"FLAG_QSCALE"];
 		if(val) [self setValue:val forKey: @"FLAG_QSCALE"];

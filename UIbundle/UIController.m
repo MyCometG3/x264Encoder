@@ -391,6 +391,13 @@ bail:
 			[newModel setValue:[NSNumber numberWithChar:2] forKey:@"USERQMIN"];
 		}
 	}
+	
+	// Check value modified at 1.2.13 / Archiving REV_STRUCT is implemented from 1.2.13
+	if (![newModel valueForKey:@"REV_STRUCT"]) {
+		if ([newModel isAvc1]) {
+			[newModel setValue:[NSNumber numberWithBool:TRUE] forKey:@"FLAG_CLOSED_GOP"];
+		};
+	}
 #endif
 	
 	// 
