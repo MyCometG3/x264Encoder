@@ -3465,9 +3465,15 @@ static OSStatus createPixelBufferAttributesDictionary( lavcEncoderGlobalRecord *
 			YCbCrMatrix = kCVImageBufferYCbCrMatrix_ITU_R_601_4;
 			break;
 		case 5:	// 677
+#if 0	// Legacy 10.5.SDK on Xcode 3.1; seems to be CoreVideo header error.
 			ColorPrimaries = kCVImageBufferColorPrimaries_SMPTE_C;			/* AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER */
-			TransferFunction = kCVImageBufferTransferFunction_SMPTE_C;		/* AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER */
+			TransferFunction = kCVImageBufferTransferFunction_SMPTE_C;		/* AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER_BUT_DEPRECATED */
 			YCbCrMatrix = kCVImageBufferYCbCrMatrix_SMPTE_240M_1995;
+#else	// 10.6? But this const is defined inside "10.5.SDK" in Xcode 3.2!!
+			ColorPrimaries = kCVImageBufferColorPrimaries_SMPTE_C;			/* AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER */
+			TransferFunction = kCVImageBufferTransferFunction_SMPTE_240M_1995;	/*  AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER */
+			YCbCrMatrix = kCVImageBufferYCbCrMatrix_SMPTE_240M_1995;
+#endif
 			break;
 		case 6:	// 111
 			ColorPrimaries = kCVImageBufferColorPrimaries_ITU_R_709_2;		/* AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER */
