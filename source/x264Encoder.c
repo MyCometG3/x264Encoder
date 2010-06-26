@@ -58,7 +58,7 @@ This file is part of x264Encoder.
 #define REV_LEVELFREE 12			/* params struct version; support all h.264 level value; 1.2.7 */
 #define REV_IGNOREQSLIDER 13		/* params struct version; user can ignore quality slider; 1.2.8 */
 #define REV_FAKEINTERLACED 14		/* params struct version; new --fake-interlaced support; 1.2.9 */
-#define REV_X264OPENGOP 15			/* params struct version; support open gop */
+#define REV_X264OPENGOP 15			/* params struct version; support open gop; 1.2.13 */
 
 #define X264PROFILE_UNDEF	0
 #define	X264PROFILE_BASE	1
@@ -937,11 +937,11 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 	if(p->REV_STRUCT < REV_FAKEINTERLACED) { /* 14: 1.2.9 or later */
 		p->FAKEINTERLACED = 0;
 	}
-	if(p->REV_STRUCT < REV_X264OPENGOP) { /* 15: 1.2.13 or later*/
 #if X264
+	if(p->REV_STRUCT < REV_X264OPENGOP) { /* 15: 1.2.13 or later*/
 		p->FLAG_CLOSED_GOP = TRUE;
-#endif		
 	}
+#endif
 	
 	// Check for glob-struct update
 	checkValues(glob);
@@ -959,11 +959,11 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 
 // ComponentCall (PrepareToCompressFrames)				// 55
 ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glob,
-  														ICMCompressorSessionRef session,
-  														ICMCompressionSessionOptionsRef session_options,
-  														ImageDescriptionHandle image_description,
-  														void *reserved,
-  														CFDictionaryRef *compressor_pixel_buffer_attributes_out)
+													ICMCompressorSessionRef session,
+													ICMCompressionSessionOptionsRef session_options,
+													ImageDescriptionHandle image_description,
+													void *reserved,
+													CFDictionaryRef *compressor_pixel_buffer_attributes_out)
 {
 	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
 	
