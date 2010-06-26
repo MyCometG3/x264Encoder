@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="6"/>
+			<integer value="15"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -67,7 +67,7 @@
 								<object class="NSTabViewItem" id="1072698312">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="1027930676">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="26264083"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -882,6 +882,7 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {532, 380}}</string>
+										<reference key="NSSuperview" ref="26264083"/>
 									</object>
 									<string key="NSLabel">Flags</string>
 									<reference key="NSColor" ref="12757168"/>
@@ -6338,7 +6339,7 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 								<object class="NSTabViewItem" id="398321823">
 									<string key="NSIdentifier">Item 3</string>
 									<object class="NSView" key="NSView" id="587415851">
-										<reference key="NSNextResponder" ref="26264083"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -7088,21 +7089,20 @@ bG9va2FoZWFkIDAKA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {532, 380}}</string>
-										<reference key="NSSuperview" ref="26264083"/>
 									</object>
 									<string key="NSLabel">x264 preset</string>
 									<reference key="NSColor" ref="12757168"/>
 									<reference key="NSTabView" ref="26264083"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="398321823"/>
+							<reference key="NSSelectedTabViewItem" ref="1072698312"/>
 							<reference key="NSFont" ref="432321673"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="587415851"/>
+								<reference ref="1027930676"/>
 							</object>
 						</object>
 						<object class="NSTextField" id="299533016">
@@ -20306,7 +20306,7 @@ IGFuYWx5c2UuYl9zc2ltICgtLXNzaW0pA</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="488640234"/>
-							<string key="toolTip">Extra Blu-ray specific tunings x264: i_nal_hrd (--nal-hrd vbr) x264: i_bframe_pyramid (--b-pyramid strict) x264: i_slice_count (--slices 4) * Highly Experimental. Refere to READMEs.</string>
+							<string key="toolTip">Extra Blu-ray specific tunings x264: i_nal_hrd (--nal-hrd vbr) x264: i_bframe_pyramid (--b-pyramid strict) x264: i_slice_count (--slices 4) x264: i_open_gop (--open-gop coded) * Highly Experimental. Refere to READMEs.</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -21390,7 +21390,7 @@ KQp4MjY0OiBhbmFseXNlLmJfcHNuciAoLS1wc25yKQ</string>
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="992557140"/>
 							<string type="base64-UTF8" key="toolTip">Q2xvc2VkIGdvcCAoLWZsYWdzIGNnb3ApCnh2aWQ6IFhWSURfR0xPQkFMX0NMT1NFRF9HT1AgKC1ub2Ns
-b3NlZF9nb3ApA</string>
+b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3AgZGlzcGxheSnigKg</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
