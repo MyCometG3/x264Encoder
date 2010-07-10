@@ -1,5 +1,5 @@
---- libav23767.org/libavcodec/libx264.c	2010-06-25 18:15:19.000000000 +0900
-+++ libav23767/libavcodec/libx264.c	2010-06-25 19:54:59.000000000 +0900
+--- libav24155.org/libavcodec/libx264.c	2010-07-10 15:39:46.000000000 +0900
++++ libav24155/libavcodec/libx264.c	2010-07-10 15:52:14.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -164,7 +164,7 @@
  
      x4->params.b_interlaced   = avctx->flags & CODEC_FLAG_INTERLACED_DCT;
  
-+    x4->params.i_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? X264_OPEN_GOP_NONE : X264_OPEN_GOP_DISPLAY_ORDER;
++    x4->params.i_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? X264_OPEN_GOP_NONE : X264_OPEN_GOP_NORMAL;
 +
      if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER)
          x4->params.b_repeat_headers = 0;
@@ -190,7 +190,7 @@
 +        x4->params.b_pic_struct = 1;
 +        x4->params.i_bframe_pyramid  = X264_B_PYRAMID_STRICT;
 +        x4->params.i_slice_count = 4;
-+        x4->params.i_open_gop = x4->params.i_open_gop ? X264_OPEN_GOP_CODED_ORDER : X264_OPEN_GOP_NONE;
++        x4->params.i_open_gop = x4->params.i_open_gop ? X264_OPEN_GOP_BLURAY : X264_OPEN_GOP_NONE;
 +    }
 +
 +    /* Modify profile restricted parameters */
