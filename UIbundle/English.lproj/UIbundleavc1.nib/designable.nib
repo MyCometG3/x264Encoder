@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="15"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -67,7 +67,7 @@
 								<object class="NSTabViewItem" id="1072698312">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="1027930676">
-										<reference key="NSNextResponder" ref="26264083"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -882,7 +882,6 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {532, 380}}</string>
-										<reference key="NSSuperview" ref="26264083"/>
 									</object>
 									<string key="NSLabel">Flags</string>
 									<reference key="NSColor" ref="12757168"/>
@@ -6339,7 +6338,7 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 								<object class="NSTabViewItem" id="398321823">
 									<string key="NSIdentifier">Item 3</string>
 									<object class="NSView" key="NSView" id="587415851">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="26264083"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -6352,7 +6351,7 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 												<object class="NSTextFieldCell" key="NSCell" id="619913114">
 													<int key="NSCellFlags">69336577</int>
 													<int key="NSCellFlags2">272629760</int>
-													<string key="NSContents">Source: Extracted from x264.c (git-1659)</string>
+													<string key="NSContents">Source: Extracted from x264.c (git-1677)</string>
 													<object class="NSFont" key="NSSupport">
 														<string key="NSName">LucidaGrande</string>
 														<double key="NSSize">10</double>
@@ -6567,27 +6566,27 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 																					<object class="NSLayoutManager" key="NSLayoutManager">
 																						<object class="NSTextStorage" key="NSTextStorage">
 																							<object class="NSMutableString" key="NSString">
-																								<bytes key="NS.bytes">LS1wcmVzZXQKVXNlIGEgcHJlc2V0IHRvIHNlbGVjdCBlbmNvZGluZyBzZXR0aW5ncyBbbWVkaXVtXQoK
-LSB1bHRyYWZhc3Q6CiAgLS1uby04eDhkY3QgLS1hcS1tb2RlIDAgLS1iLWFkYXB0IDAKICAtLWJmcmFt
-ZXMgMCAtLW5vLWNhYmFjIC0tbm8tZGVibG9jawogIC0tbm8tbWJ0cmVlIC0tbWUgZGlhIC0tbm8tbWl4
-ZWQtcmVmcwogIC0tcGFydGl0aW9ucyBub25lIC0tcmMtbG9va2FoZWFkIDAgLS1yZWYgMQogIC0tc2Nl
-bmVjdXQgMCAtLXN1Ym1lIDAgLS10cmVsbGlzIDAKICAtLW5vLXdlaWdodGIgLS13ZWlnaHRwIDAKLSBz
-dXBlcmZhc3Q6CiAgLS1uby1tYnRyZWUgLS1tZSBkaWEgLS1uby1taXhlZC1yZWZzCiAgLS1wYXJ0aXRp
-b25zIGk4eDgsaTR4NCAtLXJjLWxvb2thaGVhZCAwCiAgLS1yZWYgMSAtLXN1Ym1lIDEgLS10cmVsbGlz
-IDAgLS13ZWlnaHRwIDAKLSB2ZXJ5ZmFzdDoKICAtLW5vLW1peGVkLXJlZnMgLS1yYy1sb29rYWhlYWQg
-MTAKICAtLXJlZiAxIC0tc3VibWUgMiAtLXRyZWxsaXMgMCAtLXdlaWdodHAgMAotIGZhc3RlcjoKICAt
-LW5vLW1peGVkLXJlZnMgLS1yYy1sb29rYWhlYWQgMjAKICAtLXJlZiAyIC0tc3VibWUgNCAtLXdlaWdo
-dHAgMQotIGZhc3Q6CiAgLS1yYy1sb29rYWhlYWQgMzAgLS1yZWYgMiAtLXN1Ym1lIDYKLSBtZWRpdW06
-CiAgRGVmYXVsdCBzZXR0aW5ncyBhcHBseS4KLSBzbG93OgogIC0tYi1hZGFwdCAyIC0tZGlyZWN0IGF1
-dG8gLS1tZSB1bWgKICAtLXJjLWxvb2thaGVhZCA1MCAtLXJlZiA1IC0tc3VibWUgOAotIHNsb3dlcjoK
-ICAtLWItYWRhcHQgMiAtLWRpcmVjdCBhdXRvIC0tbWUgdW1oCiAgLS1wYXJ0aXRpb25zIGFsbCAtLXJj
-LWxvb2thaGVhZCA2MAogIC0tcmVmIDggLS1zdWJtZSA5IC0tdHJlbGxpcyAyCi0gdmVyeXNsb3c6CiAg
-LS1iLWFkYXB0IDIgLS1iZnJhbWVzIDggLS1kaXJlY3QgYXV0bwogIC0tbWUgdW1oIC0tbWVyYW5nZSAy
-NCAtLXBhcnRpdGlvbnMgYWxsCiAgLS1yZWYgMTYgLS1zdWJtZSAxMCAtLXRyZWxsaXMgMgogIC0tcmMt
-bG9va2FoZWFkIDYwCi0gcGxhY2VibzoKICAtLWJmcmFtZXMgMTYgLS1iLWFkYXB0IDIgLS1kaXJlY3Qg
-YXV0bwogIC0tc2xvdy1maXJzdHBhc3MgLS1uby1mYXN0LXBza2lwCiAgLS1tZSB0ZXNhIC0tbWVyYW5n
-ZSAyNCAtLXBhcnRpdGlvbnMgYWxsCiAgLS1yYy1sb29rYWhlYWQgNjAgLS1yZWYgMTYgLS1zdWJtZSAx
-MAogIC0tdHJlbGxpcyAyCg</bytes>
+																								<bytes key="NS.bytes">LS1wcmVzZXQKIFVzZSBhIHByZXNldCB0byBzZWxlY3QgZW5jb2Rpbmcgc2V0dGluZ3MgW21lZGl1bV0K
+Ci0gdWx0cmFmYXN0OgogIC0tbm8tOHg4ZGN0IC0tYXEtbW9kZSAwIC0tYi1hZGFwdCAwCiAgLS1iZnJh
+bWVzIDAgLS1uby1jYWJhYyAtLW5vLWRlYmxvY2sKICAtLW5vLW1idHJlZSAtLW1lIGRpYSAtLW5vLW1p
+eGVkLXJlZnMKICAtLXBhcnRpdGlvbnMgbm9uZSAtLXJjLWxvb2thaGVhZCAwIC0tcmVmIDEKICAtLXNj
+ZW5lY3V0IDAgLS1zdWJtZSAwIC0tdHJlbGxpcyAwCiAgLS1uby13ZWlnaHRiIC0td2VpZ2h0cCAwCi0g
+c3VwZXJmYXN0OgogIC0tbm8tbWJ0cmVlIC0tbWUgZGlhIC0tbm8tbWl4ZWQtcmVmcwogIC0tcGFydGl0
+aW9ucyBpOHg4LGk0eDQgLS1yYy1sb29rYWhlYWQgMAogIC0tcmVmIDEgLS1zdWJtZSAxIC0tdHJlbGxp
+cyAwIC0td2VpZ2h0cCAwCi0gdmVyeWZhc3Q6CiAgLS1uby1taXhlZC1yZWZzIC0tcmMtbG9va2FoZWFk
+IDEwCiAgLS1yZWYgMSAtLXN1Ym1lIDIgLS10cmVsbGlzIDAgLS13ZWlnaHRwIDAKLSBmYXN0ZXI6CiAg
+LS1uby1taXhlZC1yZWZzIC0tcmMtbG9va2FoZWFkIDIwCiAgLS1yZWYgMiAtLXN1Ym1lIDQgLS13ZWln
+aHRwIDEKLSBmYXN0OgogIC0tcmMtbG9va2FoZWFkIDMwIC0tcmVmIDIgLS1zdWJtZSA2Ci0gbWVkaXVt
+OgogIERlZmF1bHQgc2V0dGluZ3MgYXBwbHkuCi0gc2xvdzoKICAtLWItYWRhcHQgMiAtLWRpcmVjdCBh
+dXRvIC0tbWUgdW1oCiAgLS1yYy1sb29rYWhlYWQgNTAgLS1yZWYgNSAtLXN1Ym1lIDgKLSBzbG93ZXI6
+CiAgLS1iLWFkYXB0IDIgLS1kaXJlY3QgYXV0byAtLW1lIHVtaAogIC0tcGFydGl0aW9ucyBhbGwgLS1y
+Yy1sb29rYWhlYWQgNjAKICAtLXJlZiA4IC0tc3VibWUgOSAtLXRyZWxsaXMgMgotIHZlcnlzbG93Ogog
+IC0tYi1hZGFwdCAyIC0tYmZyYW1lcyA4IC0tZGlyZWN0IGF1dG8KICAtLW1lIHVtaCAtLW1lcmFuZ2Ug
+MjQgLS1wYXJ0aXRpb25zIGFsbAogIC0tcmVmIDE2IC0tc3VibWUgMTAgLS10cmVsbGlzIDIKICAtLXJj
+LWxvb2thaGVhZCA2MAotIHBsYWNlYm86CiAgLS1iZnJhbWVzIDE2IC0tYi1hZGFwdCAyIC0tZGlyZWN0
+IGF1dG8KICAtLXNsb3ctZmlyc3RwYXNzIC0tbm8tZmFzdC1wc2tpcAogIC0tbWUgdGVzYSAtLW1lcmFu
+Z2UgMjQgLS1wYXJ0aXRpb25zIGFsbAogIC0tcmMtbG9va2FoZWFkIDYwIC0tcmVmIDE2IC0tc3VibWUg
+MTAKICAtLXRyZWxsaXMgMgo</bytes>
 																							</object>
 																							<object class="NSDictionary" key="NSAttributes" id="470504775">
 																								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -6684,6 +6683,7 @@ MAogIC0tdHJlbGxpcyAyCg</bytes>
 																			</object>
 																		</object>
 																		<string key="NSFrame">{{1, 1}, {449, 118}}</string>
+																		<string key="NSBounds">{{0, 484}, {449, 118}}</string>
 																		<reference key="NSSuperview" ref="968691247"/>
 																		<reference key="NSNextKeyView" ref="1049807420"/>
 																		<reference key="NSDocView" ref="1049807420"/>
@@ -6702,6 +6702,7 @@ MAogIC0tdHJlbGxpcyAyCg</bytes>
 																		<bool key="NSEnabled">YES</bool>
 																		<reference key="NSTarget" ref="968691247"/>
 																		<string key="NSAction">_doScroller:</string>
+																		<double key="NSCurValue">1</double>
 																		<double key="NSPercent">0.19601328670978546</double>
 																	</object>
 																	<object class="NSScroller" id="81426491">
@@ -6753,26 +6754,26 @@ MAogIC0tdHJlbGxpcyAyCg</bytes>
 																			<object class="NSTextView" id="341447184">
 																				<reference key="NSNextResponder" ref="547415649"/>
 																				<int key="NSvFlags">2322</int>
-																				<string key="NSFrameSize">{449, 420}</string>
+																				<string key="NSFrameSize">{449, 434}</string>
 																				<reference key="NSSuperview" ref="547415649"/>
 																				<object class="NSTextContainer" key="NSTextContainer" id="408864132">
 																					<object class="NSLayoutManager" key="NSLayoutManager">
 																						<object class="NSTextStorage" key="NSTextStorage">
 																							<object class="NSMutableString" key="NSString">
-																								<bytes key="NS.bytes">LS10dW5lClR1bmUgdGhlIHNldHRpbmdzIGZvciBhIHBhcnRpY3VsYXIgdHlwZSBvZiBzb3VyY2Ugb3Ig
-c2l0dWF0aW9uCgotIGZpbG0gKHBzeSB0dW5pbmcpOgogIC0tZGVibG9jayAtMTotMSAtLXBzeS1yZCA8
-dW5zZXQ+OjAuMTUKLSBhbmltYXRpb24gKHBzeSB0dW5pbmcpOgogIC0tYmZyYW1lcyB7KzJ9IC0tZGVi
-bG9jayAxOjEKICAtLXBzeS1yZCAwLjQ6PHVuc2V0PiAtLWFxLXN0cmVuZ3RoIDAuNgogIC0tcmVmIHtE
-b3VibGUgaWYgPjEgZWxzZSAxfQotIGdyYWluIChwc3kgdHVuaW5nKToKICAtLWFxLXN0cmVuZ3RoIDAu
-NSAtLW5vLWRjdC1kZWNpbWF0ZQogIC0tZGVhZHpvbmUtaW50ZXIgNiAtLWRlYWR6b25lLWludHJhIDYK
-ICAtLWRlYmxvY2sgLTI6LTIgLS1pcHJhdGlvIDEuMSAKICAtLXBicmF0aW8gMS4xIC0tcHN5LXJkIDx1
-bnNldD46MC4yNQogIC0tcWNvbXAgMC44Ci0gc3RpbGxpbWFnZSAocHN5IHR1bmluZyk6CiAgLS1hcS1z
-dHJlbmd0aCAxLjIgLS1kZWJsb2NrIC0zOi0zCiAgLS1wc3ktcmQgMi4wOjAuNwotIHBzbnIgKHBzeSB0
-dW5pbmcpOgogIC0tYXEtbW9kZSAwIC0tbm8tcHN5Ci0gc3NpbSAocHN5IHR1bmluZyk6CiAgLS1hcS1t
-b2RlIDIgLS1uby1wc3kKLSBmYXN0ZGVjb2RlOgogIC0tbm8tY2FiYWMgLS1uby1kZWJsb2NrIC0tbm8t
-d2VpZ2h0YgogIC0td2VpZ2h0cCAwCi0gemVyb2xhdGVuY3k6CiAgLS1iZnJhbWVzIDAgLS1mb3JjZS1j
-ZnIgLS1uby1tYnRyZWUKICAtLXN5bmMtbG9va2FoZWFkIDAgLS1zbGljZWQtdGhyZWFkcwogIC0tcmMt
-bG9va2FoZWFkIDAKA</bytes>
+																								<bytes key="NS.bytes">LS10dW5lCiBUdW5lIHRoZSBzZXR0aW5ncyBmb3IgYSBwYXJ0aWN1bGFyIHR5cGUgb2Ygc291cmNlIG9y
+IHNpdHVhdGlvbgoKLSBmaWxtIChwc3kgdHVuaW5nKToKICAtLWRlYmxvY2sgLTE6LTEgLS1wc3ktcmQg
+PHVuc2V0PjowLjE1Ci0gYW5pbWF0aW9uIChwc3kgdHVuaW5nKToKICAtLWJmcmFtZXMgeysyfSAtLWRl
+YmxvY2sgMToxCiAgLS1wc3ktcmQgMC40Ojx1bnNldD4gLS1hcS1zdHJlbmd0aCAwLjYKICAtLXJlZiB7
+RG91YmxlIGlmID4xIGVsc2UgMX0KLSBncmFpbiAocHN5IHR1bmluZyk6CiAgLS1hcS1zdHJlbmd0aCAw
+LjUgLS1uby1kY3QtZGVjaW1hdGUKICAtLWRlYWR6b25lLWludGVyIDYgLS1kZWFkem9uZS1pbnRyYSA2
+CiAgLS1kZWJsb2NrIC0yOi0yIC0taXByYXRpbyAxLjEgCiAgLS1wYnJhdGlvIDEuMSAtLXBzeS1yZCA8
+dW5zZXQ+OjAuMjUKICAtLXFjb21wIDAuOAotIHN0aWxsaW1hZ2UgKHBzeSB0dW5pbmcpOgogIC0tYXEt
+c3RyZW5ndGggMS4yIC0tZGVibG9jayAtMzotMwogIC0tcHN5LXJkIDIuMDowLjcKLSBwc25yIChwc3kg
+dHVuaW5nKToKICAtLWFxLW1vZGUgMCAtLW5vLXBzeQotIHNzaW0gKHBzeSB0dW5pbmcpOgogIC0tYXEt
+bW9kZSAyIC0tbm8tcHN5Ci0gZmFzdGRlY29kZToKICAtLW5vLWNhYmFjIC0tbm8tZGVibG9jayAtLW5v
+LXdlaWdodGIKICAtLXdlaWdodHAgMAotIHplcm9sYXRlbmN5OgogIC0tYmZyYW1lcyAwIC0tZm9yY2Ut
+Y2ZyIC0tbm8tbWJ0cmVlCiAgLS1zeW5jLWxvb2thaGVhZCAwIC0tc2xpY2VkLXRocmVhZHMKICAtLXJj
+LWxvb2thaGVhZCAwCg</bytes>
 																							</object>
 																							<reference key="NSAttributes" ref="470504775"/>
 																							<nil key="NSDelegate"/>
@@ -6829,6 +6830,7 @@ bG9va2FoZWFkIDAKA</bytes>
 																			</object>
 																		</object>
 																		<string key="NSFrame">{{1, 1}, {449, 118}}</string>
+																		<string key="NSBounds">{{0, 316}, {449, 118}}</string>
 																		<reference key="NSSuperview" ref="994084446"/>
 																		<reference key="NSNextKeyView" ref="341447184"/>
 																		<reference key="NSDocView" ref="341447184"/>
@@ -6844,7 +6846,8 @@ bG9va2FoZWFkIDAKA</bytes>
 																		<bool key="NSEnabled">YES</bool>
 																		<reference key="NSTarget" ref="994084446"/>
 																		<string key="NSAction">_doScroller:</string>
-																		<double key="NSPercent">0.28095239400863647</double>
+																		<double key="NSCurValue">1</double>
+																		<double key="NSPercent">0.27188938856124878</double>
 																	</object>
 																	<object class="NSScroller" id="1024130341">
 																		<reference key="NSNextResponder" ref="994084446"/>
@@ -7089,20 +7092,21 @@ bG9va2FoZWFkIDAKA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {532, 380}}</string>
+										<reference key="NSSuperview" ref="26264083"/>
 									</object>
 									<string key="NSLabel">x264 preset</string>
 									<reference key="NSColor" ref="12757168"/>
 									<reference key="NSTabView" ref="26264083"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="1072698312"/>
+							<reference key="NSSelectedTabViewItem" ref="398321823"/>
 							<reference key="NSFont" ref="432321673"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="1027930676"/>
+								<reference ref="587415851"/>
 							</object>
 						</object>
 						<object class="NSTextField" id="299533016">
@@ -20306,7 +20310,7 @@ IGFuYWx5c2UuYl9zc2ltICgtLXNzaW0pA</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="488640234"/>
-							<string key="toolTip">Extra Blu-ray specific tunings x264: i_nal_hrd (--nal-hrd vbr) x264: i_bframe_pyramid (--b-pyramid strict) x264: i_slice_count (--slices 4) x264: i_open_gop (--open-gop coded) * Highly Experimental. Refere to READMEs.</string>
+							<string key="toolTip">Extra Blu-ray specific tunings x264: i_nal_hrd (--nal-hrd vbr) x264: i_bframe_pyramid (--b-pyramid strict) x264: i_slice_count (--slices 4) x264: i_open_gop (--open-gop bluray) * Highly Experimental. Refere to READMEs.</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -20990,9 +20994,9 @@ cXAtb2Zmc2V0KQ</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{321, 235}, {578, 482}}</string>
+					<string>{{522, 302}, {578, 482}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{321, 235}, {578, 482}}</string>
+					<string>{{522, 302}, {578, 482}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>{213, 107}</string>
@@ -21390,7 +21394,7 @@ KQp4MjY0OiBhbmFseXNlLmJfcHNuciAoLS1wc25yKQ</string>
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="992557140"/>
 							<string type="base64-UTF8" key="toolTip">Q2xvc2VkIGdvcCAoLWZsYWdzIGNnb3ApCnh2aWQ6IFhWSURfR0xPQkFMX0NMT1NFRF9HT1AgKC1ub2Ns
-b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3AgZGlzcGxheSnigKg</string>
+b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3Agbm9ybWFsKeKAqA</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -21400,7 +21404,7 @@ b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3AgZGlzcGxheSnigKg</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="784617120"/>
-							<string key="toolTip">UIbundle version 1.2.13</string>
+							<string key="toolTip">UIbundle version 1.2.14</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -21410,7 +21414,7 @@ b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3AgZGlzcGxheSnigKg</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="299533016"/>
-							<string key="toolTip">UIbundle version 1.2.13</string>
+							<string key="toolTip">UIbundle version 1.2.14</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -21617,7 +21621,7 @@ ZXRhKQp4MjY0OmlfZGVibG9ja2luZ19maWx0ZXJfYWxwaGFjMCwgX2JldGEgKC0tZGVibG9jayk</str
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="967647735"/>
-							<string key="toolTip">UIbundle version 1.2.13</string>
+							<string key="toolTip">UIbundle version 1.2.14</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
