@@ -1,6 +1,7 @@
 How to build:
 * Setup git and yasm 1.x.x environment. The macports is easy solution.
 * NOTICE: This build requires Leopard+Xcode 3.1, or SnowLeopard+Xcode 3.2.
+* CoreVF framework should be installed prior to build.
 
 * clone git repository first
   $ cd your-working-directory
