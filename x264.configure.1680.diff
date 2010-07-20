@@ -1,5 +1,5 @@
---- x2641677.org/configure	2010-07-16 11:18:29.000000000 +0900
-+++ x2641677/configure	2010-07-18 19:03:57.000000000 +0900
+--- x2641680.org/configure	2010-07-20 09:09:55.000000000 +0900
++++ x2641680/configure	2010-07-20 09:18:50.000000000 +0900
 @@ -367,7 +367,7 @@
        define HAVE_ALTIVEC
        AS="${AS-${cross_prefix}gcc}"
@@ -9,7 +9,7 @@
        else
          CFLAGS="$CFLAGS -maltivec -mabi=altivec"
          define HAVE_ALTIVEC_H
-@@ -770,7 +770,7 @@
+@@ -766,7 +766,7 @@
  EOF
  
  filters="crop select_every"
