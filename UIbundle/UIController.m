@@ -134,13 +134,13 @@ bail:
 	kUIModelNAME *theModel = [ObjectCtrl content];
 	if([fourCC isEqualToString:@"avc1"]) {
 		[theModel setValue:@"avc1" forKey:@"fourCC"];
-		[theModel resetToDefault];
+		[theModel resetToDefaultKeeping:FALSE];
 	} else if([fourCC isEqualToString:@"mp4v"]) {
 		[theModel setValue:@"mp4v" forKey:@"fourCC"];
-		[theModel resetToDefault];
+		[theModel resetToDefaultKeeping:FALSE];
 	} else if([fourCC isEqualToString:@"xvid"]) {
 		[theModel setValue:@"xvid" forKey:@"fourCC"];
-		[theModel resetToDefault];
+		[theModel resetToDefaultKeeping:FALSE];
 	} else {
 		NSLog(@"ERROR: Unsupported codec:%@", fourCC);
 	}
@@ -173,103 +173,6 @@ bail:
 	[NSApp stopModalWithCode:NSOKButton];
 }
 
-- (IBAction)buttonDefault:(id)sender
-{
-	NSAlert* alert = [NSAlert alertWithMessageText:@"Reset to Default values..." 
-					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL
-					informativeTextWithFormat:@"Current settings will be lost.\n\n* Option+Click OK to keep Behavior/Tagging params."];
-	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
-					didEndSelector:@selector(alertDefaultDidEnd:returnCode:contextInfo:) 
-					contextInfo:nil];
-}
-
-- (void)alertDefaultDidEnd:(NSAlert*)alert returnCode:(int)returnCode contextInfo:(void*)contextInfo
-{
-	if( returnCode != NSAlertDefaultReturn ) return;
-	
-	kUIModelNAME *theModel = [ObjectCtrl content];
-	[theModel resetToDefault];
-}
-
-- (IBAction)buttoniPod:(id)sender
-{
-	NSAlert* alert = [NSAlert alertWithMessageText:@"Reset to iPod Default values..." 
-					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL
-					informativeTextWithFormat:@"Current settings will be lost.\n\n* Option+Click OK to keep Behavior/Tagging params.\n* Ensure: Turn off 'Frame reordering'\n* Ensure: Set Data Rate less then 1500kbps."];
-	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
-					didEndSelector:@selector(alertiPodDidEnd:returnCode:contextInfo:) 
-					contextInfo:nil];
-}
-
-- (void)alertiPodDidEnd:(NSAlert*)alert returnCode:(int)returnCode contextInfo:(void*)contextInfo
-{
-	if( returnCode != NSAlertDefaultReturn ) return;
-	
-	kUIModelNAME *theModel = [ObjectCtrl content];
-	[theModel resetToiPod];
-}
-
-- (IBAction)buttonDefaultTuned:(id)sender
-{
-	NSAlert* alert = [NSAlert alertWithMessageText:@"Reset to Default(Tuned) values..." 
-					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL
-					informativeTextWithFormat:@"Current settings will be lost.\n\n* Option+Click OK to keep Behavior/Tagging params."];
-	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
-					didEndSelector:@selector(alertDefaultTunedDidEnd:returnCode:contextInfo:) 
-					contextInfo:nil];
-}
-
-- (void)alertDefaultTunedDidEnd:(NSAlert*)alert returnCode:(int)returnCode contextInfo:(void*)contextInfo
-{
-	if( returnCode != NSAlertDefaultReturn ) return;
-	
-	kUIModelNAME *theModel = [ObjectCtrl content];
-	[theModel resetToDefaultTuned];
-}
-
-- (IBAction)buttoniPodTuned:(id)sender
-{
-	NSAlert* alert = [NSAlert alertWithMessageText:@"Reset to iPod(Tuned) values..." 
-					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL
-					informativeTextWithFormat:@"Current settings will be lost.\n\n* Option+Click OK to keep Behavior/Tagging params.\n* Ensure: Turn off 'Frame reordering'\n* Ensure: Set Data Rate less then 1500kbps."];
-	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
-					didEndSelector:@selector(alertiPodTunedDidEnd:returnCode:contextInfo:) 
-					contextInfo:nil];
-}
-
-- (void)alertiPodTunedDidEnd:(NSAlert*)alert returnCode:(int)returnCode contextInfo:(void*)contextInfo
-{
-	if( returnCode != NSAlertDefaultReturn ) return;
-	
-	kUIModelNAME *theModel = [ObjectCtrl content];
-	[theModel resetToiPodTuned];
-}
-
-- (IBAction)buttonx264Preset:(id)sender
-{
-	NSAlert* alert = [NSAlert alertWithMessageText:@"Reset to x264 preset/tune values..." 
-					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL
-					informativeTextWithFormat:@"Current settings will be lost.\n\n* Option+Click OK to keep Behavior/Tagging params."];
-	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
-					didEndSelector:@selector(alertx264PresetDidEnd:returnCode:contextInfo:) 
-					contextInfo:nil];
-}
-
-- (void)alertx264PresetDidEnd:(NSAlert*)alert returnCode:(int)returnCode contextInfo:(void*)contextInfo
-{
-	if( returnCode != NSAlertDefaultReturn ) return;
-	
-	kUIModelNAME *theModel = [ObjectCtrl content];
-	{
-		NSNumber* X264PRESET = [theModel valueForKey:@"X264PRESET"];
-		NSNumber* X264TUNE = [theModel valueForKey:@"X264TUNE"];
-		[theModel resetToDefault];
-		[theModel setValue:X264PRESET forKey:@"X264PRESET"];
-		[theModel setValue:X264TUNE forKey:@"X264TUNE"];
-	}
-	[theModel resetTox264Preset];
-}
-
 #pragma mark -
 
 - (IBAction)buttonPush:(id)sender
@@ -291,7 +194,7 @@ bail:
 	}
 	
 	// 
-	NSAlert* alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Save %@...", theKey] 
+	NSAlert* alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Save custom %@...", theKey] 
 					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL
 					informativeTextWithFormat:[NSString stringWithFormat:@"Current settings will be stored as %@.", theKey]];
 	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
@@ -315,25 +218,24 @@ bail:
 {
 	int tag = [sender tag];
 	tag = (tag ? tag : 1);
-	NSString* theKey = [NSString stringWithFormat:@"Setting(%d)", tag];
 	
 	if(!bundleID || ![bundleID length]) {
 		NSLog(@"ERROR: bundleID is not availale.");
 		return;
 	}
 	
+	NSString* theKey = [NSString stringWithFormat:@"Setting(%d)", tag];
 	CFPropertyListRef value = NULL;
 	value = CFPreferencesCopyAppValue( (CFStringRef)theKey, (CFStringRef)bundleID );
+	value = [NSMakeCollectable(value) autorelease];
 	if( !(value && CFGetTypeID(value) == CFDataGetTypeID()) ) {
 		NSLog(@"ERROR: %@ is not available.", theKey); NSBeep();
-		if( value ) CFRelease(value);
 		return;
 	}
 	
 	kUIModelNAME *newModel = NULL;
 	if( value ) {
 		newModel = [NSKeyedUnarchiver unarchiveObjectWithData:(NSData*)value];
-		CFRelease(value);
 	}
 	if( !newModel ) {
 		NSLog(@"ERROR: Corrupted Data detected."); NSBeep();
@@ -401,7 +303,7 @@ bail:
 #endif
 	
 	// 
-	NSAlert* alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Load %@...", theKey] 
+	NSAlert* alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Load custom %@...", theKey] 
 					defaultButton:@"OK" alternateButton:@"Cancel" otherButton:NULL 
 					informativeTextWithFormat:@"Current settings will be lost."];
 	[alert beginSheetModalForWindow:Dialog modalDelegate:self 
@@ -446,23 +348,22 @@ bail:
 	[paspclapModel setValue:[objectModel valueForKey:@"VERTOFFD"]				forKey:@"VERTOFFD"];
 	
 	[NSApp beginSheet:paspclapSheet modalForWindow:Dialog modalDelegate:self 
-					didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) 
+					didEndSelector:@selector(didEndPaspclapSheet:returnCode:contextInfo:) 
 					contextInfo:nil];
 }
 
 - (IBAction)buttonAspectOK:(id)sender
 {
-	[NSApp endSheet:[sender window] returnCode:NSAlertDefaultReturn];
+	[NSApp endSheet:paspclapSheet returnCode:NSAlertDefaultReturn];
 }
 
 - (IBAction)buttonAspectCancel:(id)sender
 {
-	[NSApp endSheet:[sender window] returnCode:NSAlertAlternateReturn];
+	[NSApp endSheet:paspclapSheet returnCode:NSAlertAlternateReturn];
 }
 
-- (void)didEndSheet:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
+- (void)didEndPaspclapSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
 {
-	if( sheet == paspclapSheet ) {
 		[sheet orderOut:self];
 		if( returnCode != NSAlertDefaultReturn ) return;
 		
@@ -585,6 +486,126 @@ bail:
 			[objectModel setValue:[paspclapModel valueForKey:@"VERTOFFN"]				forKey:@"VERTOFFN"];
 			[objectModel setValue:[paspclapModel valueForKey:@"VERTOFFD"]				forKey:@"VERTOFFD"];
 		}
+}
+
+#pragma mark -
+
+- (IBAction)buttonPreset:(id)sender
+{
+	// Build aspect model
+	id presetModel = [presetCtrl selection];
+	
+	// Read component plist
+	NSString *theKey;
+	CFPropertyListRef value;
+	
+	theKey = @"UseLibraryNativePreset";
+	value = CFPreferencesCopyAppValue( (CFStringRef)theKey, (CFStringRef)bundleID );
+	value = [NSMakeCollectable(value) autorelease];
+	if( !(value && CFGetTypeID(value) == CFBooleanGetTypeID() ) ) {
+		value = [NSNumber numberWithBool:FALSE];
+	}
+	[presetModel setValue:(id)value forKey:theKey];
+	
+	theKey = @"KeepBehaviorParams";
+	value = CFPreferencesCopyAppValue( (CFStringRef)theKey, (CFStringRef)bundleID );
+	value = [NSMakeCollectable(value) autorelease];
+	if( !(value && CFGetTypeID(value) == CFBooleanGetTypeID() ) ) {
+		value = [NSNumber numberWithBool:FALSE];
+	}
+	[presetModel setValue:(id)value forKey:theKey];
+	
+	theKey = @"ComponentPresetTag";
+	value = CFPreferencesCopyAppValue( (CFStringRef)theKey, (CFStringRef)bundleID );
+	value = [NSMakeCollectable(value) autorelease];
+	if( !(value && CFGetTypeID(value) == CFNumberGetTypeID() ) ) {
+		value = [NSNumber numberWithInt:3];		// Component Default preset tag
+	}
+	[presetModel setValue:(id)value forKey:theKey];
+	
+	//
+	[NSApp beginSheet:presetSheet modalForWindow:Dialog modalDelegate:self 
+					didEndSelector:@selector(didEndPresetSheet:returnCode:contextInfo:) 
+					contextInfo:nil];
+}
+
+- (IBAction)buttonPresetOK:(id)sender
+{
+	[NSApp endSheet:presetSheet returnCode:NSAlertDefaultReturn];
+}
+
+- (IBAction)buttonPresetCancel:(id)sender
+{
+	[NSApp endSheet:presetSheet returnCode:NSAlertAlternateReturn];
+}
+
+- (void)didEndPresetSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
+{
+	[sheet orderOut:self];
+	if( returnCode != NSAlertDefaultReturn ) return;
+	
+	// Retreive New values
+	id presetModel = [presetCtrl selection];
+	BOOL UseLibraryNativePreset;
+	BOOL KeepBehaviorParams;
+	int ComponentPresetTag;
+	
+	// Update component plist
+	NSString *theKey;
+	NSNumber *value;
+	
+	theKey = @"UseLibraryNativePreset";
+	value = [presetModel valueForKey:theKey];
+	CFPreferencesSetAppValue( (CFStringRef)theKey, (CFNumberRef)value, (CFStringRef)bundleID );
+	UseLibraryNativePreset = [value boolValue];
+	
+	theKey = @"KeepBehaviorParams";
+	value = [presetModel valueForKey:theKey];
+	CFPreferencesSetAppValue( (CFStringRef)theKey, (CFNumberRef)value, (CFStringRef)bundleID );
+	KeepBehaviorParams = [value boolValue];
+	
+	theKey = @"ComponentPresetTag";
+	value = [presetModel valueForKey:theKey];
+	CFPreferencesSetAppValue( (CFStringRef)theKey, (CFNumberRef)value, (CFStringRef)bundleID );
+	ComponentPresetTag = [value intValue];
+	
+	CFPreferencesAppSynchronize( (CFStringRef)bundleID );
+	
+	//
+//	id            objectModel = [ObjectCtrl selection];	// proxy does not accept any instance methods.
+	kUIModelNAME *objectModel = [ObjectCtrl content];	// same as [[ObjectCtrl selectedObjects] objectAtIndex:0].
+	if (!UseLibraryNativePreset) {
+		switch (ComponentPresetTag) {
+		case 1:
+			[objectModel resetToiPodKeeping:KeepBehaviorParams];
+			break;
+		case 2:
+			[objectModel resetToiPodTunedKeeping:KeepBehaviorParams];
+			break;
+		case 3:
+			[objectModel resetToDefaultKeeping:KeepBehaviorParams];
+			break;
+		case 4:
+			[objectModel resetToDefaultTunedKeeping:KeepBehaviorParams];
+			break;
+		default:
+			NSBeep();
+			break;
+		}
+	} else {
+		// Backup
+		NSNumber* X264PRESET = [objectModel valueForKey:@"X264PRESET"];
+		NSNumber* X264TUNE = [objectModel valueForKey:@"X264TUNE"];
+		
+		// Apply default
+		[objectModel resetToDefaultKeeping:KeepBehaviorParams];
+		
+		// Restore
+		[objectModel setValue:X264PRESET forKey:@"X264PRESET"];
+		[objectModel setValue:X264TUNE forKey:@"X264TUNE"];
+		
+		// Apply library native preset/tune
+		[objectModel resetTox264Preset];
 	}
 }
 
@@ -678,7 +699,7 @@ void InitializeNib()
 	// Keep instance in class variable
 	theUI = [[kUIControllerNAME alloc] init];
     
-    [pool release];
+    [pool drain];
 }
 
 void SetFourCC(CFStringRef fourCC)
@@ -688,7 +709,7 @@ void SetFourCC(CFStringRef fourCC)
 	// Update UI suitable for fourCC
 	[theUI setFourCC:(NSString*)fourCC];
     
-    [pool release];
+    [pool drain];
 }
 
 void SetBundleID(CFStringRef newBundleID)
@@ -698,7 +719,7 @@ void SetBundleID(CFStringRef newBundleID)
 	// set bundleIdentifier for Push/Pop Support
 	[theUI setBundleID:(NSString*)newBundleID];
     
-    [pool release];
+    [pool drain];
 }
 
 params* ShowDialog(params* inParams)
@@ -718,7 +739,7 @@ params* ShowDialog(params* inParams)
 		outParams = [theUI currentParams];
     }
 	
-    [pool release];
+    [pool drain];
     
 	return outParams;
 }
@@ -731,7 +752,7 @@ void ReleaseNib()
 	[theUI release];
     theUI = NULL;
     
-	[pool release];
+	[pool drain];
 }
 
 #pragma mark -

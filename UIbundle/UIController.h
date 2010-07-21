@@ -21,6 +21,9 @@
 	
 	IBOutlet id paspclapSheet;
 	IBOutlet id paspclapCtrl;
+	
+	IBOutlet id presetSheet;
+	IBOutlet id presetCtrl;
 }
 
 - (void)resetToParams:(params*)inParams;
@@ -34,17 +37,19 @@
 
 - (IBAction)buttonCancel:(id)sender;
 - (IBAction)buttonOK:(id)sender;
-- (IBAction)buttonDefault:(id)sender;
-- (IBAction)buttoniPod:(id)sender;
-- (IBAction)buttonDefaultTuned:(id)sender;
-- (IBAction)buttoniPodTuned:(id)sender;
-- (IBAction)buttonx264Preset:(id)sender;
+
 - (IBAction)buttonPush:(id)sender;
 - (IBAction)buttonPop:(id)sender;
 
 - (IBAction)buttonAspect:(id)sender;
 - (IBAction)buttonAspectOK:(id)sender;
 - (IBAction)buttonAspectCancel:(id)sender;
+- (void)didEndPaspclapSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo;
+
+- (IBAction)buttonPreset:(id)sender;
+- (IBAction)buttonPresetOK:(id)sender;
+- (IBAction)buttonPresetCancel:(id)sender;
+- (void)didEndPresetSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo;
 
 - (IBAction)launchPrefPane:(id)sender;
 

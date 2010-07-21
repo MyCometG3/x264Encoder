@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		165972A30D34AA9A008301B7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165972A20D34AA9A008301B7 /* Carbon.framework */; };
-		16683AA90EF527970041F096 /* UIbundleavc1.nib in Resources */ = {isa = PBXBuildFile; fileRef = 16683AA70EF527970041F096 /* UIbundleavc1.nib */; };
 		169B8D3F0D01808B0083EE94 /* UIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 169B8D3E0D01808B0083EE94 /* UIModel.m */; };
 		169B8D420D0180910083EE94 /* UIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 169B8D410D0180910083EE94 /* UIController.m */; };
+		16B6142311F6B610009AD72F /* UIbundleavc1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B6142111F6B610009AD72F /* UIbundleavc1.xib */; };
 		16CDC39F0F74DDDA004C266C /* CoreVF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CDC39E0F74DDDA004C266C /* CoreVF.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		16DA341D0D054D80009EBC67 /* UIbundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D5B49B6048680CD000E48DA /* UIbundle.bundle */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
@@ -36,11 +36,11 @@
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1647FD4A0D024C5300A9833F /* params.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = params.h; sourceTree = "<group>"; };
 		165972A20D34AA9A008301B7 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		16683AA80EF527970041F096 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/UIbundleavc1.nib; sourceTree = "<group>"; };
 		169B8D3D0D01808B0083EE94 /* UIModel.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; path = UIModel.h; sourceTree = "<group>"; };
 		169B8D3E0D01808B0083EE94 /* UIModel.m */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.objc; path = UIModel.m; sourceTree = "<group>"; };
 		169B8D400D0180910083EE94 /* UIController.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; path = UIController.h; sourceTree = "<group>"; };
 		169B8D410D0180910083EE94 /* UIController.m */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.objc; path = UIController.m; sourceTree = "<group>"; };
+		16B6142211F6B610009AD72F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/UIbundleavc1.xib; sourceTree = "<group>"; };
 		16CDC39E0F74DDDA004C266C /* CoreVF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVF.framework; path = /Users/takashi/Library/Frameworks/CoreVF.framework; sourceTree = "<absolute>"; };
 		32DBCF630370AF2F00C91783 /* UIbundle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIbundle_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* UIbundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIbundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +87,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				16683AA70EF527970041F096 /* UIbundleavc1.nib */,
+				16B6142111F6B610009AD72F /* UIbundleavc1.xib */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 			);
@@ -185,7 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
-				16683AA90EF527970041F096 /* UIbundleavc1.nib in Resources */,
+				16B6142311F6B610009AD72F /* UIbundleavc1.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,12 +212,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		16683AA70EF527970041F096 /* UIbundleavc1.nib */ = {
+		16B6142111F6B610009AD72F /* UIbundleavc1.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				16683AA80EF527970041F096 /* English */,
+				16B6142211F6B610009AD72F /* English */,
 			);
-			name = UIbundleavc1.nib;
+			name = UIbundleavc1.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

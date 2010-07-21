@@ -186,10 +186,16 @@
 
 - (void)resetToParams:(params*)inParams;
 - (params*)currentParams;
-- (void)resetToDefault;
-- (void)resetToiPod;
-- (void)resetToDefaultTuned;
-- (void)resetToiPodTuned;
+
+- (void)resetToDefaultKeeping:(BOOL)keepIt;
+- (void)resetToiPodKeeping:(BOOL)keepIt;
+- (void)resetToDefaultTunedKeeping:(BOOL)keepIt;
+- (void)resetToiPodTunedKeeping:(BOOL)keepIt;
+
+//- (void)resetToDefault;
+//- (void)resetToiPod;
+//- (void)resetToDefaultTuned;
+//- (void)resetToiPodTuned;
 - (void)resetTox264Preset;
 
 - (BOOL)isAvc1;

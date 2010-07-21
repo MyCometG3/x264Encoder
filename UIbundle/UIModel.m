@@ -298,13 +298,12 @@
 
 #pragma mark -
 
-- (void)resetToDefault
+- (void)resetToDefaultKeeping:(BOOL)keepIt
 {
 	if(!fourCC) [self setValue:@"avc1" forKey:@"fourCC"];
 	
 	// 
-	BOOL ALL = (GetCurrentKeyModifiers() & optionKey) ? FALSE : TRUE;
-	if(ALL) {
+	if(!keepIt) {
 		[self setValue:UIFalse		forKey:@"LOG_INFO"];		// OFF
 		[self setValue:UIFalse		forKey:@"LOG_DEBUG"];		// OFF
 		[self setValue:UIFalse		forKey:@"LOG_STATS"];		// OFF
@@ -316,7 +315,7 @@
 		[self setValue:UIOne		forKey:@"NCLC"];			// 1:NO nclc
 		
 		[self setValue:UIZero		forKey:@"USE3RDPASS"];		// 0:OFF
-		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
+//		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
 		
 		[self setValue:UIZero		forKey:@"FILTERPRESET"];	// 0
 		[self setValue:UIZero		forKey:@"SUBSAMPLING"];		// 0
@@ -398,7 +397,7 @@
 		[self setValue:UIZero		forKey:@"BIDIR_ME"];		// 0:OFF
 //		[self setValue:UIZero		forKey:@"USE3RDPASS"];		// 0:OFF
 		[self setValue:[UIChar:9]	forKey:@"LEVEL"];			// 9:Level auto
-//		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
+		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
 		
 		[self setValue:UITrue		forKey:@"FLAG2_BPYRAMID"];	// ON
 		[self setValue:UITrue		forKey:@"FLAG2_WPRED"];		// ON
@@ -495,7 +494,7 @@
 		[self setValue:UIZero		forKey:@"BIDIR_ME"];		// 0:OFF
 //		[self setValue:UIZero		forKey:@"USE3RDPASS"];		// 0:OFF
 		[self setValue:[UIChar:9]	forKey:@"LEVEL"];			// 9:Level auto
-//		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
+		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
 		
 		[self setValue:UIFalse		forKey:@"FLAG2_BPYRAMID"];	// OFF
 		[self setValue:UIFalse		forKey:@"FLAG2_WPRED"];		// OFF
@@ -592,7 +591,7 @@
 		[self setValue:UIZero		forKey:@"BIDIR_ME"];		// 0:OFF
 //		[self setValue:UIZero		forKey:@"USE3RDPASS"];		// 0:OFF
 		[self setValue:[UIChar:9]	forKey:@"LEVEL"];			// 9:Level auto
-//		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
+		[self setValue:UIZero		forKey:@"EMBEDUUID"];		// 0:OFF
 		
 		[self setValue:UIFalse		forKey:@"FLAG2_BPYRAMID"];	// OFF
 		[self setValue:UIFalse		forKey:@"FLAG2_WPRED"];		// OFF
@@ -643,9 +642,9 @@
 	}
 }
 
-- (void)resetToiPod
+- (void)resetToiPodKeeping:(BOOL)keepIt
 {
-	[self resetToDefault];
+	[self resetToDefaultKeeping:keepIt];
 	
 	if([self isAvc1]) {
 		[self setValue:[UIChar:1]	forKey:@"EMBEDUUID"];		// 1:ON
@@ -669,9 +668,9 @@
 	[self setValue:[UIInt:2048]		forKey:@"RC_BUFSIZE"];		// 2048Kbps
 }
 
-- (void)resetToDefaultTuned
+- (void)resetToDefaultTunedKeeping:(BOOL)keepIt
 {
-	[self resetToDefault];
+	[self resetToDefaultKeeping:keepIt];
 	
 	if([self isAvc1]) {
 		[self setValue:UIFalse		forKey:@"FLAG2_FASTPSKIP"];	// OFF
@@ -711,9 +710,9 @@
 	}
 }
 
-- (void)resetToiPodTuned
+- (void)resetToiPodTunedKeeping:(BOOL)keepIt
 {
-	[self resetToiPod];
+	[self resetToiPodKeeping:keepIt];
 	
 	if([self isAvc1]) {
 		[self setValue:UITrue		forKey:@"FLAG2_MIXED_REFS"];	// ON
@@ -744,6 +743,32 @@
 		[self setValue:UITwo		forKey:@"MB_DECISION"];		// 2:BITS
 	}
 }
+
+#pragma mark -
+
+//- (void)resetToDefault
+//{
+//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
+//	[self resetToDefaultKeeping:keepIt];
+//}
+//
+//- (void)resetToiPod
+//{
+//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
+//	[self resetToiPodKeeping:keepIt];
+//}
+//
+//- (void)resetToDefaultTuned
+//{
+//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
+//	[self resetToDefaultTunedKeeping:keepIt];
+//}
+//
+//- (void)resetToiPodTuned
+//{
+//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
+//	[self resetToiPodTunedKeeping:keepIt];
+//}
 
 - (void)resetTox264Preset
 {
@@ -1120,7 +1145,7 @@
 		val = [UIDecodeForKey: @"fourCC"];
 		if(val) [self setValue:val forKey: @"fourCC"];
 		
-		[self resetToDefault];
+		[self resetToDefaultKeeping:FALSE];
 		
 		val = [UIDecodeForKey: @"LOG_INFO"];
 		if(val) [self setValue:val forKey: @"LOG_INFO"];
