@@ -25,6 +25,7 @@
 		1607754B0F6A77F800C0F35A /* libx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745DA0B8844E70011BCB2 /* libx264.a */; };
 		1607759D0F6B34E200C0F35A /* CoreVF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1607759C0F6B34E200C0F35A /* CoreVF.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		160C323C11BF24D8005B49D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160C323811BF24C7005B49D7 /* AudioToolbox.framework */; };
+		1626735E1206717000172864 /* libavcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1626735D1206717000172864 /* libavcore.a */; };
 		169D2E400D041EAB00E4DE1D /* UIbundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 169D2E320D041EA500E4DE1D /* UIbundle.bundle */; };
 		16A745D30B8844800011BCB2 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745D00B8844800011BCB2 /* libavcodec.a */; };
 		16A745D40B8844800011BCB2 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A745D10B8844800011BCB2 /* libavformat.a */; };
@@ -89,6 +90,7 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1607759C0F6B34E200C0F35A /* CoreVF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVF.framework; path = /Users/takashi/Library/Frameworks/CoreVF.framework; sourceTree = "<absolute>"; };
 		160C323811BF24C7005B49D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1626735D1206717000172864 /* libavcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcore.a; path = ../libav/libavcore.a; sourceTree = SOURCE_ROOT; };
 		169D2D830D04129B00E4DE1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		169D2E320D041EA500E4DE1D /* UIbundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = UIbundle.bundle; path = ../UIbundle/UIbundle.bundle; sourceTree = SOURCE_ROOT; };
 		16A745D00B8844800011BCB2 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../libav/libavcodec.a; sourceTree = SOURCE_ROOT; };
@@ -143,6 +145,7 @@
 				1607754B0F6A77F800C0F35A /* libx264.a in Frameworks */,
 				1607759D0F6B34E200C0F35A /* CoreVF.framework in Frameworks */,
 				160C323C11BF24D8005B49D7 /* AudioToolbox.framework in Frameworks */,
+				1626735E1206717000172864 /* libavcore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +216,7 @@
 		16A745CA0B8844110011BCB2 /* ffmpeg */ = {
 			isa = PBXGroup;
 			children = (
+				1626735D1206717000172864 /* libavcore.a */,
 				16A745D60B8844A10011BCB2 /* avcodec.h */,
 				16A745D90B8844D10011BCB2 /* avformat.h */,
 				16A745D80B8844C40011BCB2 /* avutil.h */,
@@ -453,6 +457,7 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../libav\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../libav\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../x264\"";
@@ -492,6 +497,7 @@
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"\"$(SRCROOT)/../libav\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../libav\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../x264\"";
