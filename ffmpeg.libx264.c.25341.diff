@@ -1,5 +1,5 @@
---- libav25146.org/libavcodec/libx264.c	2010-09-20 07:31:05.000000000 +0900
-+++ libav25146/libavcodec/libx264.c	2010-09-20 07:44:43.000000000 +0900
+--- libav25341.org/libavcodec/libx264.c	2010-10-05 18:52:38.000000000 +0900
++++ libav25341/libavcodec/libx264.c	2010-10-05 18:57:34.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>

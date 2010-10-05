@@ -1,6 +1,6 @@
---- libav25146.org/configure	2010-09-20 07:31:11.000000000 +0900
-+++ libav25146/configure	2010-09-20 07:44:43.000000000 +0900
-@@ -2532,8 +2532,8 @@
+--- libav25341.org/configure	2010-10-05 18:52:44.000000000 +0900
++++ libav25341/configure	2010-10-05 18:57:34.000000000 +0900
+@@ -2541,8 +2541,8 @@
      # AltiVec flags: The FSF version of GCC differs from the Apple version
      if enabled altivec; then
          nogas=warn
