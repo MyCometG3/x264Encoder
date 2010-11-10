@@ -1,5 +1,5 @@
---- libav25512.org/libavcodec/libx264.c	2010-10-18 16:36:38.000000000 +0900
-+++ libav25512/libavcodec/libx264.c	2010-10-18 16:39:22.000000000 +0900
+--- libav25715.org/libavcodec/libx264.c	2010-11-10 21:33:17.000000000 +0900
++++ libav25715/libavcodec/libx264.c	2010-11-10 22:23:47.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -47,7 +47,7 @@
  typedef struct X264Context {
      x264_param_t    params;
      x264_t         *enc;
-@@ -155,14 +195,45 @@
+@@ -159,14 +199,45 @@
      x4->sei_size = 0;
      x264_param_default(&x4->params);
  
@@ -96,7 +96,7 @@
      x4->params.rc.b_stat_write      = avctx->flags & CODEC_FLAG_PASS1;
      if (avctx->flags & CODEC_FLAG_PASS2) {
          x4->params.rc.b_stat_read = 1;
-@@ -176,6 +247,17 @@
+@@ -180,6 +251,17 @@
              x4->params.rc.i_qp_constant = avctx->cqp;
          }
      }
@@ -114,7 +114,7 @@
  
      // if neither crf nor cqp modes are selected we have to enable the RC
      // we do it this way because we cannot check if the bitrate has been set
-@@ -213,26 +295,33 @@
+@@ -217,26 +299,33 @@
      x4->params.i_height             = avctx->height;
      x4->params.vui.i_sar_width      = avctx->sample_aspect_ratio.num;
      x4->params.vui.i_sar_height     = avctx->sample_aspect_ratio.den;
@@ -160,9 +160,9 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -294,9 +383,77 @@
+@@ -300,9 +389,77 @@
  
-     x4->params.b_interlaced   = avctx->flags & CODEC_FLAG_INTERLACED_DCT;
+     x4->params.i_slice_count  = avctx->slices;
  
 +    x4->params.i_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? X264_OPEN_GOP_NONE : X264_OPEN_GOP_NORMAL;
 +
@@ -238,7 +238,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -311,10 +468,10 @@
+@@ -317,10 +474,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
