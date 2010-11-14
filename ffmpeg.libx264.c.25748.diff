@@ -1,5 +1,5 @@
---- libav25715.org/libavcodec/libx264.c	2010-11-10 21:33:17.000000000 +0900
-+++ libav25715/libavcodec/libx264.c	2010-11-10 22:23:47.000000000 +0900
+--- libav25748.org/libavcodec/libx264.c	2010-11-14 18:22:05.000000000 +0900
++++ libav25748/libavcodec/libx264.c	2010-11-14 18:23:47.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -160,7 +160,7 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -300,9 +389,77 @@
+@@ -297,9 +386,77 @@
  
      x4->params.i_slice_count  = avctx->slices;
  
@@ -238,7 +238,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -317,10 +474,10 @@
+@@ -314,10 +471,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
