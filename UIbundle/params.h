@@ -174,7 +174,7 @@ typedef struct {
 	int PB_FACTOR;					// limited to (-300, 300) AS (-3.0, 3.0); default 130 (as 1.3)
 	int reservedInt4;				// 
 	
-	char WEIGHTP;					// x264; --weightp; 1:Disabled, 2:Blind offser, 3:Smart analysis
+	char WEIGHTP;					// x264; --weightp; 1:Disabled, 2:Weighted refs, 3:Weighted refs + Duplicates
 	char TOPFIELDFIRST;				// top field first; default 0 (=Progressive or bottom field first)
 	char LOSSLESS;					// x264; same as "--qp 0"; 1:On, 1:Off; default is 0
 	char BD_TUNE;					// x264; --nal-hrd vbr --b-pyramid strict --slices 4 
@@ -198,7 +198,7 @@ typedef struct {
 	char OVERRIDECRFQSCALE;			/* override quality slider setting in application for CRF/QSCALE */
 	char USERCRFQSCALE;				/* user specified qscale value; default 23 */
 	char OVERRIDEQMIN;				/* override quality slider setting in application for ABR */
-	char USERQMIN;					/* user specified qmin value; default 10 */
+	char USERQMIN;					/* user specified qmin value; default 0; // x264 r1795 changed default qmin from 10 to 0 */
 	
 	char FAKEINTERLACED;			// x264; --fake-interlaced; default 0 (=off)
 	char reservedChar2;				// 

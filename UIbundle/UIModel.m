@@ -341,7 +341,7 @@
 			[self setValue:UIZero		forKey:@"OVERRIDECRFQSCALE"];	// OFF
 			[self setValue:[UIChar:23]	forKey:@"USERCRFQSCALE"];	// 23
 			[self setValue:UIOne		forKey:@"OVERRIDEQMIN"];	// ON
-			[self setValue:[UIChar:10]	forKey:@"USERQMIN"];		// 10
+			[self setValue:[UIChar:0]	forKey:@"USERQMIN"];		// 0	// x264 r1795 changed default qmin from 10 to 0
 		} else {
 			[self setValue:UIZero		forKey:@"OVERRIDECRFQSCALE"];	// OFF
 			[self setValue:[UIChar:2]	forKey:@"USERCRFQSCALE"];	// 2
@@ -439,7 +439,7 @@
 		[self setValue:[UIFloat:1.4]	forKey:@"IP_FACTOR"];	// 1.4 !!!!!!!!!!!!!!!!!!!!!
 		[self setValue:[UIFloat:1.3]	forKey:@"PB_FACTOR"];	// 1.3 !!!!!!!!!!!!!!!!!!!!!
 		
-		[self setValue:[UIChar:3]	forKey:@"WEIGHTP"];			// 3:Smart analysis
+		[self setValue:[UIChar:3]	forKey:@"WEIGHTP"];			// 3:Weighted refs + Duplicates
 		[self setValue:UIZero		forKey:@"TOPFIELDFIRST"];	// 0:Progressive or bottom field first
 		[self setValue:UIZero		forKey:@"LOSSLESS"];		// 0
 		[self setValue:UIZero		forKey:@"BD_TUNE"];			// OFF
@@ -806,7 +806,7 @@
 			[self setValue:UIOne		forKey:@"TRELLIS"];			// 1:Disabled
 //			[self setValue:UIFalse		forKey:@"MBTREE"];			// OFF
 			[self setValue:UIFalse		forKey:@"FLAG2_MBTREE"];	// OFF
-			[self setValue:UIOne		forKey:@"WEIGHTP"];			// 1:Disabled
+			[self setValue:UITwo		forKey:@"WEIGHTP"];			// 2:Weighted refs
 			[self setValue:UIZero		forKey:@"RC_LOOKAHEAD"];	// 0
 			break;
 		case X264PRESET_VERYFAST:
@@ -817,19 +817,20 @@
 			[self setValue:UIOne		forKey:@"TRELLIS"];			// 1:Disabled
 //			[self setValue:UIFalse		forKey:@"MBTREE"];			// OFF
 //			[self setValue:UIFalse		forKey:@"FLAG2_MBTREE"];	// OFF
-			[self setValue:UIOne		forKey:@"WEIGHTP"];			// 1:Disabled
+			[self setValue:UITwo		forKey:@"WEIGHTP"];			// 2:Weighted refs
 			[self setValue:[UIInt:10]	forKey:@"RC_LOOKAHEAD"];	// 10
 			break;
 		case X264PRESET_FASTER:
 			[self setValue:UIFalse		forKey:@"FLAG2_MIXED_REFS"];	// OFF
 			[self setValue:UITwo		forKey:@"REFS"];			// 2
 			[self setValue:[UIChar:4]	forKey:@"ME_SUBQ"];			// 4
-			[self setValue:UITwo		forKey:@"WEIGHTP"];			// 2:blind offset
+			[self setValue:UITwo		forKey:@"WEIGHTP"];			// 2:Weighted refs
 			[self setValue:[UIInt:20]	forKey:@"RC_LOOKAHEAD"];	// 20
 			break;
 		case X264PRESET_FAST:
 			[self setValue:[UIChar:2]	forKey:@"REFS"];			// 2
 			[self setValue:[UIChar:6]	forKey:@"ME_SUBQ"];			// 6
+			[self setValue:UITwo		forKey:@"WEIGHTP"];			// 2:Weighted refs
 			[self setValue:[UIInt:30]	forKey:@"RC_LOOKAHEAD"];	// 30
 			break;
 		case X264PRESET_MEDIUM:

@@ -285,7 +285,7 @@ bail:
 			[newModel setValue:[NSNumber numberWithChar:0] forKey:@"OVERRIDECRFQSCALE"];
 			[newModel setValue:[NSNumber numberWithChar:23] forKey:@"USERCRFQSCALE"];
 			[newModel setValue:[NSNumber numberWithChar:1] forKey:@"OVERRIDEQMIN"];
-			[newModel setValue:[NSNumber numberWithChar:10] forKey:@"USERQMIN"];
+			[newModel setValue:[NSNumber numberWithChar:0] forKey:@"USERQMIN"];	// x264 r1795 changed default qmin from 10 to 0
 		} else {
 			[newModel setValue:[NSNumber numberWithChar:0] forKey:@"OVERRIDECRFQSCALE"];
 			[newModel setValue:[NSNumber numberWithChar:2] forKey:@"USERCRFQSCALE"];

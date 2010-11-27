@@ -153,7 +153,7 @@
 	NSNumber* IP_FACTOR;				// limited to (-3.0, 3.0); default 1.4 // !!!!!!!!!!!!!!!!!!!!!!
 	NSNumber* PB_FACTOR;				// limited to (-3.0, 3.0); default 1.3 // !!!!!!!!!!!!!!!!!!!!!!
 	
-	NSNumber* WEIGHTP;					// x264; --weightp; 1:Disabled, 2:Blind offset, 3:Smart analysis
+	NSNumber* WEIGHTP;					// x264; --weightp; 1:Disabled, 2:Weighted refs, 3:Weighted refs + Duplicates
 	NSNumber* TOPFIELDFIRST;			// top field first; default 0 (=Progressive or bottom field first)
 	NSNumber* LOSSLESS;					// x264; same as "--qp 0"; 1:On, 1:Off; default is 0
 	NSNumber* BD_TUNE;					// x264; --nal-hrd vbr --b-pyramid strict --slices 4 
@@ -177,7 +177,7 @@
 	NSNumber* OVERRIDECRFQSCALE;		/* override quality slider setting in application for CRF/QSCALE */
 	NSNumber* USERCRFQSCALE;			/* user specified qscale value; default 23 */
 	NSNumber* OVERRIDEQMIN;				/* override quality slider setting in application for ABR */
-	NSNumber* USERQMIN;					/* user specified qmin value; default 10 */
+	NSNumber* USERQMIN;					/* user specified qmin value; default 0; // x264 r1795 changed default qmin to 0 */
 	
 	NSNumber* FAKEINTERLACED;			// x264; --fake-interlaced; default 0 (=off)
 	

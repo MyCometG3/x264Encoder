@@ -1,0 +1,22 @@
+--- x2641804.org/configure	2010-11-27 17:25:47.000000000 +0900
++++ x2641804/configure	2010-11-27 18:14:21.000000000 +0900
+@@ -387,7 +387,7 @@
+             define HAVE_ALTIVEC
+             AS="${AS-${cross_prefix}gcc}"
+             if [ $SYS = MACOSX ] ; then
+-                CFLAGS="$CFLAGS -faltivec -fastf -mcpu=G4"
++                CFLAGS="$CFLAGS -faltivec -fastf -mcpu=G4 -mtune=7450"
+             else
+                 CFLAGS="$CFLAGS -maltivec -mabi=altivec"
+                 define HAVE_ALTIVEC_H
+@@ -812,8 +812,8 @@
+ 
+ filters="crop select_every"
+ gpl_filters=""
+-[ $swscale = yes ] && filters="resize $filters"
+-[ $gpl = yes ] && filters="$filters $gpl_filters"
++[ "$swscale" = "yes" ] && filters="resize $filters"
++[ "$gpl" = "yes" ] && filters="$filters $gpl_filters"
+ 
+ cat > conftest.log <<EOF
+ Platform:   $ARCH
