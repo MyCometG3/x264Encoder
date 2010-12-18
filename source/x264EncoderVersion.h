@@ -25,5 +25,5 @@ This file is part of x264Encoder.
  */
 
 // The high word is the codecInterfaceVersion
-#define klavcEncoderVersion		(0x00010213)
+#define klavcEncoderVersion		(0x00010214)
 
