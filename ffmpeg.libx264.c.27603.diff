@@ -1,5 +1,5 @@
---- libav27454.org/libavcodec/libx264.c	2011-01-30 09:12:44.000000000 +0900
-+++ libav27454/libavcodec/libx264.c	2011-01-30 09:14:40.000000000 +0900
+--- libav27603.org/libavcodec/libx264.c	2011-02-11 19:49:37.000000000 +0900
++++ libav27603/libavcodec/libx264.c	2011-02-11 23:01:11.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -160,7 +160,7 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -303,9 +392,77 @@
+@@ -302,9 +391,77 @@
  
      x4->params.vui.b_fullrange = avctx->pix_fmt == PIX_FMT_YUVJ420P;
  
@@ -238,7 +238,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -320,10 +477,10 @@
+@@ -319,10 +476,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
