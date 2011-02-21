@@ -34,8 +34,8 @@ doDiff
 TARGET="libavcodec/libx264.c"
 doDiff
 
-#TARGET="libavcodec/utils.c"
-#doDiff
+TARGET="libavcodec/pthread.c"
+doDiff
 
 #
 

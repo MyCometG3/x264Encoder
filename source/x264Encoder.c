@@ -2899,10 +2899,10 @@ static OSStatus open_libAV(lavcEncoderGlobalRecord *glob)
 		if( glob->params.LOG_DEBUG ) 
 			av_log_set_level(AV_LOG_VERBOSE);
 		
-		// Thread support
-		if( glob->codecCont->thread_count > 1 ) {
-			avcodec_thread_init(glob->codecCont, glob->codecCont->thread_count);
-		}
+//		// Thread support
+//		if( glob->codecCont->thread_count > 1 ) {
+//			avcodec_thread_init(glob->codecCont, glob->codecCont->thread_count);
+//		}
 		
 		// Make it ON before opening codec to get extradata; No SPS/PPS in data stream
 		glob->codecCont->flags |= CODEC_FLAG_GLOBAL_HEADER;

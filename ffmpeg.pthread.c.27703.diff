@@ -1,0 +1,11 @@
+--- libav27703.org/libavcodec/pthread.c	2011-02-21 21:05:55.000000000 +0900
++++ libav27703/libavcodec/pthread.c	2011-02-21 21:07:16.000000000 +0900
+@@ -877,7 +877,7 @@
+         return -1;
+     }
+ 
+-    avctx->thread_count = FFMAX(1, thread_count);
++    avctx->thread_count = FFMAX(0, thread_count);
+ 
+     if (avctx->codec) {
+         validate_thread_parameters(avctx);

@@ -1,0 +1,391 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		162B67FC130FFD380045A40E /* i386 */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 162B67FE130FFD380045A40E /* Build configuration list for PBXAggregateTarget "i386" */;
+			buildPhases = (
+				162B67FD130FFD380045A40E /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = i386;
+			productName = "Build i386";
+		};
+		1650542C0AE7BB230051E06D /* Build PPC */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 165054340AE7BB4D0051E06D /* Build configuration list for PBXAggregateTarget "Build PPC" */;
+			buildPhases = (
+				1650542F0AE7BB360051E06D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Build PPC";
+			productName = "Build PPC";
+		};
+		1650546D0AE7C3000051E06D /* Build i386 */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 165054720AE7C3270051E06D /* Build configuration list for PBXAggregateTarget "Build i386" */;
+			buildPhases = (
+				165054700AE7C3080051E06D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Build i386";
+			productName = "Build i386";
+		};
+		165054A00AE7CAFB0051E06D /* Build Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 165054AC0AE7CB160051E06D /* Build configuration list for PBXAggregateTarget "Build Universal" */;
+			buildPhases = (
+			);
+			dependencies = (
+				165054A40AE7CB000051E06D /* PBXTargetDependency */,
+				165054A60AE7CB030051E06D /* PBXTargetDependency */,
+				16DDA4900BF5DD33001A6312 /* PBXTargetDependency */,
+			);
+			name = "Build Universal";
+			productName = "Build Universal";
+		};
+		16DDA4830BF5DD10001A6312 /* Do lipo */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 16DDA4940BF5DD57001A6312 /* Build configuration list for PBXAggregateTarget "Do lipo" */;
+			buildPhases = (
+				16DDA4860BF5DD1F001A6312 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Do lipo";
+			productName = "Do lipo";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXContainerItemProxy section */
+		165054A30AE7CB000051E06D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 165054230AE7BB000051E06D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1650542C0AE7BB230051E06D;
+			remoteInfo = "Build PPC";
+		};
+		165054A50AE7CB030051E06D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 165054230AE7BB000051E06D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1650546D0AE7C3000051E06D;
+			remoteInfo = "Build i386";
+		};
+		16DDA48F0BF5DD33001A6312 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 165054230AE7BB000051E06D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16DDA4830BF5DD10001A6312;
+			remoteInfo = "Do lipo";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXGroup section */
+		165054210AE7BB000051E06D = {
+			isa = PBXGroup;
+			children = (
+			);
+			comments = "libav.xcodeproj is a Project file for Xcode 2.2.1 or later.\n\n    libav.xcodeproj is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    libav.xcodeproj is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with libav.xcodeproj; if not, write to the Free Software\n    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		165054230AE7BB000051E06D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 165054240AE7BB000051E06D /* Build configuration list for PBXProject "libav" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 165054210AE7BB000051E06D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1650542C0AE7BB230051E06D /* Build PPC */,
+				1650546D0AE7C3000051E06D /* Build i386 */,
+				16DDA4830BF5DD10001A6312 /* Do lipo */,
+				165054A00AE7CAFB0051E06D /* Build Universal */,
+				162B67FC130FFD380045A40E /* i386 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		162B67FD130FFD380045A40E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "say \"Building intel binary.\" &\necho;pwd;echo\n\nTHESDK=\"$DEVELOPER_SDK_DIR/MacOSX10.5.sdk\"\nTHEARC=\"i386\"; THECPU=\"pentium-m\"\nTHEOPT=\"-ffast-math -falign-loops=16 -fstrict-aliasing -m32 -mdynamic-no-pic -mtune=core2 \" \n#THEOPT=\"-ffast-math -fstrict-aliasing -freorder-blocks -fsched-interblock -falign-loops=16 -falign-jumps=16 -falign-functions=16\"\n# -fgcse-sm -falign-loops-max-skip=15 -falign-jumps-max-skip=15 -funroll-loops -ftree-loop-linear -ftree-loop-memset\n\n# Use yasm from MacPort\nPATH=$PATH:/opt/local/bin/\n\n./configure --enable-cross-compile --arch=$THEARC --cpu=$THECPU --cc=gcc-4.2 --enable-small --enable-libx264 --target-os=darwin \\\n --enable-pthreads --enable-gpl --disable-ffmpeg --disable-ffserver --disable-ffplay --disable-avfilter --enable-network \\\n --disable-decoders --disable-muxers --disable-demuxers --disable-parsers --disable-bsfs --disable-protocols --disable-devices --disable-filters \\\n --extra-ldflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wl,-syslibroot,$THESDK -L${SOURCE_ROOT}/../x264 \" \\\n --extra-cflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wno-deprecated-declarations $THEOPT -I${SOURCE_ROOT}/../x264 \" \\\n --disable-encoders --enable-encoder=libx264\\\n|| { echo -- ERROR on confiure --; tail config.err; exit 1; }\n\necho -- Run make clean --\nmake clean || { echo -- ERROR on make clean --; exit 1; }\n\necho -- Run make lib --\nmake -j3 || { exit 1; }\n\ncp lib*/*.a ./\n\necho;echo \"Done\";echo\nexit 0";
+			showEnvVarsInLog = 0;
+		};
+		1650542F0AE7BB360051E06D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "say \"Building Power PC binary.\" &\necho;pwd;echo\n\nTHESDK=\"$DEVELOPER_SDK_DIR/MacOSX10.5.sdk\"\nTHEARC=\"ppc\"; THECPU=\"ppc7450\"\nTHEOPT=\"-ffast-math -falign-loops=16 -fstrict-aliasing -m32\" \n#THEOPT=\"-ffast-math -fstrict-aliasing -freorder-blocks -fsched-interblock -falign-loops=16 -falign-jumps=16 -falign-functions=16\"\n# -fgcse-sm -falign-loops-max-skip=15 -falign-jumps-max-skip=15 -funroll-loops -ftree-loop-linear -ftree-loop-memset\n\n# Use yasm from MacPort\nPATH=$PATH:/opt/local/bin/\n\n./configure --enable-cross-compile --arch=$THEARC --cpu=$THECPU --cc=gcc-4.2 --enable-small --enable-libx264 --target-os=darwin \\\n --enable-pthreads --enable-gpl --disable-ffmpeg --disable-ffserver --disable-ffplay --disable-avfilter --enable-network \\\n --disable-decoders --disable-muxers --disable-demuxers --disable-parsers --disable-bsfs --disable-protocols --disable-devices --disable-filters \\\n --extra-ldflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wl,-syslibroot,$THESDK -L${SOURCE_ROOT}/../x264 \" \\\n --extra-cflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wno-deprecated-declarations $THEOPT -I${SOURCE_ROOT}/../x264 \" \\\n --disable-encoders --enable-encoder=libx264\\\n|| { echo -- ERROR on confiure --; tail config.err; exit 1; }\n\necho -- Run make clean --\nmake clean || { echo -- ERROR on make clean --; exit 1; }\n\necho -- Run make lib --\nmake -j3 || { exit 1; }\n\nBUILD_ARCH=build/$THEARC\nmkdir -p $BUILD_ARCH\nmv */*.a $BUILD_ARCH\ncd $BUILD_ARCH; ls *.a > ../../libnames.tmp\n\necho;echo \"Done\";echo\nexit 0";
+			showEnvVarsInLog = 0;
+		};
+		165054700AE7C3080051E06D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "say \"Building intel binary.\" &\necho;pwd;echo\n\nTHESDK=\"$DEVELOPER_SDK_DIR/MacOSX10.5.sdk\"\nTHEARC=\"i386\"; THECPU=\"pentium-m\"\nTHEOPT=\"-ffast-math -falign-loops=16 -fstrict-aliasing -m32 -mdynamic-no-pic -mtune=core2 \" \n#THEOPT=\"-ffast-math -fstrict-aliasing -freorder-blocks -fsched-interblock -falign-loops=16 -falign-jumps=16 -falign-functions=16\"\n# -fgcse-sm -falign-loops-max-skip=15 -falign-jumps-max-skip=15 -funroll-loops -ftree-loop-linear -ftree-loop-memset\n\n# Use yasm from MacPort\nPATH=$PATH:/opt/local/bin/\n\n./configure --enable-cross-compile --arch=$THEARC --cpu=$THECPU --cc=gcc-4.2 --enable-small --enable-libx264 --target-os=darwin \\\n --enable-pthreads --enable-gpl --disable-ffmpeg --disable-ffserver --disable-ffplay --disable-avfilter --enable-network \\\n --disable-decoders --disable-muxers --disable-demuxers --disable-parsers --disable-bsfs --disable-protocols --disable-devices --disable-filters \\\n --extra-ldflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wl,-syslibroot,$THESDK -L${SOURCE_ROOT}/../x264 \" \\\n --extra-cflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wno-deprecated-declarations $THEOPT -I${SOURCE_ROOT}/../x264 \" \\\n --disable-encoders --enable-encoder=libx264\\\n|| { echo -- ERROR on confiure --; tail config.err; exit 1; }\n\necho -- Run make clean --\nmake clean || { echo -- ERROR on make clean --; exit 1; }\n\necho -- Run make lib --\nmake -j3 || { exit 1; }\n\nBUILD_ARCH=build/$THEARC\nmkdir -p $BUILD_ARCH\nmv */*.a $BUILD_ARCH\ncd $BUILD_ARCH; ls *.a > ../../libnames.tmp\n\necho;echo \"Done\";echo\nexit 0";
+			showEnvVarsInLog = 0;
+		};
+		16DDA4860BF5DD1F001A6312 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "say \"Creating universal binary.\"\nfor lib in `cat libnames.tmp`\ndo\n  lipo -create build/*/$lib -output $lib\ndone\nsay \"Finished.\"\nexit 0\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		165054A40AE7CB000051E06D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1650542C0AE7BB230051E06D /* Build PPC */;
+			targetProxy = 165054A30AE7CB000051E06D /* PBXContainerItemProxy */;
+		};
+		165054A60AE7CB030051E06D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1650546D0AE7C3000051E06D /* Build i386 */;
+			targetProxy = 165054A50AE7CB030051E06D /* PBXContainerItemProxy */;
+		};
+		16DDA4900BF5DD33001A6312 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16DDA4830BF5DD10001A6312 /* Do lipo */;
+			targetProxy = 16DDA48F0BF5DD33001A6312 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		162B67FF130FFD380045A40E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build i386";
+			};
+			name = Debug;
+		};
+		162B6800130FFD380045A40E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Build i386";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		165054250AE7BB000051E06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		165054260AE7BB000051E06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		165054350AE7BB4D0051E06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build PPC";
+			};
+			name = Debug;
+		};
+		165054360AE7BB4D0051E06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Build PPC";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		165054730AE7C3270051E06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build i386";
+			};
+			name = Debug;
+		};
+		165054740AE7C3270051E06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Build i386";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		165054AD0AE7CB160051E06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build Universal";
+			};
+			name = Debug;
+		};
+		165054AE0AE7CB160051E06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Build Universal";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		16DDA4950BF5DD57001A6312 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Do lipo";
+			};
+			name = Debug;
+		};
+		16DDA4960BF5DD57001A6312 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Do lipo";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		162B67FE130FFD380045A40E /* Build configuration list for PBXAggregateTarget "i386" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				162B67FF130FFD380045A40E /* Debug */,
+				162B6800130FFD380045A40E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		165054240AE7BB000051E06D /* Build configuration list for PBXProject "libav" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				165054250AE7BB000051E06D /* Debug */,
+				165054260AE7BB000051E06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		165054340AE7BB4D0051E06D /* Build configuration list for PBXAggregateTarget "Build PPC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				165054350AE7BB4D0051E06D /* Debug */,
+				165054360AE7BB4D0051E06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		165054720AE7C3270051E06D /* Build configuration list for PBXAggregateTarget "Build i386" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				165054730AE7C3270051E06D /* Debug */,
+				165054740AE7C3270051E06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		165054AC0AE7CB160051E06D /* Build configuration list for PBXAggregateTarget "Build Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				165054AD0AE7CB160051E06D /* Debug */,
+				165054AE0AE7CB160051E06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16DDA4940BF5DD57001A6312 /* Build configuration list for PBXAggregateTarget "Do lipo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16DDA4950BF5DD57001A6312 /* Debug */,
+				16DDA4960BF5DD57001A6312 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 165054230AE7BB000051E06D /* Project object */;
+}
