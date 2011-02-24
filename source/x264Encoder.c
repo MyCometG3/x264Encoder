@@ -1844,9 +1844,9 @@ ComponentResult lavcEncoder_BeginPass (lavcEncoderGlobalRecord *glob,
 				fprintf(stderr, "ERROR: Opening log file for read failed.\n");
 				err = paramErr;
 			} else {
-				ret = fseek( f, 0, SEEK_END );
+				fseek( f, 0, SEEK_END );
 				size = ftell( f );
-				ret = fseek( f, 0, SEEK_SET );
+				fseek( f, 0, SEEK_SET );
 				
 				logbuffer = calloc( size + 1, 1 );
 				if( !logbuffer ) {
@@ -2899,10 +2899,20 @@ static OSStatus open_libAV(lavcEncoderGlobalRecord *glob)
 		if( glob->params.LOG_DEBUG ) 
 			av_log_set_level(AV_LOG_VERBOSE);
 		
-//		// Thread support
-//		if( glob->codecCont->thread_count > 1 ) {
-//			avcodec_thread_init(glob->codecCont, glob->codecCont->thread_count);
-//		}
+#if !X264
+		// Thread support
+		if (glob->codecCont->thread_count == 0) {
+			int numCpu = 0;
+			size_t length = sizeof(numCpu);
+			int select[2] = { CTL_HW, HW_NCPU };
+			int result = sysctl(select, 2, &numCpu, &length, NULL, 0);
+			if(!result && numCpu) {
+				glob->codecCont->thread_count = numCpu;				// Ex. Two core -> two thread
+			} else {
+				glob->codecCont->thread_count = 2;
+			}
+		}
+#endif
 		
 		// Make it ON before opening codec to get extradata; No SPS/PPS in data stream
 		glob->codecCont->flags |= CODEC_FLAG_GLOBAL_HEADER;
@@ -3061,16 +3071,15 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 			goto bail;
 		}
 		
-		long displayNumber;
-		displayNumber = ICMCompressorSourceFrameGetDisplayNumber(source_frame);
 #if TESTVFR
 		// update fields; x264 wrapper does not update these field
+		long displayNumber = ICMCompressorSourceFrameGetDisplayNumber(source_frame);
 		glob->codecCont->coded_frame->display_picture_number = displayNumber - 1;
 		glob->codecCont->coded_frame->coded_picture_number = glob->frame_count - glob->delayCount - 1;
-#endif
 #if 0
 		logDebug(glob, "lavcEncoder: [%s] (%d, %lld, %lld, %d)\n", __FUNCTION__
 					, displayNumber, displayTimeStampOut, displayDurationOut, timeScaleOut);
+#endif
 #endif
 #if 0
 		logDebug(glob, 
@@ -4140,9 +4149,10 @@ static OSStatus openCoreVF( lavcEncoderGlobals glob )
 		}
 		
 		keyStr = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("Preset%d"), CVF_CLIP(index, 1, 8));
-		if(keyStr)
+		if(keyStr) {
 			glob->filterString = (CFStringRef)CFPreferencesCopyAppValue(keyStr, appID);
-		CFRelease(keyStr);
+			CFRelease(keyStr);
+		}
 	}
 	if(!glob->filterString || (glob->filterString && !CFStringGetLength(glob->filterString)) ) {
 		err = paramErr;
@@ -4319,7 +4329,7 @@ static void checkValues( lavcEncoderGlobals glob )
 	if( !glob->params.CODER_TYPE ) glob->params.CODER_TYPE=1;	// CAVLC
 	if( !glob->params.DIRECTPRED ) glob->params.DIRECTPRED=3;	// Temporal
 	if( !glob->params.TRELLIS ) glob->params.TRELLIS=1;			// Disabled
-	if( !glob->params.THREADS ) glob->params.THREADS=2;			// Dual thread
+	if( !glob->params.THREADS ) glob->params.THREADS=9;			// Auto thread
 	if( !glob->params.TURBO ) glob->params.TURBO=2;				// Turbo 1
 	if( !glob->params.LEVEL ) glob->params.LEVEL=9;				// Level auto
 	if( !glob->params.AQ_MODE ) glob->params.AQ_MODE=2;			// VARIANCE
@@ -4381,7 +4391,7 @@ static void checkValues( lavcEncoderGlobals glob )
 	if( !glob->params.CODER_TYPE ) glob->params.CODER_TYPE=1;	// CAVLC
 	if( !glob->params.DIRECTPRED ) glob->params.DIRECTPRED=3;	// Temporal
 	if( !glob->params.TRELLIS ) glob->params.TRELLIS=3;			// All
-	if( !glob->params.THREADS ) glob->params.THREADS=2;			// Dual thread
+	if( !glob->params.THREADS ) glob->params.THREADS=9;			// Auto thread
 	if( !glob->params.TURBO ) glob->params.TURBO=1;				// Disabled
 	if( !glob->params.LEVEL ) glob->params.LEVEL=9;				// Level auto
 	if( !glob->params.AQ_MODE ) glob->params.AQ_MODE=2;			// VARIANCE
@@ -4575,7 +4585,7 @@ static void initValues( lavcEncoderGlobals glob )
 	glob->params.MB_DECISION = 2;		// BITS
 	glob->params.RC_QSQUISH = 1;		// no clip
 	glob->params.MPEG_QUANT = 0;		// h263
-	glob->params.THREADS = 2;			// Dual thread
+	glob->params.THREADS = 9;			// Auto thread
 	glob->params.GAMMA = 0;				// no gamma
 	glob->params.NCLC = 1;				// no nclc
 	glob->params.ME_METHOD = 1;			// DIA(EPZS)
@@ -4690,7 +4700,7 @@ static void initValues( lavcEncoderGlobals glob )
 	glob->params.MB_DECISION = 1;		// SIMPLE
 	glob->params.RC_QSQUISH = 0;		// no clip
 	glob->params.MPEG_QUANT = 0;		// h263
-	glob->params.THREADS = 2;			// Dual thread
+	glob->params.THREADS = 9;			// Auto thread
 	glob->params.GAMMA = 0;				// no gamma
 	glob->params.NCLC = 1;				// no nclc
 	glob->params.ME_METHOD = 4;			// FULL

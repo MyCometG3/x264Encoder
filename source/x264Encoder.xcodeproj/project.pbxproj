@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		16A7474A0B8852860011BCB2 /* Build and Copy */ = {
+		16A7474A0B8852860011BCB2 /* BuildAndCopy */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 16A747550B8852D30011BCB2 /* Build configuration list for PBXAggregateTarget "Build and Copy" */;
+			buildConfigurationList = 16A747550B8852D30011BCB2 /* Build configuration list for PBXAggregateTarget "BuildAndCopy" */;
 			buildPhases = (
 				16A747500B8852940011BCB2 /* CopyFiles */,
 			);
 			dependencies = (
 				16A7474E0B8852910011BCB2 /* PBXTargetDependency */,
 			);
-			name = "Build and Copy";
+			name = BuildAndCopy;
 			productName = "Build and Overrite";
 		};
 /* End PBXAggregateTarget section */
@@ -312,7 +312,7 @@
 			projectRoot = "";
 			targets = (
 				8D57630D048677EA00EA77CD /* x264Encoder */,
-				16A7474A0B8852860011BCB2 /* Build and Copy */,
+				16A7474A0B8852860011BCB2 /* BuildAndCopy */,
 				16CF93DE0D051128002C1382 /* testCocoa */,
 			);
 		};
@@ -369,7 +369,7 @@
 		};
 		16DF19660D052A7000C66519 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 16A7474A0B8852860011BCB2 /* Build and Copy */;
+			target = 16A7474A0B8852860011BCB2 /* BuildAndCopy */;
 			targetProxy = 16DF19650D052A7000C66519 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -544,7 +544,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		16A747550B8852D30011BCB2 /* Build configuration list for PBXAggregateTarget "Build and Copy" */ = {
+		16A747550B8852D30011BCB2 /* Build configuration list for PBXAggregateTarget "BuildAndCopy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				16A747560B8852D30011BCB2 /* Debug */,

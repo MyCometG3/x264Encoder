@@ -468,7 +468,7 @@
 		[self setValue:UITwo		forKey:@"MB_DECISION"];		// 2:BITS
 		[self setValue:UIOne		forKey:@"RC_QSQUISH"];		// 1:No Clip
 		[self setValue:UIZero		forKey:@"MPEG_QUANT"];		// 0:h263
-		[self setValue:UITwo		forKey:@"THREADS"];			// 2:dual
+		[self setValue:[UIChar:9]	forKey:@"THREADS"];			// 9:auto
 //		[self setValue:UIZero		forKey:@"GAMMA"];			// 0:NO gamma
 //		[self setValue:UIOne		forKey:@"NCLC"];			// 1:NO nclc
 		[self setValue:UIOne		forKey:@"ME_METHOD"];		// 1:DIA(EPZS)
@@ -565,7 +565,7 @@
 		[self setValue:UIOne		forKey:@"MB_DECISION"];		// 1:SIMPLE
 		[self setValue:UIZero		forKey:@"RC_QSQUISH"];		// 0:Clip
 		[self setValue:UIZero		forKey:@"MPEG_QUANT"];		// 0:h263
-		[self setValue:UITwo		forKey:@"THREADS"];			// 2:dual
+		[self setValue:[UIChar:9]	forKey:@"THREADS"];			// 9:auto
 //		[self setValue:UIZero		forKey:@"GAMMA"];			// 0:NO gamma
 //		[self setValue:UIOne		forKey:@"NCLC"];			// 1:NO nclc
 		[self setValue:[UIInt:4]	forKey:@"ME_METHOD"];		// 4:FULL
@@ -745,30 +745,6 @@
 }
 
 #pragma mark -
-
-//- (void)resetToDefault
-//{
-//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
-//	[self resetToDefaultKeeping:keepIt];
-//}
-//
-//- (void)resetToiPod
-//{
-//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
-//	[self resetToiPodKeeping:keepIt];
-//}
-//
-//- (void)resetToDefaultTuned
-//{
-//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
-//	[self resetToDefaultTunedKeeping:keepIt];
-//}
-//
-//- (void)resetToiPodTuned
-//{
-//	BOOL keepIt = (GetCurrentKeyModifiers() & optionKey) ? TRUE : FALSE;
-//	[self resetToiPodTunedKeeping:keepIt];
-//}
 
 - (void)resetTox264Preset
 {
