@@ -39,4 +39,8 @@ This file is part of x264Encoder.
 #include <vecLib/vecLib.h>
 #include <CoreVF/CoreVF.h>
 
+// Require for sysctl
+#include <sys/types.h>
+#include <sys/sysctl.h>
+
 #endif
