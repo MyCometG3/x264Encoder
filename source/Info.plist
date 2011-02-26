@@ -17,11 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>thng</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.21b</string>
+	<string>1.2.21</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>2011.02.24</string>
+=======
+	<string>2011.02.26</string>
+>>>>>>> fdc7897a3d6396b54337856f1864441faf98c11c
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
