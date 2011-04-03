@@ -833,7 +833,7 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 		p->IP_FACTOR = 140;
 		p->PB_FACTOR = 130;
 #endif
-#if MP4V
+#if MPEG4
 		p->MBTREE = 0;
 		p->PSY = 0;
 		p->RC_LOOKAHEAD = 0;
@@ -922,7 +922,7 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 		p->OVERRIDEQMIN = 1;
 		p->USERQMIN = 0;	// x264 r1795 changed default qmin from 10 to 0
 #endif
-#if MP4V
+#if MPEG4
 		p->OVERRIDECRFQSCALE = 0;
 		p->USERCRFQSCALE = 2;
 		p->OVERRIDEQMIN = 0;
@@ -2459,7 +2459,9 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 	glob->codecCont->chromaoffset = glob->params.CHROMAOFFSET;
 	
 	// x264; --profile
+#if X264
 	glob->codecCont->profile = glob->params.X264PROFILE;
+#endif
 	
 	// x264; --preset
 	glob->params_opaque.X264PRESET = glob->params.X264PRESET;
