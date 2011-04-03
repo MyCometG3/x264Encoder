@@ -34,9 +34,6 @@ doDiff
 TARGET="libavcodec/libx264.c"
 doDiff
 
-TARGET="libavcodec/pthread.c"
-doDiff
-
 #
 
 echo "revision of x264? \c"; read REV
