@@ -106,10 +106,10 @@
 		16A745E10B88458F0011BCB2 /* x264Encoder.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = x264Encoder.r; sourceTree = "<group>"; };
 		16A745E20B88458F0011BCB2 /* x264Encoder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264Encoder_Prefix.pch; sourceTree = "<group>"; };
 		16A745E30B88458F0011BCB2 /* x264EncoderDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264EncoderDispatch.h; sourceTree = "<group>"; };
-		16A746070B8846CC0011BCB2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		16A7460C0B8846D80011BCB2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
-		16A746100B8846E80011BCB2 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		16A746140B8846F10011BCB2 /* vecLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vecLib.framework; path = /System/Library/Frameworks/vecLib.framework; sourceTree = "<absolute>"; };
+		16A746070B8846CC0011BCB2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		16A7460C0B8846D80011BCB2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		16A746100B8846E80011BCB2 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		16A746140B8846F10011BCB2 /* vecLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vecLib.framework; path = System/Library/Frameworks/vecLib.framework; sourceTree = SDKROOT; };
 		16A7466B0B88488E0011BCB2 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		16CF93D50D0510D4002C1382 /* main.m */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "test-cocoa/main.m"; sourceTree = "<group>"; };
 		16CF93DF0D051128002C1382 /* testCocoa */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testCocoa; sourceTree = BUILT_PRODUCTS_DIR; };

@@ -139,7 +139,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "say \"Building intel binary.\" &\necho;pwd;echo\n\nTHESDK=\"$DEVELOPER_SDK_DIR/MacOSX10.5.sdk\"\nTHEARC=\"i386\"; THECPU=\"pentium-m\"\nTHEOPT=\"-ffast-math -falign-loops=16 -fstrict-aliasing -m32 -mdynamic-no-pic -mtune=core2 \" \n#THEOPT=\"-ffast-math -fstrict-aliasing -freorder-blocks -fsched-interblock -falign-loops=16 -falign-jumps=16 -falign-functions=16\"\n# -fgcse-sm -falign-loops-max-skip=15 -falign-jumps-max-skip=15 -funroll-loops -ftree-loop-linear -ftree-loop-memset\n\n# Use yasm from MacPort\nPATH=$PATH:/opt/local/bin\n\n./configure --enable-cross-compile --arch=$THEARC --cpu=$THECPU --cc=gcc-4.2 --enable-small --enable-libx264 --target-os=darwin \\\n --enable-pthreads --enable-gpl --disable-ffmpeg --disable-ffserver --disable-ffplay --disable-avfilter --enable-network \\\n --disable-decoders --disable-muxers --disable-demuxers --disable-parsers --disable-bsfs --disable-protocols --disable-devices --disable-filters \\\n --extra-ldflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wl,-syslibroot,$THESDK -L${SOURCE_ROOT}/../x264 \" \\\n --extra-cflags=\" -arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wno-deprecated-declarations $THEOPT -I${SOURCE_ROOT}/../x264 \" \\\n --disable-encoders --enable-encoder=libx264\\\n|| { echo -- ERROR on confiure --; tail config.err; exit 1; }\n\necho -- Run make clean --\nmake clean || { echo -- ERROR on make clean --; exit 1; }\n\necho -- Run make lib --\nmake -j3 || { exit 1; }\n\ncp lib*/*.a ./\n\necho;echo \"Done\";echo\nexit 0";
-			showEnvVarsInLog = 0;
 		};
 		1650542F0AE7BB360051E06D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -230,6 +229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -237,6 +237,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};

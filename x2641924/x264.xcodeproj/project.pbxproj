@@ -152,7 +152,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "say \"Building intel binary.\" &\necho;pwd;echo\n\nTHESDK=\"$DEVELOPER_SDK_DIR/MacOSX10.5.sdk\"\nTHEARC=\"i386\"; THECPU=\"-mtune=pentium-m -m32\"; THEOPT=\"\"\nexport CC=\"gcc-4.2\"\nexport PATH=\"$PATH:/opt/local/bin\"\t\t\t\t# for git and yasm (MacPorts)\nexport LDFLAGS=\"-arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -Wl,-syslibroot,$THESDK \"\nexport CFLAGS=\"-arch $THEARC -isystem $THESDK -mmacosx-version-min=10.5 -m32\" # $THEOPT $THECPU\n\nrm -f config.guess.hck\ncat >config.guess.hck <<EOF\n#!/bin/sh\n./config.guess.org | sed -e 's/powerpc/i386/' -e 's/x86_64/i386/'\nEOF\nchmod u+x config.guess.hck\nmv config.guess config.guess.org\nmv config.guess.hck config.guess\nsh configure || { mv config.guess.org config.guess; echo -- ERROR on confiure --; tail config.err; exit 1; }\nmv config.guess.org config.guess\n\necho -- Run make clean --\nmake clean || { echo -- ERROR on make clean --; exit 1; }\n\necho -- Run make lib --\nmake -j3 libx264.a || { exit 1; }\n\necho;echo \"Done\";echo\nexit 0";
-			showEnvVarsInLog = 0;
 		};
 		16A744880B87EBE30011BCB2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
