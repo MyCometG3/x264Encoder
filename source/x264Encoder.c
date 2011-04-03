@@ -43,6 +43,7 @@ This file is part of x264Encoder.
 #define X264	1					/* MPEG4=0, x264=1, xvid=0 */
 #define NATIVERECT 0				/* default u/v plane does not have correct alignment */
 #define USECoreVF 1					/* CoreVF Framework support */
+#define STRICTFLAG 0				/* Use strict flags on each samples */
 
 #define REV_ENDIAN_BIG	1			/* params struct version; 0:NativeEndian, positive:BigEndian */
 #define REV_PSYRD 2					/* params struct version; with psyrd, and without FLAG2_TRELLIS_QUANT */
@@ -3256,32 +3257,34 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		if( ! key_frame ) 
 			media_sample_flags |= mediaSampleNotSync;
 		
-#if 1	// For Debugging purpose, this block can be cut
 		// Partial Sync; Support Open-GOP/Non-IDR I frame
-		if( partial_sync_frame ) {
+		if( partial_sync_frame ) 
 			media_sample_flags |= mediaSamplePartialSync;
-//			media_sample_flags &= ~mediaSampleNotSync;						// Not sure
-		}
 		
 		// Droppable; seems to be imcompatible with B-Pyramid
+#if STRICTFLAG
+		if( droppable_frame )
+			media_sample_flags |= mediaSampleIsNotDependedOnByOthers;		// = mediaSampleDroppable;
+		else
+			media_sample_flags |= mediaSampleIsDependedOnByOthers;
+#else
 		if( droppable_frame 
 //		&& (glob->codecCont->flags2 & CODEC_FLAG2_BPYRAMID) == 0			// Not sure
 		)
 			media_sample_flags |= mediaSampleDroppable;
+#endif
 		
 		// Reordering support
 		if( reordering ) 
 			media_sample_flags |= mediaSampleEarlierDisplayTimesAllowed;
-#if 0		
+		
+#if STRICTFLAG
 		// Sample Dependencies
-//		if(key_frame)														// Not sure
 		if(key_frame || partial_sync_frame)
 			media_sample_flags |= mediaSampleDoesNotDependOnOthers;			// I slice or IDR slice
 		else
 			media_sample_flags |= mediaSampleDependsOnOthers;				// P slice or B slice
 #endif		
-//		fprintf(stderr, "sample_flags = 0x%x\n", media_sample_flags);
-#endif
 	}
 	
 	/* ==================================== */
