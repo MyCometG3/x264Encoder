@@ -1,5 +1,5 @@
---- libav28100.org/libavcodec/libx264.c	2011-04-09 11:38:10.000000000 +0900
-+++ libav28100/libavcodec/libx264.c	2011-04-09 11:42:06.000000000 +0900
+--- libav28181.org/libavcodec/libx264.c	2011-04-15 09:12:35.000000000 +0900
++++ libav28181/libavcodec/libx264.c	2011-04-15 19:45:20.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -160,11 +160,11 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -302,9 +391,77 @@
+@@ -302,9 +391,85 @@
  
      x4->params.vui.b_fullrange = avctx->pix_fmt == PIX_FMT_YUVJ420P;
  
-+    x4->params.i_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? X264_OPEN_GOP_NONE : X264_OPEN_GOP_NORMAL;
++    x4->params.b_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? 0 : 1;
 +
      if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER)
          x4->params.b_repeat_headers = 0;
@@ -182,15 +182,23 @@
 +    if (x4->params.rc.i_vbv_buffer_size && x4->params.rc.i_vbv_max_bitrate) {
 +        x4->params.i_nal_hrd = X264_NAL_HRD_VBR;
 +    }
-+    if (x4->params.b_interlaced) {
++    if (x4->params.b_interlaced || x4->params.b_fake_interlaced) {
 +        x4->params.b_pic_struct = 1;
 +    }
 +    if (p && p->BD_TUNE) {
-+        x4->params.i_nal_hrd = X264_NAL_HRD_VBR;
++        x4->params.b_bluray_compat = 1;
++        x4->params.i_bframe_pyramid = FFMIN( X264_B_PYRAMID_STRICT, x4->params.i_bframe_pyramid );
++        x4->params.i_bframe = FFMIN( x4->params.i_bframe, 3 );
++        x4->params.b_aud = 1;
++        x4->params.i_nal_hrd = FFMAX( x4->params.i_nal_hrd, X264_NAL_HRD_VBR );
++        x4->params.i_slice_max_size = 0;
++        x4->params.i_slice_max_mbs = 0;
++        x4->params.b_intra_refresh = 0;
++        x4->params.i_frame_reference = FFMIN( x4->params.i_frame_reference, 6 );
++        x4->params.i_dpb_size = FFMIN( x4->params.i_dpb_size, 6 );
++        x4->params.analyse.i_weighted_pred = FFMIN( x4->params.analyse.i_weighted_pred, X264_WEIGHTP_SIMPLE );
 +        x4->params.b_pic_struct = 1;
-+        x4->params.i_bframe_pyramid  = X264_B_PYRAMID_STRICT;
 +        x4->params.i_slice_count = 4;
-+        x4->params.i_open_gop = x4->params.i_open_gop ? X264_OPEN_GOP_BLURAY : X264_OPEN_GOP_NONE;
 +    }
 +
 +    /* Modify profile restricted parameters */
@@ -238,7 +246,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -319,10 +476,10 @@
+@@ -319,10 +484,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
