@@ -2435,7 +2435,7 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 	glob->codecCont->deblockbeta = glob->params.DEBLOCK_BETA;
 	
 	// -aq_strength
-	glob->codecCont->aq_strength = glob->params.AQ_STRENGTH / 100.0;
+	glob->codecCont->aq_strength = glob->codecCont->aq_mode ? glob->params.AQ_STRENGTH / 100.0 : 0;
 	
 	// -psy_rd
 	glob->codecCont->psy_rd = glob->params.PSYRD_RDO / 10.0;

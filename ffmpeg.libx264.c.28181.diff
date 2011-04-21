@@ -1,5 +1,5 @@
 --- libav28181.org/libavcodec/libx264.c	2011-04-15 09:12:35.000000000 +0900
-+++ libav28181/libavcodec/libx264.c	2011-04-15 19:45:20.000000000 +0900
++++ libav28181/libavcodec/libx264.c	2011-04-21 20:24:06.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -47,7 +47,18 @@
  typedef struct X264Context {
      x264_param_t    params;
      x264_t         *enc;
-@@ -163,14 +203,45 @@
+@@ -105,10 +145,6 @@
+             frame->pict_type == FF_P_TYPE ? X264_TYPE_P :
+             frame->pict_type == FF_B_TYPE ? X264_TYPE_B :
+                                             X264_TYPE_AUTO;
+-        if (x4->params.b_tff != frame->top_field_first) {
+-            x4->params.b_tff = frame->top_field_first;
+-            x264_encoder_reconfig(x4->enc, &x4->params);
+-        }
+     }
+ 
+     do {
+@@ -163,14 +199,45 @@
      x4->sei_size = 0;
      x264_param_default(&x4->params);
  
@@ -96,7 +107,7 @@
      x4->params.rc.b_stat_write      = avctx->flags & CODEC_FLAG_PASS1;
      if (avctx->flags & CODEC_FLAG_PASS2) {
          x4->params.rc.b_stat_read = 1;
-@@ -184,6 +255,17 @@
+@@ -184,6 +251,17 @@
              x4->params.rc.i_qp_constant = avctx->cqp;
          }
      }
@@ -114,7 +125,7 @@
  
      // if neither crf nor cqp modes are selected we have to enable the RC
      // we do it this way because we cannot check if the bitrate has been set
-@@ -221,26 +303,33 @@
+@@ -221,26 +299,33 @@
      x4->params.i_height             = avctx->height;
      x4->params.vui.i_sar_width      = avctx->sample_aspect_ratio.num;
      x4->params.vui.i_sar_height     = avctx->sample_aspect_ratio.den;
@@ -160,7 +171,7 @@
      x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
  
      if (avctx->me_method == ME_EPZS)
-@@ -302,9 +391,85 @@
+@@ -302,9 +387,85 @@
  
      x4->params.vui.b_fullrange = avctx->pix_fmt == PIX_FMT_YUVJ420P;
  
@@ -246,7 +257,7 @@
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
          return -1;
-@@ -319,10 +484,10 @@
+@@ -319,10 +480,10 @@
  
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
