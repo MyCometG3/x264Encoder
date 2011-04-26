@@ -125,11 +125,12 @@ const uint8_t *avc_find_startcode(const uint8_t *p, const uint8_t *end ) {
 // nal support utility from ffmpeg project trunk/libavformat/movenc.c
 void avc_parse_nal_units(uint8_t **buf, int *size)
 {
-    ByteIOContext *pb;
     const uint8_t *p = *buf;
     const uint8_t *end = p + *size;
     const uint8_t *nal_start, *nal_end;
-    int ret = url_open_dyn_buf(&pb);
+	
+    AVIOContext *pb;
+    int ret = avio_open_dyn_buf(&pb);
     if(ret < 0)
         return;
 
@@ -137,12 +138,13 @@ void avc_parse_nal_units(uint8_t **buf, int *size)
     while (nal_start < end) {
         while(!*(nal_start++));
         nal_end = avc_find_startcode(nal_start, end);
-        put_be32(pb, nal_end - nal_start);
-        put_buffer(pb, nal_start, nal_end - nal_start);
+        avio_wb32(pb, nal_end - nal_start);
+        avio_write(pb, nal_start, nal_end - nal_start);
         nal_start = nal_end;
     }
+	
     av_freep(buf);
-    *size = url_close_dyn_buf(pb, buf);
+    *size = avio_close_dyn_buf(pb, buf);
 }
 
 
