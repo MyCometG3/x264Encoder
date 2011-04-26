@@ -3168,7 +3168,7 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		strncat(buf, tmp, 4096);
 		
 		snprintf(tmp,256,"type= %c%s\n"
-			, av_get_pict_type_char(glob->codecCont->coded_frame->pict_type)
+			, av_get_picture_type_char(glob->codecCont->coded_frame->pict_type)
 			, ((glob->codecCont->coded_frame->key_frame>0) ? "DR" : "")
 			);
 		strncat(buf, tmp, 4096);
