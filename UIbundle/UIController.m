@@ -300,6 +300,11 @@ bail:
 			[newModel setValue:[NSNumber numberWithBool:TRUE] forKey:@"FLAG_CLOSED_GOP"];
 		};
 	}
+	
+	// Check qpmin less than 3 from 1.2.23
+	if ([newModel isAvc1] && [[newModel valueForKey:@"USERQMIN"] charValue] < 3) {
+		[newModel setValue:[NSNumber numberWithChar:3] forKey:@"USERQMIN"];
+	}
 #endif
 	
 	// 
