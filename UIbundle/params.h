@@ -198,7 +198,7 @@ typedef struct {
 	char OVERRIDECRFQSCALE;			/* override quality slider setting in application for CRF/QSCALE */
 	char USERCRFQSCALE;				/* user specified qscale value; default 23 */
 	char OVERRIDEQMIN;				/* override quality slider setting in application for ABR */
-	char USERQMIN;					/* user specified qmin value; default 0; // x264 r1795 changed default qmin from 10 to 0 */
+	char USERQMIN;					/* user specified qmin value; default 3 */
 	
 	char FAKEINTERLACED;			// x264; --fake-interlaced; default 0 (=off)
 	char reservedChar2;				// 

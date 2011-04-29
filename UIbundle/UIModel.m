@@ -341,7 +341,7 @@
 			[self setValue:UIZero		forKey:@"OVERRIDECRFQSCALE"];	// OFF
 			[self setValue:[UIChar:23]	forKey:@"USERCRFQSCALE"];	// 23
 			[self setValue:UIOne		forKey:@"OVERRIDEQMIN"];	// ON
-			[self setValue:[UIChar:0]	forKey:@"USERQMIN"];		// 0	// x264 r1795 changed default qmin from 10 to 0
+			[self setValue:[UIChar:3]	forKey:@"USERQMIN"];		// 3
 		} else {
 			[self setValue:UIZero		forKey:@"OVERRIDECRFQSCALE"];	// OFF
 			[self setValue:[UIChar:2]	forKey:@"USERCRFQSCALE"];	// 2

@@ -177,7 +177,7 @@
 	NSNumber* OVERRIDECRFQSCALE;		/* override quality slider setting in application for CRF/QSCALE */
 	NSNumber* USERCRFQSCALE;			/* user specified qscale value; default 23 */
 	NSNumber* OVERRIDEQMIN;				/* override quality slider setting in application for ABR */
-	NSNumber* USERQMIN;					/* user specified qmin value; default 0; // x264 r1795 changed default qmin to 0 */
+	NSNumber* USERQMIN;					/* user specified qmin value; default 3 */
 	
 	NSNumber* FAKEINTERLACED;			// x264; --fake-interlaced; default 0 (=off)
 	
