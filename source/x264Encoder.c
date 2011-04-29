@@ -2616,7 +2616,12 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 	
 #if X264
 	// -crf ; default 0 ; enables constant quality mode, and selects the quality
-	if( glob->params.CRF ) {
+	if( glob->params.LOSSLESS ) {
+		glob->codecCont->qmin = 0;
+		glob->codecCont->qmax = 51;
+		glob->codecCont->crf = 0;
+		glob->codecCont->cqp = 0;				
+	} else if( glob->params.CRF ) {
 		// crf  : L(33-28-23-18-13)H
 		if(glob->params.OVERRIDECRFQSCALE)
 			glob->codecCont->crf = glob->params.USERCRFQSCALE;
@@ -2625,11 +2630,6 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 		
 		glob->codecCont->qmin = 3;	// 0 is x264 default
 		glob->codecCont->qmax = 51;	// x264 default
-		
-		if( glob->params.LOSSLESS ) {
-			glob->codecCont->crf = 0;
-			glob->codecCont->cqp = 0;				
-		}
 	} else {
 		// qmin : L(33-28-23-18-13)H
 		// qmax : L(51-51-51-51-51)H
