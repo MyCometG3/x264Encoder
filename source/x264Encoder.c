@@ -3048,7 +3048,7 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 			, glob->codecCont->coded_frame->pts
 			, glob->codecCont->coded_frame->coded_picture_number
 			, glob->codecCont->coded_frame->display_picture_number
-			, av_get_pict_type_char(glob->codecCont->coded_frame->pict_type)
+			, av_get_picture_type_char(glob->codecCont->coded_frame->pict_type)
 			, ( glob->codecCont->coded_frame->key_frame ? "TRUE" : "FALSE" )
 			, glob->codecCont->coded_frame->quality
 			);
