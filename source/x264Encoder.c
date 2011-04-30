@@ -434,7 +434,7 @@ static void initValues( lavcEncoderGlobals glob );
 // StdComponentCall (Target)							// 2
 ComponentResult lavcEncoder_Target(lavcEncoderGlobalRecord *glob, ComponentInstance target)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	glob->target = target;
 	return noErr;
@@ -444,7 +444,7 @@ ComponentResult lavcEncoder_Target(lavcEncoderGlobalRecord *glob, ComponentInsta
 // StdComponentCall (Version)							// 4
 ComponentResult lavcEncoder_Version(lavcEncoderGlobalRecord *glob)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	return klavcEncoderVersion;
 }
@@ -457,7 +457,7 @@ ComponentResult lavcEncoder_Version(lavcEncoderGlobalRecord *glob)
 // StdComponentCall (Close)								// 6
 ComponentResult lavcEncoder_Close(lavcEncoderGlobalRecord *glob, ComponentInstance self)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	if (glob) {
 #if REMOVELOG
@@ -580,6 +580,8 @@ ComponentResult lavcEncoder_Open(lavcEncoderGlobalRecord *glob, ComponentInstanc
 	if (!glob)
 		return memFullErr;
 
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
+	
 	SetComponentInstanceStorage(self, (Handle)glob);
 	
 	// Set Initial Instance
@@ -603,7 +605,7 @@ ComponentResult lavcEncoder_Open(lavcEncoderGlobalRecord *glob, ComponentInstanc
 // ComponentCall (GetCodecInfo)							// 0
 ComponentResult lavcEncoder_GetCodecInfo(lavcEncoderGlobalRecord *glob, CodecInfo *info)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSErr err = noErr;
 	CodecInfo **tempCodecInfo = NULL;
@@ -626,7 +628,7 @@ ComponentResult lavcEncoder_GetCodecInfo(lavcEncoderGlobalRecord *glob, CodecInf
 ComponentResult lavcEncoder_GetMaxCompressionSize(lavcEncoderGlobalRecord *glob, 
 			PixMapHandle src, const Rect *srcRect, short depth, CodecQ quality, long *size)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	if( !size ) {
 		fprintf(stderr, "ERROR: No size location given.\n");
@@ -646,7 +648,8 @@ ComponentResult lavcEncoder_GetMaxCompressionSize(lavcEncoderGlobalRecord *glob,
 ComponentResult lavcEncoder_RequestSettings(lavcEncoderGlobalRecord *glob, 
 			Handle settings, Rect *rp, ModalFilterUPP filter_proc)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
+	
 	// Check for glob-struct update (safty)
 	checkValues(glob);
 	
@@ -725,7 +728,7 @@ ComponentResult lavcEncoder_RequestSettings(lavcEncoderGlobalRecord *glob,
 // ComponentCall (GetSettings)							// 12
 ComponentResult lavcEncoder_GetSettings(lavcEncoderGlobalRecord *glob, Handle settings)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	// Check for glob-struct update
 	checkValues(glob);
@@ -767,7 +770,7 @@ ComponentResult lavcEncoder_GetSettings(lavcEncoderGlobalRecord *glob, Handle se
 // ComponentCall (SetSettings)							// 13
 ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle settings)
 {
-//	logDebug(NULL, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	if( sizeof(glob->params) < GetHandleSize(settings) ) return paramErr;
 	memcpy(&glob->params, *settings, GetHandleSize(settings));		// read in
@@ -966,7 +969,7 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 													void *reserved,
 													CFDictionaryRef *compressor_pixel_buffer_attributes_out)
 {
-	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	ComponentResult err = noErr;
 	
@@ -1285,7 +1288,7 @@ bail:
 ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob, 
 			ICMCompressorSourceFrameRef source_frame, UInt32 flags)
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	ComponentResult err = paramErr;
 	
@@ -1310,7 +1313,7 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 		displayNumber = ICMCompressorSourceFrameGetDisplayNumber(source_frame);
 		
 #if 1
-		logDebug(glob, "lavcEncoder: [%s] (%d, %lld, %lld, %d)\n", __FUNCTION__
+		logDebug(glob, "lavcEncoder: [%08x %s] (%d, %lld, %lld, %d)\n", glob, __FUNCTION__
 			, displayNumber, displayTimeStamp, displayDuration, timeScale
 		);
 #endif
@@ -1562,7 +1565,7 @@ bail:
 ComponentResult lavcEncoder_CompleteFrame(lavcEncoderGlobalRecord *glob, 
 			ICMCompressorSourceFrameRef source_frame, UInt32 flags)
 {
-	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	ComponentResult err = noErr;
 	
@@ -1677,7 +1680,7 @@ bail:
 ComponentResult lavcEncoder_BeginPass (lavcEncoderGlobalRecord *glob, 
 			ICMCompressionPassModeFlags pass_mode_flags, UInt32 flags, ICMMultiPassStorageRef storage)
 {
-	logDebug(glob, "lavcEncoder: [%s] ; glob->ICM_passcount = %d\n", __FUNCTION__, glob->ICM_passcount);
+	logDebug(glob, "lavcEncoder: [%08x %s] ; glob->ICM_passcount = %d\n", glob, __FUNCTION__, glob->ICM_passcount);
 	
 	ComponentResult err = paramErr;
 	glob->passDate = CFDateCreate(kCFAllocatorDefault, CFAbsoluteTimeGetCurrent());
@@ -1893,7 +1896,7 @@ bail:
 // ComponentCall (EndPass)								// 59
 ComponentResult lavcEncoder_EndPass(lavcEncoderGlobalRecord *glob)
 {
-	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	ComponentResult err = noErr;
 	
@@ -2093,7 +2096,7 @@ bail:
 ComponentResult lavcEncoder_ProcessBetweenPasses(lavcEncoderGlobalRecord *glob, 
 			ICMMultiPassStorageRef storage, Boolean *done, ICMCompressionPassModeFlags *flags)
 {
-	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	ComponentResult err = noErr;
 	logDebug(glob, "lavcEncoder: (IN) pass_mode_flags = %d \n", *flags);
@@ -2161,6 +2164,8 @@ ComponentResult lavcEncoder_ProcessBetweenPasses(lavcEncoderGlobalRecord *glob,
 
 static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 {	
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
+	
 	OSStatus err = paramErr;
 	
 #if X264
@@ -2793,6 +2798,8 @@ bail:
 
 static OSStatus open_libAV(lavcEncoderGlobalRecord *glob)
 {
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
+	
 	OSStatus err = paramErr;
 	
 	// In case 'specified bit rate is too low', EncodeFrame failed at EVERY frame at pass 2.
@@ -2952,7 +2959,7 @@ bail:
 
 static OSStatus process_libAV(lavcEncoderGlobalRecord *glob, ICMCompressorSourceFrameRef source_frame)
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSStatus err = noErr;
 	
@@ -3033,7 +3040,7 @@ bail:
 // Write out encoded AVFrame into storage
 static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSStatus err = noErr;
 	ICMCompressorSourceFrameRef source_frame = NULL;
@@ -3408,7 +3415,7 @@ bail:
 static OSStatus createPixelBufferAttributesDictionary( lavcEncoderGlobalRecord *glob,
 	const OSType *pixelFormatList, int pixelFormatCount, CFMutableDictionaryRef *pixelBufferAttributesOut )
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSStatus err = memFullErr;
 	int i;
@@ -3527,7 +3534,7 @@ bail:
 // Get ICMCompressorSourceFrame for encoded AVFrame from source frame queue
 static ICMCompressorSourceFrameRef getSourceFrameForEncodedFrame(lavcEncoderGlobalRecord *glob)
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	int index = 0;
 	ICMCompressorSourceFrameRef CF_value = NULL;
@@ -3566,7 +3573,7 @@ static ICMCompressorSourceFrameRef getSourceFrameForEncodedFrame(lavcEncoderGlob
 // Remove specified ICMCompressorSourceFrame from source frame queue
 static Boolean removeSourceFrame(lavcEncoderGlobalRecord *glob, ICMCompressorSourceFrameRef source_frame)
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	int index = 0;
 	ICMCompressorSourceFrameRef CF_value = NULL;
@@ -3587,7 +3594,7 @@ static Boolean removeSourceFrame(lavcEncoderGlobalRecord *glob, ICMCompressorSou
 // Check if source frame queue has the frame for encoded AVFrame
 static Boolean doesQueueContainEarlierDisplayNumbers( lavcEncoderGlobalRecord *glob, long display_number )
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	int index = 0;
 	ICMCompressorSourceFrameRef CF_value = NULL;
@@ -3607,7 +3614,7 @@ static Boolean doesQueueContainEarlierDisplayNumbers( lavcEncoderGlobalRecord *g
 // Remove ICMCompressorSourceFrame for encoded AVFrame from source frame queue
 static Boolean removeSourceFrameForEncodedFrame( lavcEncoderGlobalRecord *glob )
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	ICMCompressorSourceFrameRef source_frame = NULL;
 	Boolean ret = FALSE;
@@ -3637,7 +3644,7 @@ bail:
 // Prepare avcC atom for ImageDescription Extension.
 static Handle avcCExtension( lavcEncoderGlobalRecord *glob )
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	// This code strongly depends onto x264/encoder/encoder.c:x264_encoder_headers()
 	// We suppose all nal are byte aligned, and start with 0x000001(BE) ... shortstartcode
@@ -3740,7 +3747,7 @@ bail:
 // Prepare elementary stream description atom for ImageDescription Extension.
 static Handle esdsExtension( lavcEncoderGlobalRecord *glob )
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	Handle esdsHdl = NULL;
 	int lengthOfHeader = 2;
@@ -3816,7 +3823,7 @@ static Handle esdsExtension( lavcEncoderGlobalRecord *glob )
 //
 static OSStatus prepareImageDescriptionExtensions(lavcEncoderGlobalRecord *glob)
 {
-//	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSStatus err = noErr;
 	
@@ -4128,7 +4135,7 @@ static void logInfo(lavcEncoderGlobalRecord *glob, char* fmt, ...)
 // Prepare CoreVF Framework
 static OSStatus openCoreVF( lavcEncoderGlobals glob )
 {
-	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSStatus err = noErr;
 	
@@ -4231,7 +4238,7 @@ bail:
 // Clean up CoreVF Framework
 static OSStatus closeCoreVF( lavcEncoderGlobals glob )
 {
-	logDebug(glob, "lavcEncoder: [%s]\n", __FUNCTION__);
+	logDebug(glob, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
 	
 	OSStatus err = noErr;
 	
@@ -4257,6 +4264,8 @@ static OSStatus closeCoreVF( lavcEncoderGlobals glob )
 // Check param range and reset if needed
 static void checkValues( lavcEncoderGlobals glob )
 {
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
+	
 #if X264
 	// In case that app passed older struct ; Some params' zero value are not allowed;
 	// glob->params.CQM_PRESET
@@ -4454,6 +4463,8 @@ static void checkValues( lavcEncoderGlobals glob )
 // Initialize params
 static void initValues( lavcEncoderGlobals glob )
 {
+//	logDebug(NULL, "lavcEncoder: [%08x %s]\n", glob, __FUNCTION__);
+	
 	glob->params.REV_STRUCT = REV_X264OPENGOP;
 #if X264
 	// Initial values for CODE_ID_H264 (=x264)
