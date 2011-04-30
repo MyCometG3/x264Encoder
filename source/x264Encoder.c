@@ -858,15 +858,7 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 #endif
 	}
 	if(p->REV_STRUCT < REV_FLAG2_MBTREE) { /* 9: 1.1.10 or later */
-#if 1
 		p->FLAG2_MBTREE = p->MBTREE;	// Copy old param to new param (used under 1.1.2-1.1.9)
-#else
-  #if X264
-		p->FLAG2_MBTREE = 1;
-  #else
-		p->FLAG2_MBTREE = 0;
-  #endif
-#endif
 	}
 	if(p->REV_STRUCT < REV_INTERLACED) { /* 10: 1.2.0 or later */
 		p->FLAG_INTERLACED_DCT = 0;
@@ -1266,8 +1258,8 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 			glob->codecCont->mb_cmp = 6;								// 0:FF_CMP_SAD 2:FF_CMP_SATD 6:FF_CMP_RD
 			glob->codecCont->dia_size = 512 + 16;						// hex_search 16; motion_est_template.c:diamond_search()
 			glob->codecCont->last_predictor_count = 4;					// motion_est_template.c:epzs_motion_search_internal()
-//			glob->codecCont->pre_me = 2;								// value 1-4
-//			glob->codecCont->pre_dia_size = 2;							// value 1-4
+			//glob->codecCont->pre_me = 2;								// value 1-4
+			//glob->codecCont->pre_dia_size = 2;						// value 1-4
 		}
 #endif
 	}
@@ -1311,11 +1303,9 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 		long displayNumber;
 		displayNumber = ICMCompressorSourceFrameGetDisplayNumber(source_frame);
 		
-#if 1
 		logDebug(glob, "lavcEncoder: [%08x %s] (%d, %lld, %lld, %d)\n", glob, __FUNCTION__
 			, displayNumber, displayTimeStamp, displayDuration, timeScale
 		);
-#endif
 		
 		// Update media timescale
 		glob->params_opaque.TIMESCALE = timeScale;
@@ -1382,9 +1372,6 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 		} else {
 			if(glob->subsampling > 0) {
 				copy_2vuy_to_planar_YUV420_i(
-//					glob->codecCont->width, glob->codecCont->height,				// width=>ru2, height=>ru2
-//					glob->widthRoundedUp, glob->heightRoundedUp,					// width=>ru16, height=>ru16
-//					glob->widthRoundedUp, glob->codecCont->height,					// width=>ru16, height=>ru2
 					glob->widthRoundedUp, glob->height,								// width>=ru16, height is native
 					CVPixelBufferGetBaseAddress(pixel_buffer), CVPixelBufferGetBytesPerRow(pixel_buffer),
 					glob->frame->data[0], glob->frame->linesize[0], 
@@ -1394,9 +1381,6 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 			} else 
 			if(glob->subsampling == 0) {
 				copy_2vuy_to_planar_YUV420(
-//					glob->codecCont->width, glob->codecCont->height,				// width=>ru2, height=>ru2
-//					glob->widthRoundedUp, glob->heightRoundedUp,					// width=>ru16, height=>ru16
-//					glob->widthRoundedUp, glob->codecCont->height,					// width=>ru16, height=>ru2
 					glob->widthRoundedUp, glob->height,								// width>=ru16, height is native
 					CVPixelBufferGetBaseAddress(pixel_buffer), CVPixelBufferGetBytesPerRow(pixel_buffer),
 					glob->frame->data[0], glob->frame->linesize[0], 
@@ -1404,20 +1388,6 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 					glob->frame->data[2], glob->frame->linesize[2]);
 			}
 		
-#if 0
-			// Fill missing bottom line in chroma planes after conversion (chroma odd line special)
-			int chromaH0 = glob->codecCont->height >> 1;							// chromaH0 could be odd.
-			if( chromaH0 & 1 ) {
-				int offset = (glob->subsampling==0 ? 1 : 2);						// use same field
-				memcpy(	glob->frame->data[1] + glob->frame->linesize[1] * chromaH0, 
-						glob->frame->data[1] + glob->frame->linesize[1] * (chromaH0 - offset), 
-						glob->frame->linesize[1]);									// duplicate bottom line U
-				memcpy(	glob->frame->data[2] + glob->frame->linesize[2] * chromaH0, 
-						glob->frame->data[2] + glob->frame->linesize[2] * (chromaH0 - offset), 
-						glob->frame->linesize[2]);									// duplicate bottom line V
-			}
-#endif
-#if 1
 			// Dup luma bottom line under odd height picture
 			int lumaH0 = glob->height;
 			if( lumaH0 & 1 ) {
@@ -1426,7 +1396,6 @@ ComponentResult lavcEncoder_EncodeFrame(lavcEncoderGlobalRecord *glob,
 					glob->frame->data[0] + glob->frame->linesize[0] * (lumaH0 - 1), 
 					glob->frame->linesize[0]);
 			}
-#endif
 		}
 		
 		// Unlock PixelBuffer
@@ -1639,7 +1608,6 @@ ComponentResult lavcEncoder_CompleteFrame(lavcEncoderGlobalRecord *glob,
 		// Pass NULL AVFrame into codec's buffer
 		glob->frame_size = avcodec_encode_video(glob->codecCont, 
 							glob->encode_buffer, glob->encode_buffer_size, NULL);
-//		logDebug(glob, "lavcEncoder: glob->frame_size: %010d\n", glob->frame_size);
 		
 		// Check encoded frame
 		if( glob->frame_size > 0 ) {
@@ -1977,7 +1945,6 @@ ComponentResult lavcEncoder_EndPass(lavcEncoderGlobalRecord *glob)
 		// Pass NULL AVFrame into codec's buffer
 		glob->frame_size = avcodec_encode_video(glob->codecCont, 
 						glob->encode_buffer, glob->encode_buffer_size, NULL);
-//		logDebug(glob, "lavcEncoder: glob->frame_size: %010d\n", glob->frame_size);
 		
 		// Check encoded frame
 		if( glob->frame_size > 0 ) {
@@ -2517,15 +2484,11 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 		int key_interval = ICMCompressionSessionOptionsGetMaxKeyFrameInterval( glob->sessionOptions );
 		if( key_interval ) {
 			key_interval = ((key_interval < 2) ? 2 : key_interval);
-//			key_interval = ((key_interval > 300) ? 300 : key_interval);
+			//key_interval = ((key_interval > 300) ? 300 : key_interval);
 			
 			glob->codecCont->gop_size = key_interval;
 		} else {
-#if 0
-			;		// Leave as default; 12 is libavcodec's default value
-#else
 			glob->codecCont->gop_size = 60;
-#endif
 		}
 		
 		if (!glob->codecCont->keyint_min) glob->codecCont->keyint_min = glob->codecCont->gop_size / 10;
@@ -2537,7 +2500,7 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 #if MPEG4
 		if(glob->codecCont->flags & CODEC_FLAG_CLOSED_GOP)
 			glob->codecCont->scenechange_threshold = INT32_MAX;
-//			glob->codecCont->flags2 |= CODEC_FLAG2_STRICT_GOP;
+			//glob->codecCont->flags2 |= CODEC_FLAG2_STRICT_GOP;
 #endif			
 	} else {
 		glob->codecCont->max_b_frames = 0;
@@ -2640,18 +2603,6 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 			glob->codecCont->qmin = 33.0 - (20.0 * quality ) / codecLosslessQuality;
 		
 		glob->codecCont->qmax = 51;	// x264 default
-		
-//		Boolean keyExistsAndHasValidFormat = FALSE;
-//		CFStringRef appID = CFSTR("com.MyCometG3.x264Encoder");
-//		CFStringRef key = CFSTR("update_qmin_on_abr");
-//		CFPreferencesAppSynchronize(appID);
-//		Boolean result = CFPreferencesGetAppBooleanValue(key, appID, &keyExistsAndHasValidFormat);
-//		if(keyExistsAndHasValidFormat && result) {
-//			// qmin : L(33-28-23-18-13)H
-//			// qmax : L(51-51-51-51-51)H
-//			glob->codecCont->qmin = 33.0 - (20.0 * quality ) / codecLosslessQuality;
-//			logInfo(glob, "lavcEncoder: - Modify qmin/qmax to %4.1f/%4.1f.\n", glob->codecCont->qmin, glob->codecCont->qmax);
-//		}
 	}
 	
 #endif
@@ -2676,12 +2627,7 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 		else
 			glob->codecCont->qmin = 10.5 - (8.0 * quality) / codecLosslessQuality;
 		
-#if 0
- 		glob->codecCont->qmax = glob->codecCont->qmin + 6;
- 		glob->codecCont->qmax = (glob->codecCont->qmax > 31.0) ? 31.0 : glob->codecCont->qmax;
-#else
 		glob->codecCont->qmax = 31;	// ffmpeg default
-#endif
 	}
 #endif
 	
@@ -2940,11 +2886,9 @@ static OSStatus open_libAV(lavcEncoderGlobalRecord *glob)
 		}
 		glob->codec_is_opened = TRUE;
 
-#if 0	//MPEG4
 		// Some decoder like 3ivx needs esds info with every I-frame...sigh.
 		// xvidcore does not support on-the-fly update of this flag.
-		glob->codecCont->flags &= ~CODEC_FLAG_GLOBAL_HEADER;
-#endif
+		//glob->codecCont->flags &= ~CODEC_FLAG_GLOBAL_HEADER;
 		
 		// Adjust libavcodec default log level
 		av_log_set_level(AV_LOG_QUIET);
@@ -2978,7 +2922,6 @@ static OSStatus process_libAV(lavcEncoderGlobalRecord *glob, ICMCompressorSource
 #endif
 	glob->frame_size = avcodec_encode_video(glob->codecCont, 
 						glob->encode_buffer, glob->encode_buffer_size, glob->frame);
-//	logDebug(glob, "lavcEncoder: glob->frame_size: %010d\n", glob->frame_size);
 	
 	/* ==================================== */
 	
@@ -3134,30 +3077,11 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		strncat(buf, tmp, 4096);
 #if MPEG4
 		if (glob->codecCont->flags&CODEC_FLAG_PSNR) {
-#if 1
 			// ref: ffmpeg.c do_video_stats()
 			snprintf(tmp,256, "PSNR= %6.2f ", 
 				psnr(glob->codecCont->coded_frame->error[0]
 						/ (glob->codecCont->width * glob->codecCont->height * 255.0 * 255.0)));
 			strncat(buf, tmp, 4096);
-#else
-			// ref: ffmpeg.c print_report()
-			int j;
-			double error, error_sum=0;
-			double scale, scale_sum=0;
-			char type[3]= {'Y','U','V'};
-			for(j=0; j<3; j++){
-				error= glob->codecCont->coded_frame->error[j];
-				scale= glob->codecCont->width*glob->codecCont->height*255.0*255.0;
-				if(j) scale/=4;
-				error_sum += error;
-				scale_sum += scale;
-				snprintf(tmp,256, "%c:%2.2f ", type[j],psnr(error/scale));
-				strncat(buf, tmp, 4096);
-			}
-			snprintf(tmp,256, "*:%2.2f ", psnr(error_sum/scale_sum));
-			strncat(buf, tmp, 4096);
-#endif
 		}
 #endif
 		snprintf(tmp,256,"f_size=%6d ", glob->frame_size);
@@ -3176,12 +3100,12 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 			(double)glob->video_size / 1024, ti1, bitrate, avg_bitrate);
 		strncat(buf, tmp, 4096);
 		
-		snprintf(tmp,256,"type= %c%s\n"
+		snprintf(tmp,256,"type= %c%s"
 			, av_get_picture_type_char(glob->codecCont->coded_frame->pict_type)
 			, ((glob->codecCont->coded_frame->key_frame>0) ? "DR" : "")
 			);
 		strncat(buf, tmp, 4096);
-		fprintf(stderr, "%s", buf);
+		fprintf(stderr, "%s\n", buf);
 	}
 	
 	/* ==================================== */
@@ -3189,7 +3113,6 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 	{
 		int droppable_frame = false;
 		int partial_sync_frame = false;
-//		fprintf(stderr, "codedFrameNum(%d) ",glob->codecCont->coded_frame->coded_picture_number);
 		
 		// Specify frame properties from encoded AVFrame
 		int pict_type = 0;
@@ -3200,7 +3123,6 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		Boolean reordering = doesQueueContainEarlierDisplayNumbers(glob, ICMCompressorSourceFrameGetDisplayNumber(source_frame));
 
 		if( key_frame && reordering ) 
-//			if( (glob->codecCont->max_b_frames > 0) && (glob->codecCont->flags & CODEC_FLAG_CLOSED_GOP) == 0 )
 				key_frame = FALSE;
 #if X264
 		if( !key_frame && pict_type == FF_I_TYPE) {
@@ -3279,9 +3201,7 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		else
 			media_sample_flags |= mediaSampleIsDependedOnByOthers;
 #else
-		if( droppable_frame 
-//		&& (glob->codecCont->flags2 & CODEC_FLAG2_BPYRAMID) == 0			// Not sure
-		)
+		if( droppable_frame )
 			media_sample_flags |= mediaSampleDroppable;
 #endif
 		
@@ -3314,7 +3234,6 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		
 		// Re-format NAL unit.
 		memcpy(tempPtr, glob->encode_buffer, tempSize);
-//		{UInt8* p=tempPtr, *pEnd=(tempSize>32?p+32:p+tempSize);for(;p<pEnd;p++){fprintf(stderr,"%02x ",*p);}fprintf(stderr,"\n");}
 		
 		avc_parse_nal_units(&tempPtr, &tempSize);	// This call does realloc buffer; may also be re-sized
 		if( !tempSize ) {
@@ -3323,7 +3242,6 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 			av_free(tempPtr);
 			goto bail;
 		}
-//		{UInt8* p=tempPtr, *pEnd=(tempSize>32?p+32:p+tempSize);for(;p<pEnd;p++){fprintf(stderr,"%02x ",*p);}fprintf(stderr,"\n");}
 		
 		// Create a ICMEncodedFrame for source_frame
 		err = ICMEncodedFrameCreateMutable(glob->session, source_frame, tempSize, &encoded_frame);
@@ -3385,8 +3303,8 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 	
 	{
 		// Ready to emit data
-//		CFShow(encoded_frame);
-//		CFShow(source_frame);
+		//CFShow(encoded_frame);
+		//CFShow(source_frame);
 		
 		// Output the encoded frame.
 		err = ICMCompressorSessionEmitEncodedFrame( glob->session, encoded_frame, 1, &source_frame );
@@ -3733,14 +3651,6 @@ static Handle avcCExtension( lavcEncoderGlobalRecord *glob )
 		fprintf(stderr, "ERROR: NewHandleClear() failed.\n");
 	}
 	
-//	// Dump SEI // Is offset 21 correct or not?
-//	if( lenOfSEI > 21 ) {
-//		char *buf = calloc(1,lenOfSEI+1);
-//		memcpy(buf,pSEI+21,lenOfSEI-21);
-//		logInfo(glob, "lavcEncoder: - SEI: %s \n", buf);
-//		free(buf);
-//	}
-	
 bail:	
 	return avcCHdl;
 } // avcCExtension()
@@ -3758,7 +3668,6 @@ static Handle esdsExtension( lavcEncoderGlobalRecord *glob )
 	int lengthOfData06 = 1;
 	int lengthOfData03 = 2 + 1 + lengthOfHeader + lengthOfData04 + lengthOfHeader + lengthOfData06;
 	int lengthOfDataEsds = 1 + 3 + lengthOfHeader + lengthOfData03;
-//	int lengthOfExtension = 4 + 4 + lengthOfDataEsds;	// esds atom length
 	
 	if( !lengthOfData05 ) {
 		fprintf(stderr, "ERROR: No codec extradata found.\n");
@@ -4035,24 +3944,6 @@ static OSStatus prepareImageDescriptionExtensions(lavcEncoderGlobalRecord *glob)
 			goto bail;
 		}
 		
-#if 0
-		// Check out of range error; Just skip to apply instead of return error
-		double caW = (double)glob->params.cleanApertureWidthN / glob->params.cleanApertureWidthD;
-		double caH = (double)glob->params.cleanApertureHeightN / glob->params.cleanApertureHeightD;
-		double hOff = (double)glob->params.horizOffN / glob->params.horizOffD;
-		double vOff = (double)glob->params.vertOffN / glob->params.vertOffD;
-		if(	caW > glob->width || caH > glob->height ) {
-			fprintf(stderr, "NOTICE: Skip to apply clean aperture. (larger than raw image)\n");
-			AudioServicesPlayAlertSound(kUserPreferredAlert);
-			goto bail;
-		} else
-		if( caW + fabs(hOff) < (double)glob->width || caH + fabs(vOff) < (double)glob->height ) {
-			fprintf(stderr, "NOTICE: Skip to apply clean aperture. (invalid offset)\n");
-			AudioServicesPlayAlertSound(kUserPreferredAlert);
-			goto bail;
-		}
-#endif
-		
 		// Set clean aperture to image description
 		Handle clapHdl = NULL;
 		clapHdl = NewHandleClear(sizeof(CleanApertureImageDescriptionExtension));
@@ -4148,7 +4039,7 @@ static OSStatus openCoreVF( lavcEncoderGlobals glob )
 	
 	if(glob->filterPreset) {
 		CFStringRef appID = CFSTR("com.MyCometG3.CoreVF");
-//		CFPreferencesAppSynchronize(appID);	/* cal this at SetSettings */
+		//CFPreferencesAppSynchronize(appID);	/* cal this at SetSettings */
 		CFStringRef keyStr = NULL;
 		CFIndex index = glob->filterPreset;
 		if(glob->filterPreset == -1) {
@@ -4191,13 +4082,8 @@ static OSStatus openCoreVF( lavcEncoderGlobals glob )
 			goto bail;
 		}
 		
-#if 1
 		CVF_Video *tempV = CVF_Video_CreateDefault(glob->width, glob->height, 
 			CVF_PT_I420, CVF_FT_FRAMEBASED);	// Is it CVF_PT_YV12, or CVF_PT_I420 ?
-#else
-		CVF_Video *tempV = CVF_Video_CreateDefault(glob->codecCont->width, glob->codecCont->height, 
-			CVF_PT_I420, CVF_FT_FRAMEBASED);	// Is it CVF_PT_YV12, or CVF_PT_I420 ?
-#endif
 		assert(tempV);
 		glob->cvfOutVideo = CVF_Context_GetVideoRep(glob->cvfCont, tempV);
 		assert(glob->cvfOutVideo);
@@ -4206,13 +4092,8 @@ static OSStatus openCoreVF( lavcEncoderGlobals glob )
 		if(glob->subsampling >= 0) {			// input and output uses planar yuv 420 format
 			glob->cvfInVideo = glob->cvfOutVideo;	// Broken support on CoreVideo
 		} else {								// -1:422-Direct input;
-#if 1
 			tempV = CVF_Video_CreateDefault(
 				glob->width, glob->height, CVF_PT_UYVY, CVF_FT_FRAMEBASED);
-#else
-			tempV = CVF_Video_CreateDefault(
-				glob->codecCont->width, glob->codecCont->height, CVF_PT_UYVY, CVF_FT_FRAMEBASED);
-#endif
 			assert(tempV);
 			glob->cvfInVideo = CVF_Context_GetVideoRep(glob->cvfCont, tempV);
 			assert(glob->cvfInVideo);
@@ -4282,11 +4163,6 @@ static void checkValues( lavcEncoderGlobals glob )
 	if( !glob->params.TURBO ) glob->params.TURBO=3;				// Turbo 2
 	if( !glob->params.LEVEL ) glob->params.LEVEL=9;				// Level auto
 	if( !glob->params.AQ_MODE ) glob->params.AQ_MODE=2;			// VARIANCE
-#if 0
-	if( glob->params.AQ_MODE > 2 ) glob->params.AQ_MODE=2;		// VARIANCE /* git-969 changed */
-#else
-																// AutoVARIANCE as 3 /* git-1184 changed */
-#endif
 	// glob->params.ADAPTIVE_BFRAME
 	if( !glob->params.X264PROFILE ) glob->params.X264PROFILE=3;	// 3:High Profile
 	if( !glob->params.WEIGHTP ) glob->params.WEIGHTP = 3;				// Smart analysis
