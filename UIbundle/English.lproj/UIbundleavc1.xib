@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="13451"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4602,7 +4602,7 @@
 																<object class="NSButtonCell" key="NSCell" id="788132984">
 																	<int key="NSCellFlags">-2080244224</int>
 																	<int key="NSCellFlags2">0</int>
-																	<string key="NSContents">Force qmin on ABR mode</string>
+																	<string key="NSContents">Force qmin on ABR/CRF mode</string>
 																	<reference key="NSSupport" ref="432321673"/>
 																	<reference key="NSControlView" ref="31795924"/>
 																	<int key="NSButtonFlags">1211912703</int>
