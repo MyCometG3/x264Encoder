@@ -2627,7 +2627,7 @@ static OSStatus setup_codecCont(lavcEncoderGlobalRecord *glob)
 		else
 			glob->codecCont->crf = 33.0 - (20.0 * quality ) / codecLosslessQuality;
 		
-		glob->codecCont->qmin = 3;	// 0 is x264 default
+		glob->codecCont->qmin = 4;	// 0 is x264 default, but Apple H.264 decoder is XXXX...
 		glob->codecCont->qmax = 51;	// x264 default
 	} else {
 		// qmin : L(33-28-23-18-13)H
