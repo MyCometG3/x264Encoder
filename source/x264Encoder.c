@@ -60,7 +60,6 @@ This file is part of x264Encoder.
 #define REV_IGNOREQSLIDER 13		/* params struct version; user can ignore quality slider; 1.2.8 */
 #define REV_FAKEINTERLACED 14		/* params struct version; new --fake-interlaced support; 1.2.9 */
 #define REV_X264OPENGOP 15			/* params struct version; support open gop; 1.2.13 */
-#define REV_FORCEQPMINAS3 16		/* params struct version; Force qpmin >= 3; 1.2.23 */ 
 
 #define X264PROFILE_UNDEF	0
 #define	X264PROFILE_BASE	1
@@ -254,7 +253,7 @@ typedef struct {
 	char OVERRIDECRFQSCALE;			/* override quality slider setting in application for CRF/QSCALE */
 	char USERCRFQSCALE;				/* user specified qscale value; default 23 */
 	char OVERRIDEQMIN;				/* override quality slider setting in application for ABR */
-	char USERQMIN;					/* user specified qmin value; default 3 */
+	char USERQMIN;					/* user specified qmin value; default 4 */
 	
 	char FAKEINTERLACED;			// x264; --fake-interlaced; default 0 (=off)
 	char reservedChar2;				// 
@@ -736,7 +735,7 @@ ComponentResult lavcEncoder_GetSettings(lavcEncoderGlobalRecord *glob, Handle se
 	
 	// Endian handler
 	params *p = (params*)*settings;
-	p->REV_STRUCT		= REV_FORCEQPMINAS3;	// 1.2.23 or later.
+	p->REV_STRUCT		= REV_X264OPENGOP;	// 1.2.13 or later.
 	
 	p->SC_THRESHOLD		= EndianS32_NtoB(p->SC_THRESHOLD);
 	p->QCOMPRESS		= EndianS32_NtoB(p->QCOMPRESS);
@@ -942,11 +941,6 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 #if X264
 	if(p->REV_STRUCT < REV_X264OPENGOP) { /* 15: 1.2.13 or later*/
 		p->FLAG_CLOSED_GOP = TRUE;
-	}
-#endif
-#if X264
-	if (p->REV_STRUCT < REV_FORCEQPMINAS3) { /* 16: 1.2.23 or later */
-		p->USERQMIN = (p->USERQMIN < 3 ? 3 : p->USERQMIN);
 	}
 #endif
 	
@@ -4328,7 +4322,7 @@ static void checkValues( lavcEncoderGlobals glob )
 	// glob->params.OVERRIDECRFQSCALE
 	if( !glob->params.USERCRFQSCALE ) glob->params.USERCRFQSCALE = 23;	// 23
 	// glob->params.OVERRIDEQMIN
-	if( !glob->params.USERQMIN ) glob->params.USERQMIN = 3;  // 3
+	// glob->params.USERQMIN									// x264 r1795 changed default qmin from 10 to 0, thus 0 is acceptable now
 #endif
 #if MPEG4
 	// In case that app passed older struct ; Some params' zero value are not allowed;
@@ -4460,6 +4454,7 @@ static void checkValues( lavcEncoderGlobals glob )
 // Initialize params
 static void initValues( lavcEncoderGlobals glob )
 {
+	glob->params.REV_STRUCT = REV_X264OPENGOP;
 #if X264
 	// Initial values for CODE_ID_H264 (=x264)
 	glob->params.FLAG_QSCALE = FALSE;
@@ -4573,7 +4568,7 @@ static void initValues( lavcEncoderGlobals glob )
 	glob->params.OVERRIDECRFQSCALE = 0;	// OFF
 	glob->params.USERCRFQSCALE = 23;	// 23
 	glob->params.OVERRIDEQMIN = 1;		// ON
-	glob->params.USERQMIN = 3;			// 3
+	glob->params.USERQMIN = 4;			// 4
 #endif
 #if MPEG4
 	// Initial values for CODE_ID_MPEG4

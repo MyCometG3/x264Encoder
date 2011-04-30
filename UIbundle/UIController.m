@@ -285,7 +285,7 @@ bail:
 			[newModel setValue:[NSNumber numberWithChar:0] forKey:@"OVERRIDECRFQSCALE"];
 			[newModel setValue:[NSNumber numberWithChar:23] forKey:@"USERCRFQSCALE"];
 			[newModel setValue:[NSNumber numberWithChar:1] forKey:@"OVERRIDEQMIN"];
-			[newModel setValue:[NSNumber numberWithChar:3] forKey:@"USERQMIN"];
+			[newModel setValue:[NSNumber numberWithChar:4] forKey:@"USERQMIN"];
 		} else {
 			[newModel setValue:[NSNumber numberWithChar:0] forKey:@"OVERRIDECRFQSCALE"];
 			[newModel setValue:[NSNumber numberWithChar:2] forKey:@"USERCRFQSCALE"];
@@ -299,11 +299,6 @@ bail:
 		if ([newModel isAvc1]) {
 			[newModel setValue:[NSNumber numberWithBool:TRUE] forKey:@"FLAG_CLOSED_GOP"];
 		};
-	}
-	
-	// Check qpmin less than 3 from 1.2.23
-	if ([newModel isAvc1] && [[newModel valueForKey:@"USERQMIN"] charValue] < 3) {
-		[newModel setValue:[NSNumber numberWithChar:3] forKey:@"USERQMIN"];
 	}
 #endif
 	

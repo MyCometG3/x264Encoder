@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="5"/>
+			<integer value="13451"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4699,7 +4699,7 @@
 																<object class="NSTextFieldCell" key="NSCell" id="888195922">
 																	<int key="NSCellFlags">-1804468671</int>
 																	<int key="NSCellFlags2">272630784</int>
-																	<real value="3" key="NSContents"/>
+																	<real value="4" key="NSContents"/>
 																	<reference key="NSSupport" ref="432321673"/>
 																	<object class="NSNumberFormatter" key="NSFormatter" id="359351189">
 																		<object class="NSMutableDictionary" key="NS.attributes">
@@ -4724,7 +4724,7 @@
 																				<boolean value="NO"/>
 																				<reference ref="302531542"/>
 																				<real value="51"/>
-																				<real value="3"/>
+																				<real value="0.0"/>
 																				<string>-∞</string>
 																				<string/>
 																				<integer value="1"/>
@@ -4743,7 +4743,7 @@
 																			<string key="NSString">NaN</string>
 																			<reference key="NSAttributes" ref="994628608"/>
 																		</object>
-																		<real value="3" key="NS.min"/>
+																		<real value="0.0" key="NS.min"/>
 																		<real value="51" key="NS.max"/>
 																		<object class="NSDecimalNumberHandler" key="NS.rounding">
 																			<int key="NS.roundingmode">3</int>
@@ -4822,7 +4822,6 @@
 																	<int key="NSCellFlags2">0</int>
 																	<reference key="NSControlView" ref="869721403"/>
 																	<double key="NSValue">3</double>
-																	<double key="NSMinValue">3</double>
 																	<double key="NSMaxValue">51</double>
 																	<double key="NSIncrement">1</double>
 																	<bool key="NSAutorepeat">YES</bool>

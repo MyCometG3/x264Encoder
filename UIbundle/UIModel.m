@@ -341,7 +341,7 @@
 			[self setValue:UIZero		forKey:@"OVERRIDECRFQSCALE"];	// OFF
 			[self setValue:[UIChar:23]	forKey:@"USERCRFQSCALE"];	// 23
 			[self setValue:UIOne		forKey:@"OVERRIDEQMIN"];	// ON
-			[self setValue:[UIChar:3]	forKey:@"USERQMIN"];		// 3
+			[self setValue:[UIChar:4]	forKey:@"USERQMIN"];		// 4
 		} else {
 			[self setValue:UIZero		forKey:@"OVERRIDECRFQSCALE"];	// OFF
 			[self setValue:[UIChar:2]	forKey:@"USERCRFQSCALE"];	// 2
