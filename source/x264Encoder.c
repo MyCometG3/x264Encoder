@@ -777,8 +777,7 @@ ComponentResult lavcEncoder_SetSettings(lavcEncoderGlobalRecord *glob, Handle se
 	
 	// Endian Handler
 	params *p = &glob->params;
-	if(p->REV_STRUCT > 0		// Positive value means BigEndian.
-	|| p->QCOMPRESS > 100 || p->QCOMPRESS < 0	// Double check
+	if( !(p->QCOMPRESS <= 100 && p->QCOMPRESS >= 0 )	// Endian check
 	) {
 		p->SC_THRESHOLD		= EndianS32_BtoN(p->SC_THRESHOLD);
 		p->QCOMPRESS		= EndianS32_BtoN(p->QCOMPRESS);
