@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.2.23b2 (libav* from libav 28353 and libx264 from x264 1947), Copyright MyCometG3, 2007-2011</string>
+	<string>1.2.23 (libav* from libav 28353 and libx264 from x264 1947), Copyright MyCometG3, 2007-2011</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>thng</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.23b2</string>
+	<string>1.2.23</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2011.04.29</string>
+	<string>2011.04.30</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
