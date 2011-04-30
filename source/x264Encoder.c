@@ -517,7 +517,7 @@ ComponentResult lavcEncoder_Close(lavcEncoderGlobalRecord *glob, ComponentInstan
 			}
 			
 #if USECoreVF
-			closeCoreVF( glob );
+			if( glob->cvfCont ) closeCoreVF( glob );
 #endif
 			
 			if( glob->encode_buffer ) {
@@ -2039,7 +2039,7 @@ bail:
 		}
 		
 #if USECoreVF
-		closeCoreVF( glob );
+		if( glob->cvfCont ) closeCoreVF( glob );
 #endif
 		
 		if( glob->encode_buffer ) {
