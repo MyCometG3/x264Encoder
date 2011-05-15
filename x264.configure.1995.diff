@@ -1,6 +1,6 @@
---- x2641947.org/configure	2011-04-26 19:38:57.000000000 +0900
-+++ x2641947/configure	2011-04-26 19:48:02.000000000 +0900
-@@ -483,7 +483,7 @@
+--- x2641995.org/configure	2011-05-15 12:31:31.000000000 +0900
++++ x2641995/configure	2011-05-15 12:50:56.000000000 +0900
+@@ -510,7 +510,7 @@
              define HAVE_ALTIVEC
              AS="${AS-${cross_prefix}gcc}"
              if [ $SYS = MACOSX ] ; then
@@ -9,7 +9,7 @@
              else
                  CFLAGS="$CFLAGS -maltivec -mabi=altivec"
                  define HAVE_ALTIVEC_H
-@@ -1008,8 +1008,8 @@
+@@ -1067,8 +1067,8 @@
  
  filters="crop select_every"
  gpl_filters=""

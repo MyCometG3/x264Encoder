@@ -1,5 +1,5 @@
---- libav28353.org/libavcodec/libx264.c	2011-04-29 18:25:25.000000000 +0900
-+++ libav28353/libavcodec/libx264.c	2011-04-29 18:34:31.000000000 +0900
+--- libav28543.org/libavcodec/libx264.c	2011-05-15 12:32:53.000000000 +0900
++++ libav28543/libavcodec/libx264.c	2011-05-15 12:46:27.000000000 +0900
 @@ -26,6 +26,46 @@
  #include <stdlib.h>
  #include <string.h>
@@ -48,8 +48,8 @@
      x264_param_t    params;
      x264_t         *enc;
 @@ -105,10 +145,6 @@
-             frame->pict_type == FF_P_TYPE ? X264_TYPE_P :
-             frame->pict_type == FF_B_TYPE ? X264_TYPE_B :
+             frame->pict_type == AV_PICTURE_TYPE_P ? X264_TYPE_P :
+             frame->pict_type == AV_PICTURE_TYPE_B ? X264_TYPE_B :
                                              X264_TYPE_AUTO;
 -        if (x4->params.b_tff != frame->top_field_first) {
 -            x4->params.b_tff = frame->top_field_first;
