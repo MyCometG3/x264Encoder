@@ -3125,12 +3125,12 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 		if( key_frame && reordering ) 
 				key_frame = FALSE;
 #if X264
-		if( !key_frame && pict_type == FF_I_TYPE) {
+		if( !key_frame && pict_type == AV_PICTURE_TYPE_I) {
 			/* QuickTime always treats partial sync as MPEG-4 ASP style; i.e. OpenGOP decoding. */
 			/* When seek, it start decoding from sync or two partial sync frame to target frame*/
 			/* This is not suitable for H.264 stream. */
 			/* Non-IDR I frame should NOT be tagged as partial sync. */
-			pict_type = FF_P_TYPE;
+			pict_type = AV_PICTURE_TYPE_P;
 		}	
 #endif
 		
@@ -3139,15 +3139,15 @@ static OSStatus emitFrameData(lavcEncoderGlobalRecord *glob)
 			frame_type = kICMFrameType_I;			// Diff btw lavc and ICM
 			partial_sync_frame = false;
 			droppable_frame = false;
-		} else if( pict_type == FF_I_TYPE ) {		// 1st I frame (of open gop) or Non IDR I frame
+		} else if( pict_type == AV_PICTURE_TYPE_I ) {		// 1st I frame (of open gop) or Non IDR I frame
 			frame_type = kICMFrameType_I;			// Diff btw lavc and ICM
 			partial_sync_frame = true;
 			droppable_frame = false;
-		} else if( pict_type == FF_P_TYPE ) {		// P frame (Predictive)
+		} else if( pict_type == AV_PICTURE_TYPE_P ) {		// P frame (Predictive)
 			frame_type = kICMFrameType_P;
 			partial_sync_frame = false;
 			droppable_frame = false;
-		} else if( pict_type == FF_B_TYPE ) {		// B frame (Bi-directional predictive)
+		} else if( pict_type == AV_PICTURE_TYPE_B ) {		// B frame (Bi-directional predictive)
 			frame_type = kICMFrameType_B;
 			partial_sync_frame = false;
 #if MPEG4|XVID
