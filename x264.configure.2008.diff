@@ -1,5 +1,5 @@
---- x2641995.org/configure	2011-05-15 12:31:31.000000000 +0900
-+++ x2641995/configure	2011-05-15 12:50:56.000000000 +0900
+--- x2642008.org/configure	2011-06-15 19:05:44.000000000 +0900
++++ x2642008/configure	2011-06-15 19:48:17.000000000 +0900
 @@ -510,7 +510,7 @@
              define HAVE_ALTIVEC
              AS="${AS-${cross_prefix}gcc}"
@@ -9,7 +9,7 @@
              else
                  CFLAGS="$CFLAGS -maltivec -mabi=altivec"
                  define HAVE_ALTIVEC_H
-@@ -1067,8 +1067,8 @@
+@@ -1061,8 +1061,8 @@
  
  filters="crop select_every"
  gpl_filters=""
