@@ -1100,7 +1100,7 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 	if( !glob->codecCont ) {
 		// Prepare codec context
 		av_log_set_level(AV_LOG_QUIET);
-		glob->codecCont = avcodec_alloc_context();
+		glob->codecCont = avcodec_alloc_context3(glob->codec);
 		if( !glob->codecCont ) {
 			fprintf(stderr, "ERROR: Allocating codec context failed.\n");
 			err = memFullErr;
@@ -2878,7 +2878,7 @@ static OSStatus open_libAV(lavcEncoderGlobalRecord *glob)
 		// libavcodec open codec
 		glob->codecCont->codec_id = glob->codec->id;
 		glob->codecCont->codec_type = glob->codec->type;
-		err = avcodec_open(glob->codecCont, glob->codec);
+		err = avcodec_open2(glob->codecCont, glob->codec, NULL);
 		if( err < 0 ) {
 			fprintf(stderr, "ERROR: Opening codec failed.\n");
 			glob->codec_open_failed = TRUE;

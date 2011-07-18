@@ -34,6 +34,7 @@ This file is part of x264Encoder.
 // Require references to libavcodec.a and libavutil.a
 #include "avcodec.h"
 #include "avformat.h"
+#include "libavutil/mathematics.h"
 #include "x264.h"
 
 #include <vecLib/vecLib.h>
