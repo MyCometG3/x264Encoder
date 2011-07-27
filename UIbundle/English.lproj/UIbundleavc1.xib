@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">851</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="6"/>
+			<integer value="284"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,7 +45,7 @@
 				<object class="NSMutableString" key="NSViewClass">
 					<characters key="NS.bytes">View</characters>
 				</object>
-				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSWindowContentMinSize">{213, 107}</string>
 				<object class="NSView" key="NSWindowView" id="19493740">
 					<reference key="NSNextResponder"/>
@@ -88,7 +88,7 @@
 														<string key="NSColorName">controlColor</string>
 														<object class="NSColor" key="NSColor">
 															<int key="NSColorSpace">3</int>
-															<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+															<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
 														</object>
 													</object>
 													<object class="NSColor" key="NSTextColor" id="39051179">
@@ -887,7 +887,7 @@
 										<characters key="NS.bytes">2</characters>
 									</object>
 									<object class="NSView" key="NSView" id="622563938">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="26264083"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2460,7 +2460,7 @@
 																				<string>.</string>
 																				<integer value="1000"/>
 																				<string>,</string>
-																				<real value="10"/>
+																				<real value="11"/>
 																				<real value="0.0"/>
 																				<string>-0</string>
 																				<string>0</string>
@@ -2480,7 +2480,7 @@
 																			<reference key="NSAttributes" ref="994628608"/>
 																		</object>
 																		<real value="0.0" key="NS.min"/>
-																		<real value="10" key="NS.max"/>
+																		<real value="11" key="NS.max"/>
 																		<nil key="NS.rounding"/>
 																		<string key="NS.decimal">.</string>
 																		<string key="NS.thousand">,</string>
@@ -3141,7 +3141,7 @@
 																	<int key="NSCellFlags2">131072</int>
 																	<reference key="NSControlView" ref="695274292"/>
 																	<double key="NSValue">7</double>
-																	<double key="NSMaxValue">10</double>
+																	<double key="NSMaxValue">11</double>
 																	<double key="NSIncrement">1</double>
 																	<bool key="NSAutorepeat">YES</bool>
 																</object>
@@ -4528,6 +4528,7 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {532, 380}}</string>
+										<reference key="NSSuperview" ref="26264083"/>
 									</object>
 									<string key="NSLabel">Values</string>
 									<reference key="NSColor" ref="12757168"/>
@@ -4535,7 +4536,7 @@
 								</object>
 								<object class="NSTabViewItem" id="941717820">
 									<object class="NSView" key="NSView" id="101165152">
-										<reference key="NSNextResponder" ref="26264083"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5637,7 +5638,6 @@ aWFsb2cuIAogKG9yIGxlYXZlIGJsYW5rIGZvciBmcmFtZSByYXRlIGZpZWxkIG9uIHlvdXIgQXBwLik<
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {532, 380}}</string>
-										<reference key="NSSuperview" ref="26264083"/>
 									</object>
 									<string key="NSLabel">Behavior</string>
 									<reference key="NSColor" ref="12757168"/>
@@ -6333,14 +6333,14 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 									<reference key="NSTabView" ref="26264083"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="941717820"/>
+							<reference key="NSSelectedTabViewItem" ref="31567725"/>
 							<reference key="NSFont" ref="432321673"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="101165152"/>
+								<reference ref="622563938"/>
 							</object>
 						</object>
 						<object class="NSTextField" id="299533016">
@@ -6562,7 +6562,7 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{213, 129}</string>
-				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSFrameAutosaveName">libavcodec settings</string>
 			</object>
 			<object class="NSUserDefaultsController" id="1017895779">
@@ -6645,7 +6645,7 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
-				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="1015184434">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -8372,7 +8372,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string key="NSFrameSize">{772, 404}</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
-				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 			<object class="NSObjectController" id="665255007">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
@@ -21491,7 +21491,7 @@ b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3Agbm9ybWFsKeKAqA</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="784617120"/>
-							<string key="toolTip">UIbundle version 1.2.23</string>
+							<string key="toolTip">UIbundle version 1.2.25</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -21501,7 +21501,7 @@ b3NlZF9nb3ApCngyNjQ6IGlfb3Blbl9nb3AgKC0tb3Blbi1nb3Agbm9ybWFsKeKAqA</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="299533016"/>
-							<string key="toolTip">UIbundle version 1.2.23</string>
+							<string key="toolTip">UIbundle version 1.2.25</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -21703,7 +21703,7 @@ ZXRhKQp4MjY0OmlfZGVibG9ja2luZ19maWx0ZXJfYWxwaGFjMCwgX2JldGEgKC0tZGVibG9jayk</str
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="967647735"/>
-							<string key="toolTip">UIbundle version 1.2.23</string>
+							<string key="toolTip">UIbundle version 1.2.25</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

@@ -844,7 +844,7 @@
 			break;
 		case X264PRESET_PLACEBO:
 			[self setValue:[UIChar:6]	forKey:@"ME_METHOD"];		// 6:TESA
-			[self setValue:[UIChar:10]	forKey:@"ME_SUBQ"];			// 10
+			[self setValue:[UIChar:11]	forKey:@"ME_SUBQ"];			// 11
 			[self setValue:[UIChar:24]	forKey:@"ME_RANGE"];		// 24
 			[self setValue:[UIChar:16]	forKey:@"REFS"];			// 16
 			[self setValue:UITwo		forKey:@"ADAPTIVE_BFRAME"];	// 2:Use Adaptive B-frame - Trellis

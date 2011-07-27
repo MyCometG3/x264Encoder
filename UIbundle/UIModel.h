@@ -79,7 +79,7 @@
 	NSNumber* DIRECTPRED;		// 1:Disabled, 2:Spatial, 3:Temporal, 4:Auto
 	NSNumber* CRF;				// 0:Normal, 1:ConstantRateFactor
 	NSNumber* ADAPTIVE_BFRAME;	// 0:Normal, 1:B_ADAPT_FAST, 2:B_ADAPT_TRELLIS
-	NSNumber* ME_SUBQ;			// limited to (0, 10); subpel quality
+	NSNumber* ME_SUBQ;			// limited to (0, 11); subpel quality
 	
 	NSNumber* TRELLIS;			// 1:Disabled, 2:FinalOnly, 3:All; default 1
 	NSNumber* TURBO;			// 1:Disabled, 2:Turbo 1, 3:Turbo 2
