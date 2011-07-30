@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="284"/>
+			<integer value="13607"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -48,7 +48,7 @@
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSWindowContentMinSize">{213, 107}</string>
 				<object class="NSView" key="NSWindowView" id="19493740">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">293</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -6558,7 +6558,6 @@ dmVsIDMuMCwgYnV0IE5PIENBQkFDA</string>
 						</object>
 					</object>
 					<string key="NSFrameSize">{578, 482}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{213, 129}</string>
@@ -8418,7 +8417,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSWindowContentMaxSize">{547, 600}</string>
 				<string key="NSWindowContentMinSize">{547, 323}</string>
 				<object class="NSView" key="NSWindowView" id="488488481">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -9016,7 +9015,7 @@ dW1oIC0tbWVyYW5nZSAyNCAtLXBhcnRpdGlvbnMgYWxsCiAgLS1yZWYgMTYgLS1zdWJtZSAxMCAtLXRy
 ZWxsaXMgMgogIC0tcmMtbG9va2FoZWFkIDYwCi0gcGxhY2VibzoKICAtLWJmcmFtZXMgMTYgLS1iLWFk
 YXB0IDIgLS1kaXJlY3QgYXV0bwogIC0tc2xvdy1maXJzdHBhc3MgLS1uby1mYXN0LXBza2lwCiAgLS1t
 ZSB0ZXNhIC0tbWVyYW5nZSAyNCAtLXBhcnRpdGlvbnMgYWxsCiAgLS1yYy1sb29rYWhlYWQgNjAgLS1y
-ZWYgMTYgLS1zdWJtZSAxMAogIC0tdHJlbGxpcyAyCg</string>
+ZWYgMTYgLS1zdWJtZSAxMQogIC0tdHJlbGxpcyAyCg</string>
 														<reference key="NSSupport" ref="26"/>
 														<reference key="NSControlView" ref="668587150"/>
 														<bool key="NSDrawsBackground">YES</bool>
@@ -9104,6 +9103,7 @@ IHJlb3JkZXJpbmciIGFuZCBzZXQgZGF0YSByYXRlIGxlc3MgdGhhbiAxNTAwS2Jwcy4</string>
 						</object>
 					</object>
 					<string key="NSFrameSize">{547, 323}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{547, 345}</string>
