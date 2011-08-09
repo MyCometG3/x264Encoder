@@ -1,6 +1,6 @@
---- libav29614.org/libavcodec/libx264.c	2011-07-30 14:02:40.000000000 +0900
-+++ libav29614/libavcodec/libx264.c	2011-07-30 14:05:11.000000000 +0900
-@@ -26,6 +26,46 @@
+--- libav29651.org/libavcodec/libx264.c	2011-08-09 19:42:16.000000000 +0900
++++ libav29651/libavcodec/libx264.c	2011-08-09 20:54:58.000000000 +0900
+@@ -27,6 +27,46 @@
  #include <stdlib.h>
  #include <string.h>
  
@@ -45,20 +45,22 @@
 +} params_opaque;
 +
  typedef struct X264Context {
+     AVClass        *class;
      x264_param_t    params;
-     x264_t         *enc;
-@@ -105,10 +145,6 @@
+@@ -111,10 +151,12 @@
              frame->pict_type == AV_PICTURE_TYPE_P ? X264_TYPE_P :
              frame->pict_type == AV_PICTURE_TYPE_B ? X264_TYPE_B :
                                              X264_TYPE_AUTO;
--        if (x4->params.b_tff != frame->top_field_first) {
--            x4->params.b_tff = frame->top_field_first;
--            x264_encoder_reconfig(x4->enc, &x4->params);
--        }
++#if 0
+         if (x4->params.b_tff != frame->top_field_first) {
+             x4->params.b_tff = frame->top_field_first;
+             x264_encoder_reconfig(x4->enc, &x4->params);
+         }
++#endif
      }
  
      do {
-@@ -163,14 +199,45 @@
+@@ -170,6 +212,37 @@
      x4->sei_size = 0;
      x264_param_default(&x4->params);
  
@@ -93,21 +95,67 @@
 +        }
 +    }
 +
+     x4->params.i_keyint_max         = avctx->gop_size;
+ 
+     x4->params.i_bframe          = avctx->max_b_frames;
+@@ -199,6 +272,7 @@
+ 
+     x4->params.i_frame_reference    = avctx->refs;
+ 
++#if 0
+     x4->params.analyse.inter    = 0;
+     if (avctx->partitions) {
+         if (avctx->partitions & X264_PART_I4X4)
+@@ -212,10 +286,19 @@
+         if (avctx->partitions & X264_PART_B8X8)
+             x4->params.analyse.inter |= X264_ANALYSE_BSUB16x16;
+     }
++#else
++    if (SPECIFYINTER && avctx->partitions)
++        if (avctx->partitions & X264_PART_P4X4)
++            x4->params.analyse.inter |= X264_ANALYSE_PSUB8x8;
++#endif
+ 
+     x4->params.analyse.i_direct_mv_pred  = avctx->directpred;
+ 
++#if 0
+     x4->params.analyse.b_weighted_bipred = avctx->flags2 & CODEC_FLAG2_WPRED;
++#else
++    x4->params.analyse.b_weighted_bipred = !!(avctx->flags2 & CODEC_FLAG2_WPRED);
++#endif
+     x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
+ 
+     if (avctx->me_method == ME_EPZS)
+@@ -252,20 +335,28 @@
+     if (avctx->level > 0)
+         x4->params.i_level_idc = avctx->level;
+ 
++#if 0
+     if (x4->preset || x4->tune)
+         if (x264_param_default_preset(&x4->params, x4->preset, x4->tune) < 0) {
+             av_log(avctx, AV_LOG_ERROR, "Error setting preset/tune %s/%s.\n", x4->preset, x4->tune);
+             return AVERROR(EINVAL);
+         }
++#endif
+ 
      x4->params.pf_log               = X264_log;
      x4->params.p_log_private        = avctx;
+     x4->params.i_log_level          = X264_LOG_DEBUG;
  
-     x4->params.i_keyint_max         = avctx->gop_size;
      x4->params.b_intra_refresh      = avctx->flags2 & CODEC_FLAG2_INTRA_REFRESH;
--    x4->params.rc.i_bitrate         = avctx->bit_rate       / 1000;
--    x4->params.rc.i_vbv_buffer_size = avctx->rc_buffer_size / 1000;
--    x4->params.rc.i_vbv_max_bitrate = avctx->rc_max_rate    / 1000;
++#if 0
+     x4->params.rc.i_bitrate         = avctx->bit_rate       / 1000;
+     x4->params.rc.i_vbv_buffer_size = avctx->rc_buffer_size / 1000;
+     x4->params.rc.i_vbv_max_bitrate = avctx->rc_max_rate    / 1000;
++#else
 +    x4->params.rc.i_bitrate         = avctx->bit_rate       / 1024;
 +    x4->params.rc.i_vbv_buffer_size = avctx->rc_buffer_size / 1024;
 +    x4->params.rc.i_vbv_max_bitrate = avctx->rc_max_rate    / 1024;
++#endif
      x4->params.rc.b_stat_write      = avctx->flags & CODEC_FLAG_PASS1;
      if (avctx->flags & CODEC_FLAG_PASS2) {
          x4->params.rc.b_stat_read = 1;
-@@ -184,6 +251,17 @@
+@@ -279,6 +370,17 @@
              x4->params.rc.i_qp_constant = avctx->cqp;
          }
      }
@@ -125,69 +173,62 @@
  
      // if neither crf nor cqp modes are selected we have to enable the RC
      // we do it this way because we cannot check if the bitrate has been set
-@@ -221,26 +299,33 @@
-     x4->params.i_height             = avctx->height;
-     x4->params.vui.i_sar_width      = avctx->sample_aspect_ratio.num;
-     x4->params.vui.i_sar_height     = avctx->sample_aspect_ratio.den;
+@@ -296,6 +398,7 @@
+     x4->params.rc.f_pb_factor             = avctx->b_quant_factor;
+     x4->params.analyse.i_chroma_qp_offset = avctx->chromaoffset;
+ 
++#if 0
+     if (x4->fastfirstpass)
+         x264_param_apply_fastfirstpass(&x4->params);
+ 
+@@ -304,13 +407,21 @@
+             av_log(avctx, AV_LOG_ERROR, "Error setting profile %s.\n", x4->profile);
+             return AVERROR(EINVAL);
+         }
++#endif
+ 
+     x4->params.i_width          = avctx->width;
+     x4->params.i_height         = avctx->height;
+     x4->params.vui.i_sar_width  = avctx->sample_aspect_ratio.num;
+     x4->params.vui.i_sar_height = avctx->sample_aspect_ratio.den;
 +#if 0
      x4->params.i_fps_num = x4->params.i_timebase_den = avctx->time_base.den;
      x4->params.i_fps_den = x4->params.i_timebase_num = avctx->time_base.num;
--
--    x4->params.analyse.inter    = 0;
--    if (avctx->partitions) {
--        if (avctx->partitions & X264_PART_I4X4)
--            x4->params.analyse.inter |= X264_ANALYSE_I4x4;
--        if (avctx->partitions & X264_PART_I8X8)
--            x4->params.analyse.inter |= X264_ANALYSE_I8x8;
--        if (avctx->partitions & X264_PART_P8X8)
--            x4->params.analyse.inter |= X264_ANALYSE_PSUB16x16;
 +#else
 +    x4->params.i_fps_num = avctx->time_base.den;
 +    x4->params.i_fps_den = avctx->time_base.num;
 +    x4->params.i_timebase_den = p->TIMESCALE;
 +    x4->params.i_timebase_num = 1;
 +#endif
-+
-+//  x4->params.analyse.inter    = 0;
-+    if (SPECIFYINTER && avctx->partitions) {
-+//      if (avctx->partitions & X264_PART_I4X4)
-+//          x4->params.analyse.inter |= X264_ANALYSE_I4x4;
-+//      if (avctx->partitions & X264_PART_I8X8)
-+//          x4->params.analyse.inter |= X264_ANALYSE_I8x8;
-+//      if (avctx->partitions & X264_PART_P8X8)
-+//          x4->params.analyse.inter |= X264_ANALYSE_PSUB16x16;
-         if (avctx->partitions & X264_PART_P4X4)
-             x4->params.analyse.inter |= X264_ANALYSE_PSUB8x8;
--        if (avctx->partitions & X264_PART_B8X8)
--            x4->params.analyse.inter |= X264_ANALYSE_BSUB16x16;
-+//      if (avctx->partitions & X264_PART_B8X8)
-+//          x4->params.analyse.inter |= X264_ANALYSE_BSUB16x16;
-     }
  
-     x4->params.analyse.i_direct_mv_pred  = avctx->directpred;
- 
--    x4->params.analyse.b_weighted_bipred = avctx->flags2 & CODEC_FLAG2_WPRED;
-+    x4->params.analyse.b_weighted_bipred = !!(avctx->flags2 & CODEC_FLAG2_WPRED);
-     x4->params.analyse.i_weighted_pred = avctx->weighted_p_pred;
- 
-     if (avctx->me_method == ME_EPZS)
-@@ -298,7 +383,7 @@
+     x4->params.analyse.b_psnr = avctx->flags & CODEC_FLAG_PSNR;
+     x4->params.analyse.b_ssim = avctx->flags2 & CODEC_FLAG2_SSIM;
+@@ -321,7 +432,11 @@
  
      x4->params.b_interlaced   = avctx->flags & CODEC_FLAG_INTERLACED_DCT;
  
--    x4->params.b_open_gop     = !(avctx->flags & CODEC_FLAG_CLOSED_GOP);
-+    x4->params.b_open_gop     = !!(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? 0 : 1;
++#if 0
+     x4->params.b_open_gop     = !(avctx->flags & CODEC_FLAG_CLOSED_GOP);
++#else
++    x4->params.b_open_gop     = !(avctx->flags & CODEC_FLAG_CLOSED_GOP) ? 1 : 0;
++#endif
  
      x4->params.i_slice_count  = avctx->slices;
  
-@@ -307,6 +392,80 @@
+@@ -330,11 +445,85 @@
      if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER)
          x4->params.b_repeat_headers = 0;
  
++#if 0
+     // update AVCodecContext with x264 parameters
+     avctx->has_b_frames = x4->params.i_bframe ?
+         x4->params.i_bframe_pyramid ? 2 : 1 : 0;
+     avctx->bit_rate = x4->params.rc.i_bitrate*1000;
+     avctx->crf = x4->params.rc.f_rf_constant;
++#endif
++
 +    /* Apply colorspace parameters */
 +    if(avctx->color_primaries != 2 || avctx->color_trc != 2 || avctx->colorspace != 2) {
-+        //av_log(avctx, AV_LOG_QUIET, "avctx=%d,%d,%d\n", avctx->color_primaries, avctx->color_trc, avctx->colorspace);
-+        //av_log(avctx, AV_LOG_QUIET, "param=%d,%d,%d\n", x4->params.vui.i_colorprim, x4->params.vui.i_transfer, x4->params.vui.i_colmatrix);
 +        x4->params.vui.i_colorprim = avctx->color_primaries;
 +        x4->params.vui.i_transfer = avctx->color_trc;
 +        x4->params.vui.i_colmatrix = avctx->colorspace;
@@ -257,20 +298,28 @@
 +                break;
 +            }
 +    }
-+
+ 
      x4->enc = x264_encoder_open(&x4->params);
      if (!x4->enc)
-         return -1;
-@@ -321,10 +480,10 @@
+@@ -348,12 +537,21 @@
  
+         s = x264_encoder_headers(x4->enc, &nal, &nnal);
+ 
++#if 0
          for (i = 0; i < nnal; i++)
              if (nal[i].i_type == NAL_SEI)
--                av_log(avctx, AV_LOG_INFO, "%s\n", nal[i].p_payload+25);
-+                av_log(avctx, AV_LOG_INFO, "%s\n", nal[i].p_payload+24);
+                 av_log(avctx, AV_LOG_INFO, "%s\n", nal[i].p_payload+25);
  
          avctx->extradata      = av_malloc(s);
--        avctx->extradata_size = encode_nals(avctx, avctx->extradata, s, nal, nnal, 1);
+         avctx->extradata_size = encode_nals(avctx, avctx->extradata, s, nal, nnal, 1);
++#else
++        for (i = 0; i < nnal; i++)
++            if (nal[i].i_type == NAL_SEI)
++                av_log(avctx, AV_LOG_INFO, "%s\n", nal[i].p_payload+24);
++
++        avctx->extradata      = av_malloc(s);
 +        avctx->extradata_size = encode_nals(avctx, avctx->extradata, s, nal, nnal, 0);
++#endif
      }
  
      return 0;
