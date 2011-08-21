@@ -474,7 +474,7 @@ ComponentResult lavcEncoder_Close(lavcEncoderGlobalRecord *glob, ComponentInstan
 			
 			suffix = ".mbtree";
 			size = 1 + strlen(suffix) + strlen(glob->params_opaque.log_file_path);
-			if( path = calloc(1, size) ) {
+			if( (path = calloc(1, size)) ) {
 				snprintf(path, size, "%s%s", glob->params_opaque.log_file_path, suffix);
 				ret = remove(path);
 				if( ret && errno != ENOENT ) 
@@ -484,7 +484,7 @@ ComponentResult lavcEncoder_Close(lavcEncoderGlobalRecord *glob, ComponentInstan
 			
 			suffix = ".temp";
 			size = 1 + strlen(suffix) + strlen(glob->params_opaque.log_file_path);
-			if( path = calloc(1, size) ) {
+			if( (path = calloc(1, size)) ) {
 				snprintf(path, size, "%s%s", glob->params_opaque.log_file_path, suffix);
 				ret = remove(path);
 				if( ret && errno != ENOENT ) 
@@ -494,7 +494,7 @@ ComponentResult lavcEncoder_Close(lavcEncoderGlobalRecord *glob, ComponentInstan
 			
 			suffix = ".mbtree.temp";
 			size = 1 + strlen(suffix) + strlen(glob->params_opaque.log_file_path);
-			if( path = calloc(1, size) ) {
+			if( (path = calloc(1, size)) ) {
 				snprintf(path, size, "%s%s", glob->params_opaque.log_file_path, suffix);
 				ret = remove(path);
 				if( ret && errno != ENOENT ) 
@@ -1041,7 +1041,7 @@ ComponentResult lavcEncoder_PrepareToCompressFrames(lavcEncoderGlobalRecord *glo
 		/* ==================================== */
 		
 		// Initialize libavcodec
-		avcodec_init();
+		//avcodec_init();
 		avcodec_register_all();
 		
 		// Check codec
