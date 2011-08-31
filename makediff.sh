@@ -28,9 +28,6 @@ DST="libav${REV}"
 PREFIX="ffmpeg"
 #echo SRC=${SRC}, DST=${DST}, PREFIX=${PREFIX}
 
-TARGET="configure"
-doDiff
-
 TARGET="libavcodec/libx264.c"
 doDiff
 

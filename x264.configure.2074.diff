@@ -1,0 +1,52 @@
+--- x2642074.org/configure	2011-08-27 06:37:09.000000000 +0900
++++ x2642074/configure	2011-08-31 15:54:37.000000000 +0900
+@@ -609,7 +609,7 @@
+     fi
+ fi
+ 
+-if [ $shared = yes -a \( $ARCH = "X86_64" -o $ARCH = "PPC" -o $ARCH = "ALPHA" -o $ARCH = "ARM" -o $ARCH = "IA64" \) ] ; then
++if [ $shared = "yes" -a \( $ARCH = "X86_64" -o $ARCH = "PPC" -o $ARCH = "ALPHA" -o $ARCH = "ARM" -o $ARCH = "IA64" \) ] ; then
+     pic="yes"
+ fi
+ 
+@@ -911,9 +911,9 @@
+ 
+ ASFLAGS="$ASFLAGS -DBIT_DEPTH=$bit_depth"
+ 
+-[ $gpl = yes ] && define HAVE_GPL && x264_gpl=1 || x264_gpl=0
++[ $gpl = "yes" ] && define HAVE_GPL && x264_gpl=1 || x264_gpl=0
+ 
+-[ $interlaced = yes ] && define HAVE_INTERLACED && x264_interlaced=1 || x264_interlaced=0
++[ $interlaced = "yes" ] && define HAVE_INTERLACED && x264_interlaced=1 || x264_interlaced=0
+ 
+ #define undefined vars as 0
+ for var in $CONFIG_HAVE; do
+@@ -931,7 +931,7 @@
+     LIBX264=libx264.lib
+     RANLIB=
+     STRIP=
+-    if [ $debug = yes ]; then
++    if [ $debug = "yes" ]; then
+         LDFLAGS="-debug $LDFLAGS"
+         CFLAGS="-D_DEBUG $CFLAGS"
+     else
+@@ -952,7 +952,7 @@
+ else
+     CFLAGS="$(intel_cflags $CFLAGS)"
+     # icc does not define __SSE__ until SSE2 optimization and icl never defines it or _M_IX86_FP
+-    [ \( $ARCH = X86_64 -o $ARCH = X86 \) -a $asm = yes ] && ! cpp_check "" "" "defined(__SSE__)" && define __SSE__
++    [ \( $ARCH = X86_64 -o $ARCH = X86 \) -a $asm = "yes" ] && ! cpp_check "" "" "defined(__SSE__)" && define __SSE__
+     PROF_GEN_CC="${QPRE}prof-gen ${QPRE}prof-dir."
+     PROF_GEN_LD=
+     PROF_USE_CC="${QPRE}prof-use ${QPRE}prof-dir."
+@@ -1081,8 +1081,8 @@
+ 
+ filters="crop select_every"
+ gpl_filters=""
+-[ $swscale = yes ] && filters="resize $filters"
+-[ $gpl = yes ] && filters="$filters $gpl_filters"
++[ $swscale = "yes" ] && filters="resize $filters"
++[ $gpl = "yes" ] && filters="$filters $gpl_filters"
+ 
+ cat > conftest.log <<EOF
+ Platform:   $ARCH
