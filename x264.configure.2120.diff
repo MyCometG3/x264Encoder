@@ -1,15 +1,15 @@
---- x2642085.org/configure	2011-09-22 20:18:07.000000000 +0900
-+++ x2642085/configure	2011-09-22 21:32:12.000000000 +0900
-@@ -609,7 +609,7 @@
+--- x2642120.org/configure	2011-12-08 06:53:41.000000000 +0900
++++ x2642120/configure	2011-12-25 14:23:03.000000000 +0900
+@@ -626,7 +626,7 @@
      fi
  fi
  
--if [ $shared = yes -a \( $ARCH = "X86_64" -o $ARCH = "PPC" -o $ARCH = "ALPHA" -o $ARCH = "ARM" -o $ARCH = "IA64" \) ] ; then
-+if [ $shared = "yes" -a \( $ARCH = "X86_64" -o $ARCH = "PPC" -o $ARCH = "ALPHA" -o $ARCH = "ARM" -o $ARCH = "IA64" \) ] ; then
+-if [ $shared = yes -a \( $ARCH = "X86_64" -o $ARCH = "PPC" -o $ARCH = "ALPHA" -o $ARCH = "ARM" -o $ARCH = "IA64" -o $ARCH = "PARISC" -o $ARCH = "MIPS" \) ] ; then
++if [ $shared = "yes" -a \( $ARCH = "X86_64" -o $ARCH = "PPC" -o $ARCH = "ALPHA" -o $ARCH = "ARM" -o $ARCH = "IA64" -o $ARCH = "PARISC" -o $ARCH = "MIPS" \) ] ; then
      pic="yes"
  fi
  
-@@ -911,9 +911,9 @@
+@@ -933,9 +933,9 @@
  
  ASFLAGS="$ASFLAGS -DBIT_DEPTH=$bit_depth"
  
@@ -21,7 +21,7 @@
  
  #define undefined vars as 0
  for var in $CONFIG_HAVE; do
-@@ -931,7 +931,7 @@
+@@ -953,7 +953,7 @@
      LIBX264=libx264.lib
      RANLIB=
      STRIP=
@@ -30,7 +30,7 @@
          LDFLAGS="-debug $LDFLAGS"
          CFLAGS="-D_DEBUG $CFLAGS"
      else
-@@ -952,7 +952,7 @@
+@@ -974,7 +974,7 @@
  else
      CFLAGS="$(intel_cflags $CFLAGS)"
      # icc does not define __SSE__ until SSE2 optimization and icl never defines it or _M_IX86_FP
@@ -39,7 +39,7 @@
      PROF_GEN_CC="${QPRE}prof-gen ${QPRE}prof-dir."
      PROF_GEN_LD=
      PROF_USE_CC="${QPRE}prof-use ${QPRE}prof-dir."
-@@ -1081,8 +1081,8 @@
+@@ -1106,8 +1106,8 @@
  
  filters="crop select_every"
  gpl_filters=""
@@ -49,4 +49,4 @@
 +[ $gpl = "yes" ] && filters="$filters $gpl_filters"
  
  cat > conftest.log <<EOF
- Platform:   $ARCH
+ platform:      $ARCH
