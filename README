@@ -57,6 +57,6 @@ How to build:
   $ # vi Info.plist                                ### Edit as is
   $ # vi x264EncoderVersion.h                      ### Edit as is
   $ rm -rf build ; xcodebuild -target "BuildAndCopy" -configuration "Release"
-  $ ls -ld /Library/QuickTime/x264Encoder.*
+  $ ls -ld ~/Library/QuickTime/x264Encoder.*
 
-NOTE: Build target "Build and Copy" will copy stripped x264Encoder.component into /Library/QuickTime/. Not /Users/XXX/Library/QuickTime/.
+NOTE: Build target "Build and Copy" will copy stripped x264Encoder.component into /Users/XXX/Library/QuickTime/.
