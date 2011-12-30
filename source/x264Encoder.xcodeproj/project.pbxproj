@@ -76,7 +76,7 @@
 		16A747500B8852940011BCB2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /Library/QuickTime/;
+			dstPath = "${HOME}/Library/QuickTime/";
 			dstSubfolderSpec = 0;
 			files = (
 				16A747540B8852B50011BCB2 /* x264Encoder.component in CopyFiles */,
